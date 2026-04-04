@@ -141,28 +141,28 @@ export default function HomePage() {
     <div style={{ background: '#0D1F35' }}>
 
       {/* 오늘 출조 정보 */}
-      <div className="pt-20 pb-0 mb-0">
+      <div className="pt-8 pb-0 mb-0">
         <TideWeatherSection />
       </div>
 
       {/* HERO */}
       <section
-        className="relative flex flex-col items-center justify-center text-center px-5 pt-4 mt-4 pb-24 overflow-hidden"
-        style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #0D1F35 0%, #0a1628 100%)' }}
+        className="relative flex flex-col items-center justify-center text-center px-5 pt-2 mt-0 pb-10 overflow-hidden"
+        style={{ background: 'linear-gradient(160deg, #0D1F35 0%, #0a1628 100%)' }}
       >
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           {[...Array(20)].map((_, i) => (
             <div key={i} className="absolute rounded-full" style={{ width: Math.random() * 3 + 1, height: Math.random() * 3 + 1, background: 'rgba(201,168,76,0.4)', top: `${Math.random() * 80}%`, left: `${Math.random() * 100}%`, opacity: Math.random() * 0.6 + 0.2 }} />
           ))}
         </div>
-        <p className="text-xs font-semibold tracking-[0.3em] mb-4" style={{ color: '#C9A84C' }}>경남 최고의 선상낚시</p>
-        <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-6 whitespace-pre-line" style={{ fontFamily: '"Noto Serif KR", Georgia, serif', color: '#F8F9FA' }}>
+        <p className="text-xs font-semibold tracking-[0.3em] mb-2" style={{ color: '#C9A84C' }}>경남 최고의 선상낚시</p>
+        <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-3 whitespace-pre-line" style={{ fontFamily: '"Noto Serif KR", Georgia, serif', color: '#F8F9FA' }}>
           {'좋은피싱과 함께\n특별한 하루를'}
         </h1>
-        <p className="text-sm mb-10 max-w-xs" style={{ color: '#8A9BB0' }}>안전하고 풍성한 선상낚시 출조 — 버스·배 좌석 간편 예약</p>
+        <p className="text-sm mb-5 max-w-xs" style={{ color: '#8A9BB0' }}>안전하고 풍성한 선상낚시 출조 — 버스·배 좌석 간편 예약</p>
         <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
-          <button onClick={() => bookingRef.current?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 py-4 rounded-xl font-bold text-base transition-all active:scale-95" style={{ background: '#C9A84C', color: '#0D1F35', boxShadow: '0 4px 20px rgba(201,168,76,0.35)' }}>지금 예약하기</button>
-          <button onClick={() => bookingRef.current?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 py-4 rounded-xl font-bold text-base transition-all active:scale-95" style={{ background: 'transparent', color: '#C9A84C', border: '1.5px solid #C9A84C' }}>출조 일정 보기</button>
+          <button onClick={() => bookingRef.current?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 py-3 rounded-xl font-bold text-base transition-all active:scale-95" style={{ background: '#C9A84C', color: '#0D1F35', boxShadow: '0 4px 20px rgba(201,168,76,0.35)' }}>지금 예약하기</button>
+          <button onClick={() => bookingRef.current?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 py-3 rounded-xl font-bold text-base transition-all active:scale-95" style={{ background: 'transparent', color: '#C9A84C', border: '1.5px solid #C9A84C' }}>출조 일정 보기</button>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden" style={{ height: 60 }}>

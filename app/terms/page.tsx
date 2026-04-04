@@ -12,7 +12,7 @@ export default function TermsPage() {
         <section style={{ background: '#1E3F66', borderRadius: 20, border: '1px solid rgba(45,95,153,0.4)', padding: '16px 20px' }}>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>제1조 (목적)</p>
           <p className="text-xs leading-relaxed" style={{ color: '#93B5D4' }}>
-            이 약관은 좋은피싱(이하 "회사")이 제공하는 선상낚시 출조 예약 서비스(이하 "서비스")의 이용조건 및 절차,
+            이 약관은 좋은피싱(이하 &quot;회사&quot;)이 제공하는 선상낚시 출조 예약 서비스(이하 &quot;서비스&quot;)의 이용조건 및 절차,
             회사와 이용자 간의 권리·의무 및 책임 사항을 규정함을 목적으로 합니다.
           </p>
         </section>

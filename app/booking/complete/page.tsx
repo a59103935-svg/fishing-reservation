@@ -68,7 +68,7 @@ function BookingComplete() {
     )
   }
 
-  const isBankTransfer = booking.payment_method === 'bank_transfer' || booking.payment_method === 'bank'
+  const isBankTransfer = (booking.payment_method as string) === 'bank_transfer' || (booking.payment_method as string) === 'bank'
   const isOnsite = booking.payment_method === 'onsite'
 
   return (

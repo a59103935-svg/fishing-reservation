@@ -14,6 +14,7 @@ export const useBookingStore = create<BookingState>()(
       notes: '',
       paymentMethod: 'kakao',
       depositorName: '',
+      isCheckoutInProgress: false,
 
       setDate: (date: string) =>
         set({
@@ -88,6 +89,9 @@ export const useBookingStore = create<BookingState>()(
       setDepositorName: (name: string) =>
         set({ depositorName: name }),
 
+      setCheckoutInProgress: (v: boolean) =>
+        set({ isCheckoutInProgress: v }),
+
       clearAll: () =>
         set({
           selectedDate: null,
@@ -99,6 +103,7 @@ export const useBookingStore = create<BookingState>()(
           notes: '',
           paymentMethod: 'kakao',
           depositorName: '',
+          isCheckoutInProgress: false,
         }),
     }),
     {
@@ -113,6 +118,7 @@ export const useBookingStore = create<BookingState>()(
         notes: state.notes,
         paymentMethod: state.paymentMethod,
         depositorName: state.depositorName,
+        isCheckoutInProgress: state.isCheckoutInProgress,
       }),
     }
   )

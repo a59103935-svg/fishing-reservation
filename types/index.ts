@@ -107,6 +107,7 @@ export interface BookingState {
   notes: string
   paymentMethod: PaymentMethod
   depositorName: string
+  isCheckoutInProgress: boolean
   // actions
   setDate: (date: string) => void
   toggleBusSeat: (seat: number) => void
@@ -120,6 +121,7 @@ export interface BookingState {
   setCustomerInfo: (name: string, phone: string) => void
   setPaymentMethod: (method: PaymentMethod) => void
   setDepositorName: (name: string) => void
+  setCheckoutInProgress: (v: boolean) => void
   clearAll: () => void
 }
 

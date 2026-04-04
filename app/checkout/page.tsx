@@ -7,15 +7,23 @@ import { createClient } from '@/lib/supabase/client'
 import { calculateTotal, formatPrice, formatDateKorean } from '@/lib/booking'
 import type { SiteSettings, PaymentMethod } from '@/types'
 
+const PAYMENT_LABELS: Record<string, string> = {
+  kakao: '카카오페이',
+  naver: '네이버페이',
+  bank: '무통장입금',
+  onsite: '현장결제',
+}
+
 export default function CheckoutPage() {
   const router = useRouter()
   const supabase = createClient()
-  const { selectedDate, selectedBusSeats, selectedBoatSpots, cartItems, customerName, customerPhone, paymentMethod, depositorName, setCustomerInfo, setPaymentMethod, setDepositorName } = useBookingStore()
+  const { selectedDate, selectedBusSeats, selectedBoatSpots, cartItems, customerName, customerPhone, paymentMethod, depositorName, setCustomerInfo, setPaymentMethod, setDepositorName, setCheckoutInProgress, clearAll } = useBookingStore()
   const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [loading, setLoading] = useState(false)
   const [nameErr, setNameErr] = useState('')
   const [phoneErr, setPhoneErr] = useState('')
   const [copied, setCopied] = useState(false)
+  const [showBackModal, setShowBackModal] = useState(false)
 
   const loadSettings = useCallback(async () => {
     const { data } = await supabase.from('site_settings').select('*').single()
@@ -24,8 +32,20 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!selectedDate || selectedBusSeats.length === 0) { router.replace('/'); return }
+    setCheckoutInProgress(true)
     loadSettings()
-  }, [selectedDate, selectedBusSeats, router, loadSettings])
+  }, [selectedDate, selectedBusSeats, router, loadSettings, setCheckoutInProgress])
+
+  // 브라우저 뒤로가기 버튼 인터셉트
+  useEffect(() => {
+    window.history.pushState(null, '', window.location.href)
+    const handlePopState = () => {
+      window.history.pushState(null, '', window.location.href)
+      setShowBackModal(true)
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
 
   const total = settings ? calculateTotal(selectedBusSeats.length, selectedBoatSpots.length > 0, cartItems, settings) : 0
 
@@ -51,17 +71,17 @@ export default function CheckoutPage() {
       if (paymentMethod === 'kakao') {
         const res = await fetch('/api/payments/kakao', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod, depositorName }) })
         const data = await res.json()
-        if (data.redirect_url) window.location.href = data.redirect_url
+        if (data.redirect_url) { setCheckoutInProgress(false); window.location.href = data.redirect_url }
         else alert('카카오페이 결제 준비 중 오류가 발생했습니다')
       } else if (paymentMethod === 'naver') {
         const res = await fetch('/api/payments/naver', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod }) })
         const data = await res.json()
-        if (data.redirect_url) window.location.href = data.redirect_url
+        if (data.redirect_url) { setCheckoutInProgress(false); window.location.href = data.redirect_url }
         else alert('네이버페이 결제 준비 중 오류가 발생했습니다')
       } else {
         const res = await fetch('/api/bookings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod, depositorName }) })
         const data = await res.json()
-        if (data.id) router.push(`/confirmation/${data.id}`)
+        if (data.id) { setCheckoutInProgress(false); router.push(`/confirmation/${data.id}`) }
         else alert(data.error ?? '예약 처리 중 오류가 발생했습니다')
       }
     } catch (err) { console.error(err); alert('네트워크 오류가 발생했습니다.') }
@@ -79,9 +99,34 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-lg mx-auto min-h-screen bg-gray-50 pb-32">
+      {showBackModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-xs p-6 space-y-4">
+            <div className="text-center">
+              <div className="text-4xl mb-2">⚠️</div>
+              <h2 className="text-lg font-bold text-gray-900">이미 예약이 진행 중입니다</h2>
+              <p className="text-sm text-gray-500 mt-1">{PAYMENT_LABELS[paymentMethod]}으로 진행 중이었습니다</p>
+            </div>
+            <div className="space-y-2 pt-1">
+              <button
+                className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 active:scale-95 transition-all"
+                onClick={() => setShowBackModal(false)}
+              >
+                이어서 진행
+              </button>
+              <button
+                className="w-full py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 active:scale-95 transition-all"
+                onClick={() => { setPaymentMethod('kakao'); setShowBackModal(false) }}
+              >
+                결제방식 변경
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="flex items-center px-4 py-4 gap-3">
-          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">←</button>
+          <button onClick={() => setShowBackModal(true)} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">←</button>
           <div><p className="text-xs text-gray-500">결제</p><p className="text-base font-bold text-gray-900">예약 정보 확인</p></div>
         </div>
       </header>

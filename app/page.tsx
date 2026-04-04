@@ -153,11 +153,7 @@ export default function HomePage() {
           <button onClick={() => bookingRef.current?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 py-4 rounded-xl font-bold text-base transition-all active:scale-95" style={{ background: '#C9A84C', color: '#0D1F35', boxShadow: '0 4px 20px rgba(201,168,76,0.35)' }}>지금 예약하기</button>
           <button onClick={() => bookingRef.current?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 py-4 rounded-xl font-bold text-base transition-all active:scale-95" style={{ background: 'transparent', color: '#C9A84C', border: '1.5px solid #C9A84C' }}>출조 일정 보기</button>
         </div>
-        <div className="absolute bottom-28 right-5 sm:right-8 px-4 py-3 rounded-xl text-left" style={{ background: 'rgba(26,51,85,0.8)', border: '1px solid rgba(201,168,76,0.3)', backdropFilter: 'blur(8px)' }}>
-          <p className="text-[10px] font-semibold mb-1" style={{ color: '#C9A84C' }}>오늘 물때</p>
-          <p className="text-sm font-bold" style={{ color: '#F8F9FA' }}>중간사리 7물</p>
-          <p className="text-[10px] mt-0.5" style={{ color: '#8A9BB0' }}>{format(new Date(), 'M월 d일 (EEE)', { locale: ko })}</p>
-        </div>
+
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden" style={{ height: 60 }}>
           <div className="wave-animate" style={{ width: '200%', display: 'flex' }}>
             <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style={{ width: '50%', height: 60 }}><path d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#0D1F35" /></svg>

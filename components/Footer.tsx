@@ -45,9 +45,14 @@ export default function Footer() {
 
         {/* 사업자 정보 */}
         <div className="text-xs space-y-1.5" style={{ color: '#4A6888' }}>
-          <p>상호: 좋은피싱 &nbsp;|&nbsp; 대표: 강현구 &nbsp;|&nbsp; 사업자번호: 000-00-00000</p>
-          <p>주소: 경상남도 &nbsp;|&nbsp; 연락처: 010-0000-0000</p>
-          <p className="mt-3" style={{ color: '#2D4060' }}>© 2025 좋은피싱. All rights reserved.</p>
+          <p>상호: 좋은피싱 &nbsp;|&nbsp; 대표: 강현구 &nbsp;|&nbsp; 사업자번호: 391-25-01325</p>
+          <p>주소: 경기도 고양시 일산서구</p>
+          <div className="flex gap-4 mt-3">
+            <Link href="/terms" className="hover:underline" style={{ color: '#4A6888' }}>이용약관</Link>
+            <Link href="/privacy" className="hover:underline" style={{ color: '#4A6888' }}>개인정보처리방침</Link>
+            <Link href="/refund" className="hover:underline" style={{ color: '#4A6888' }}>환불정책</Link>
+          </div>
+          <p className="mt-2" style={{ color: '#2D4060' }}>© 2025 좋은피싱. All rights reserved.</p>
         </div>
       </div>
     </footer>

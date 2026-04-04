@@ -50,6 +50,7 @@ export default function HomePage() {
 
   const loadMonthData = useCallback(async (month: Date) => {
     setCalLoading(true)
+    try {
     const start = format(startOfMonth(month), 'yyyy-MM-dd')
     const end   = format(endOfMonth(month),   'yyyy-MM-dd')
     const { data: bookingsRaw, error: bookingsError } = await supabase
@@ -72,7 +73,11 @@ export default function HomePage() {
       cur = addDays(cur, 1)
     }
     setDayStatuses(statusMap)
-    setCalLoading(false)
+    } catch {
+      // 테이블 미존재 등 예외 시 캘린더는 빈 상태로 표시
+    } finally {
+      setCalLoading(false)
+    }
   }, [supabase, siteSettings?.bus_total_seats])
 
   const loadPreviewProducts = useCallback(async () => {

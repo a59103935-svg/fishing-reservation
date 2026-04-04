@@ -140,6 +140,9 @@ export default function HomePage() {
   return (
     <div style={{ background: '#0D1F35' }}>
 
+      {/* 오늘 출조 정보 */}
+      <TideWeatherSection />
+
       {/* HERO */}
       <section
         className="relative flex flex-col items-center justify-center text-center px-5 pt-32 pb-24 overflow-hidden"
@@ -167,9 +170,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* 오늘 출조 정보 */}
-      <TideWeatherSection />
 
       {/* BOOKING */}
       <section id="booking" ref={bookingRef} style={{ background: '#0D1F35', padding: '72px 0' }}>

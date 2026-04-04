@@ -52,17 +52,18 @@ export default function HomePage() {
     setCalLoading(true)
     const start = format(startOfMonth(month), 'yyyy-MM-dd')
     const end   = format(endOfMonth(month),   'yyyy-MM-dd')
-    const { data: bookings } = await supabase
-      .from('bookings').select('date, bus_seat_number')
+    const { data: bookingsRaw, error: bookingsError } = await supabase
+      .from('bookings').select('date')
       .gte('date', start).lte('date', end).neq('payment_status', 'cancelled')
-    const { data: schedulesRaw } = await supabase
+    const bookings = bookingsError ? [] : (bookingsRaw ?? [])
+    const { data: schedulesRaw, error: schedulesError } = await supabase
       .from('schedule_settings').select('date, is_holiday')
       .gte('date', start).lte('date', end)
-    const schedules = schedulesRaw ?? []
+    const schedules = schedulesError ? [] : (schedulesRaw ?? [])
     const totalSeats = siteSettings?.bus_total_seats ?? 30
     const statusMap  = new Map<string, DayStatus>()
     const counts     = new Map<string, number>()
-    bookings?.forEach((b) => { if (b.bus_seat_number) counts.set(b.date, (counts.get(b.date) ?? 0) + 1) })
+    bookings.forEach((b) => { counts.set(b.date, (counts.get(b.date) ?? 0) + 1) })
     const holidays = new Set(schedules?.filter((s) => s.is_holiday).map((s) => s.date))
     let cur = new Date(start)
     while (cur <= new Date(end)) {
@@ -75,8 +76,8 @@ export default function HomePage() {
   }, [supabase, siteSettings?.bus_total_seats])
 
   const loadPreviewProducts = useCallback(async () => {
-    const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order').limit(4)
-    if (data) setPreviewProducts(data)
+    const { data, error } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order').limit(4)
+    if (!error && data) setPreviewProducts(data)
   }, [supabase])
 
   useEffect(() => { loadSettings() }, [loadSettings])

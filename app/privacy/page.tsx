@@ -13,8 +13,8 @@ export default function PrivacyPage() {
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>1. 수집하는 개인정보 항목</p>
           <ul className="space-y-1.5 text-xs leading-relaxed" style={{ color: '#93B5D4' }}>
             <li>• 성명, 연락처(휴대폰 번호)</li>
-            <li>• 예약 정보(출조 일정, 좌석 정보)</li>
-            <li>• 결제 정보(입금자명, 입금 금액)</li>
+            <li>• 예약 정보(출조 일정, 버스 좌석 번호, 배 자리)</li>
+            <li>• 결제 정보(결제 수단, 입금자명, 결제 금액)</li>
           </ul>
         </section>
 
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>2. 개인정보 수집·이용 목적</p>
           <ul className="space-y-1.5 text-xs leading-relaxed" style={{ color: '#93B5D4' }}>
             <li>• 출조 예약 접수 및 확인</li>
-            <li>• 예약 관련 안내 및 알림 발송</li>
+            <li>• 예약 관련 알림톡·문자 발송</li>
             <li>• 입금 확인 및 정산</li>
             <li>• 취소·환불 처리</li>
           </ul>
@@ -31,14 +31,16 @@ export default function PrivacyPage() {
         <section style={{ background: '#1E3F66', borderRadius: 20, border: '1px solid rgba(45,95,153,0.4)', padding: '16px 20px' }}>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>3. 개인정보 보유·이용 기간</p>
           <p className="text-xs leading-relaxed" style={{ color: '#93B5D4' }}>
-            출조 완료일로부터 <span style={{ color: '#C9A84C' }}>1년간</span> 보관 후 파기합니다. 단, 관련 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.
+            출조 완료일로부터 <span style={{ color: '#C9A84C' }}>1년간</span> 보관 후 파기합니다.
+            단, 관련 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.
           </p>
         </section>
 
         <section style={{ background: '#1E3F66', borderRadius: 20, border: '1px solid rgba(45,95,153,0.4)', padding: '16px 20px' }}>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>4. 개인정보의 제3자 제공</p>
           <p className="text-xs leading-relaxed" style={{ color: '#93B5D4' }}>
-            회사는 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 법령에 의거하거나 이용자의 동의가 있는 경우 예외로 합니다.
+            회사는 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다.
+            다만, 법령에 의거하거나 이용자의 동의가 있는 경우 예외로 합니다.
           </p>
         </section>
 
@@ -53,16 +55,17 @@ export default function PrivacyPage() {
         <section style={{ background: '#1E3F66', borderRadius: 20, border: '1px solid rgba(45,95,153,0.4)', padding: '16px 20px' }}>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>6. 이용자의 권리</p>
           <p className="text-xs leading-relaxed" style={{ color: '#93B5D4' }}>
-            이용자는 언제든지 자신의 개인정보 조회, 수정, 삭제를 요청할 수 있습니다. 요청은 카카오채널 또는 전화 문의를 통해 접수 가능합니다.
+            이용자는 언제든지 자신의 개인정보 조회, 수정, 삭제를 요청할 수 있습니다.
+            아래 개인정보 보호책임자에게 연락하시면 신속히 처리해 드립니다.
           </p>
         </section>
 
         <section style={{ background: '#1E3F66', borderRadius: 20, border: '1px solid rgba(45,95,153,0.4)', padding: '16px 20px' }}>
-          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>7. 개인정보 보호책임자</p>
-          <div className="text-xs space-y-1" style={{ color: '#93B5D4' }}>
-            <p>담당자: 강현구</p>
-            <p>상호: 좋은피싱</p>
-            <p>문의: 카카오채널 좋은피싱</p>
+          <p className="text-xs font-bold tracking-widests mb-3" style={{ color: '#C9A84C' }}>7. 개인정보 보호책임자</p>
+          <div className="text-xs space-y-1.5" style={{ color: '#93B5D4' }}>
+            <p>담당자: <span style={{ color: '#F8F9FA' }}>강현구</span></p>
+            <p>상호: <span style={{ color: '#F8F9FA' }}>좋은피싱</span></p>
+            <p>연락처: <span style={{ color: '#C9A84C' }}>010-5910-3935</span></p>
           </div>
         </section>
 

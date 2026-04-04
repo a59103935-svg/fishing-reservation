@@ -1,11 +1,13 @@
-﻿'use client'
+'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useBookingStore } from '@/lib/store'
 import { createClient } from '@/lib/supabase/client'
 import { calculateTotal, formatPrice, formatDateKorean } from '@/lib/booking'
 import type { SiteSettings, PaymentMethod } from '@/types'
+
+export const PENDING_KEY = 'pending_reservation'
 
 const PAYMENT_LABELS: Record<string, string> = {
   kakao: '카카오페이',
@@ -17,37 +19,57 @@ const PAYMENT_LABELS: Record<string, string> = {
 export default function CheckoutPage() {
   const router = useRouter()
   const supabase = createClient()
-  const { selectedDate, selectedBusSeats, selectedBoatSpots, cartItems, customerName, customerPhone, paymentMethod, depositorName, setCustomerInfo, setPaymentMethod, setDepositorName, setCheckoutInProgress, clearAll } = useBookingStore()
+  const { selectedDate, selectedBusSeats, selectedBoatSpots, cartItems, customerName, customerPhone, paymentMethod, depositorName, setCustomerInfo, setPaymentMethod, setDepositorName, clearAll } = useBookingStore()
   const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [loading, setLoading] = useState(false)
   const [nameErr, setNameErr] = useState('')
   const [phoneErr, setPhoneErr] = useState('')
   const [copied, setCopied] = useState(false)
   const [showBackModal, setShowBackModal] = useState(false)
+  const guardPushed = useRef(false)
 
   const loadSettings = useCallback(async () => {
     const { data } = await supabase.from('site_settings').select('*').single()
     if (data) setSettings(data)
   }, [supabase])
 
+  // 리다이렉트 + 초기 로드
   useEffect(() => {
     if (!selectedDate || selectedBusSeats.length === 0) { router.replace('/'); return }
-    setCheckoutInProgress(true)
     loadSettings()
-  }, [selectedDate, selectedBusSeats, router, loadSettings, setCheckoutInProgress])
+  }, [selectedDate, selectedBusSeats, router, loadSettings])
 
-  // 브라우저 뒤로가기 버튼 인터셉트
+  // 1) localStorage 저장 — 날짜/좌석/결제방식 변경 시마다 갱신
   useEffect(() => {
-    window.history.pushState(null, '', window.location.href)
-    const handlePopState = () => {
-      window.history.pushState(null, '', window.location.href)
+    if (!selectedDate || selectedBusSeats.length === 0) return
+    localStorage.setItem(PENDING_KEY, JSON.stringify({
+      date: selectedDate,
+      busSeats: selectedBusSeats,
+      boatSpots: selectedBoatSpots,
+      paymentMethod,
+    }))
+  }, [selectedDate, selectedBusSeats, selectedBoatSpots, paymentMethod])
+
+  // 2) 브라우저 뒤로가기 인터셉트
+  useEffect(() => {
+    if (guardPushed.current) return
+    guardPushed.current = true
+    window.history.pushState({ checkoutGuard: true }, '', window.location.pathname)
+
+    function onPopState() {
+      window.history.pushState({ checkoutGuard: true }, '', window.location.pathname)
       setShowBackModal(true)
     }
-    window.addEventListener('popstate', handlePopState)
-    return () => window.removeEventListener('popstate', handlePopState)
+
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
   const total = settings ? calculateTotal(selectedBusSeats.length, selectedBoatSpots.length > 0, cartItems, settings) : 0
+
+  function clearPending() {
+    localStorage.removeItem(PENDING_KEY)
+  }
 
   function copyAccount(account: string) {
     navigator.clipboard.writeText(account).then(() => {
@@ -71,17 +93,17 @@ export default function CheckoutPage() {
       if (paymentMethod === 'kakao') {
         const res = await fetch('/api/payments/kakao', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod, depositorName }) })
         const data = await res.json()
-        if (data.redirect_url) { setCheckoutInProgress(false); window.location.href = data.redirect_url }
+        if (data.redirect_url) { clearPending(); window.location.href = data.redirect_url }
         else alert('카카오페이 결제 준비 중 오류가 발생했습니다')
       } else if (paymentMethod === 'naver') {
         const res = await fetch('/api/payments/naver', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod }) })
         const data = await res.json()
-        if (data.redirect_url) { setCheckoutInProgress(false); window.location.href = data.redirect_url }
+        if (data.redirect_url) { clearPending(); window.location.href = data.redirect_url }
         else alert('네이버페이 결제 준비 중 오류가 발생했습니다')
       } else {
         const res = await fetch('/api/bookings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod, depositorName }) })
         const data = await res.json()
-        if (data.id) { setCheckoutInProgress(false); router.push(`/confirmation/${data.id}`) }
+        if (data.id) { clearPending(); router.push(`/confirmation/${data.id}`) }
         else alert(data.error ?? '예약 처리 중 오류가 발생했습니다')
       }
     } catch (err) { console.error(err); alert('네트워크 오류가 발생했습니다.') }
@@ -99,23 +121,25 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-lg mx-auto min-h-screen bg-gray-50 pb-32">
+
+      {/* 뒤로가기 모달 */}
       {showBackModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-xs p-6 space-y-4">
             <div className="text-center">
-              <div className="text-4xl mb-2">⚠️</div>
+              <div className="text-3xl mb-2">⚠️</div>
               <h2 className="text-lg font-bold text-gray-900">이미 예약이 진행 중입니다</h2>
               <p className="text-sm text-gray-500 mt-1">{PAYMENT_LABELS[paymentMethod]}으로 진행 중이었습니다</p>
             </div>
             <div className="space-y-2 pt-1">
               <button
-                className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 active:scale-95 transition-all"
+                className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl active:scale-95 transition-all"
                 onClick={() => setShowBackModal(false)}
               >
                 이어서 진행
               </button>
               <button
-                className="w-full py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 active:scale-95 transition-all"
+                className="w-full py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl active:scale-95 transition-all"
                 onClick={() => { setPaymentMethod('kakao'); setShowBackModal(false) }}
               >
                 결제방식 변경
@@ -124,6 +148,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       )}
+
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="flex items-center px-4 py-4 gap-3">
           <button onClick={() => setShowBackModal(true)} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">←</button>

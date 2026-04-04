@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { useBookingStore } from '@/lib/store'
@@ -27,6 +27,7 @@ export default function CheckoutPage() {
   const [copied, setCopied] = useState(false)
   const [showBackModal, setShowBackModal] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const submittedRef = useRef(false)
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -35,46 +36,30 @@ export default function CheckoutPage() {
     if (data) setSettings(data)
   }, [supabase])
 
-  // 리다이렉트 + 초기 로드
+  // 초기 검증 + 설정 로드
   useEffect(() => {
     if (!selectedDate || selectedBusSeats.length === 0) { router.replace('/'); return }
     loadSettings()
   }, [selectedDate, selectedBusSeats, router, loadSettings])
 
-  // localStorage 저장
+  // 진입 즉시 localStorage에 저장
   useEffect(() => {
     if (!selectedDate || selectedBusSeats.length === 0) return
     savePending({ date: selectedDate, busSeats: selectedBusSeats, boatSpots: selectedBoatSpots, paymentMethod })
-    console.log('[checkout] savePending called', { selectedDate, paymentMethod })
   }, [selectedDate, selectedBusSeats, selectedBoatSpots, paymentMethod])
 
-  // mount 시 sessionStorage 플래그 확인 (popstate 후 Next.js remount 대응)
+  // 브라우저 뒤로가기 → 홈으로 강제 이동 (popstate 사용)
   useEffect(() => {
-    if (sessionStorage.getItem('checkout_back_pressed')) {
-      sessionStorage.removeItem('checkout_back_pressed')
-      console.log('[checkout] remount detected, showing modal from sessionStorage')
-      setShowBackModal(true)
-    }
-  }, [])
+    // guard 엔트리 추가 — 뒤로가기 1회 흡수 후 홈으로 보냄
+    window.history.pushState(null, '', window.location.pathname)
 
-  // 브라우저 뒤로가기 인터셉트
-  useEffect(() => {
-    // guard 엔트리 추가 (동일 URL) — 뒤로가기 1회 흡수
-    window.history.pushState({ checkoutBack: true }, '', window.location.href)
-    console.log('[checkout] pushState guard added')
-
-    function onPopState(e: PopStateEvent) {
-      console.log('[checkout] popstate fired', e.state)
-      // ※ 여기서 pushState를 다시 호출하지 않음
-      //   → pushState 재호출이 Next.js router를 트리거해 컴포넌트 remount 유발
-      //   → remount 시 showBackModal 상태가 false로 초기화되는 문제 방지
-      sessionStorage.setItem('checkout_back_pressed', '1')
-      setShowBackModal(true)
+    function onPopState() {
+      router.push('/')
     }
 
     window.addEventListener('popstate', onPopState)
     return () => window.removeEventListener('popstate', onPopState)
-  }, [])
+  }, [router])
 
   const total = settings ? calculateTotal(selectedBusSeats.length, selectedBoatSpots.length > 0, cartItems, settings) : 0
 
@@ -100,17 +85,17 @@ export default function CheckoutPage() {
       if (paymentMethod === 'kakao') {
         const res = await fetch('/api/payments/kakao', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod, depositorName }) })
         const data = await res.json()
-        if (data.redirect_url) { clearPending(); window.location.href = data.redirect_url }
+        if (data.redirect_url) { submittedRef.current = true; clearPending(); window.location.href = data.redirect_url }
         else alert('카카오페이 결제 준비 중 오류가 발생했습니다')
       } else if (paymentMethod === 'naver') {
         const res = await fetch('/api/payments/naver', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod }) })
         const data = await res.json()
-        if (data.redirect_url) { clearPending(); window.location.href = data.redirect_url }
+        if (data.redirect_url) { submittedRef.current = true; clearPending(); window.location.href = data.redirect_url }
         else alert('네이버페이 결제 준비 중 오류가 발생했습니다')
       } else {
         const res = await fetch('/api/bookings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date: selectedDate, customerName, customerPhone, busSeatNumber: selectedBusSeats, boatSpotId: selectedBoatSpots.join(','), cartItems, totalAmount: total, paymentMethod, depositorName }) })
         const data = await res.json()
-        if (data.id) { clearPending(); router.push(`/confirmation/${data.id}`) }
+        if (data.id) { submittedRef.current = true; clearPending(); router.push(`/confirmation/${data.id}`) }
         else alert(data.error ?? '예약 처리 중 오류가 발생했습니다')
       }
     } catch (err) { console.error(err); alert('네트워크 오류가 발생했습니다.') }
@@ -124,25 +109,22 @@ export default function CheckoutPage() {
     { id: 'onsite', label: '현장결제', icon: '💵', desc: '당일 현장에서 결제' },
   ]
 
-  // 뒤로가기 모달 — portal로 body에 직접 마운트 (z-index 충돌 완전 우회)
+  // 커스텀 뒤로가기 버튼 모달 (portal → z-index 충돌 없음)
   const backModal = mounted && showBackModal ? createPortal(
     <div
-      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}
-      onClick={(e) => { if (e.target === e.currentTarget) setShowBackModal(false) }}
+      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.65)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}
     >
-      <div style={{ background: 'white', borderRadius: '16px', width: '100%', maxWidth: '320px', padding: '24px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>⚠️</div>
-          <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#111', margin: 0 }}>이미 예약이 진행 중입니다</h2>
-          <p style={{ fontSize: '14px', color: '#666', marginTop: '6px' }}>{PAYMENT_LABELS[paymentMethod]}으로 진행 중이었습니다</p>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div style={{ background: '#fff', borderRadius: '20px', width: '100%', maxWidth: '320px', padding: '28px 24px' }}>
+        <p style={{ textAlign: 'center', fontSize: '28px', marginBottom: '12px' }}>⚠️</p>
+        <h2 style={{ textAlign: 'center', fontSize: '17px', fontWeight: 700, color: '#111', margin: '0 0 6px' }}>이미 예약이 진행 중입니다</h2>
+        <p style={{ textAlign: 'center', fontSize: '14px', color: '#666', margin: '0 0 20px' }}>{PAYMENT_LABELS[paymentMethod]}으로 진행 중이었습니다</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <button
-            style={{ width: '100%', padding: '12px', background: '#2563eb', color: 'white', fontWeight: 600, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
+            style={{ padding: '14px', background: '#2563eb', color: '#fff', fontWeight: 700, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
             onClick={() => setShowBackModal(false)}
           >이어서 진행</button>
           <button
-            style={{ width: '100%', padding: '12px', background: '#f3f4f6', color: '#374151', fontWeight: 600, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
+            style={{ padding: '14px', background: '#f3f4f6', color: '#374151', fontWeight: 700, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
             onClick={() => { setPaymentMethod('kakao'); setShowBackModal(false) }}
           >결제방식 변경</button>
         </div>
@@ -159,8 +141,9 @@ export default function CheckoutPage() {
       <div className="max-w-lg mx-auto min-h-screen bg-gray-50 pb-32">
         <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
           <div className="flex items-center px-4 py-4 gap-3">
+            {/* 커스텀 뒤로가기 버튼 — 클릭 시 모달 표시 */}
             <button
-              onClick={() => { console.log('[checkout] back button clicked'); setShowBackModal(true) }}
+              onClick={() => setShowBackModal(true)}
               className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
             >←</button>
             <div><p className="text-xs text-gray-500">결제</p><p className="text-base font-bold text-gray-900">예약 정보 확인</p></div>

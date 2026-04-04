@@ -15,11 +15,16 @@ export default function ResumeReservationModal() {
 
   useEffect(() => { setMounted(true) }, [])
 
+  // pathname이 바뀔 때마다(페이지 이동 시) localStorage 확인
+  // checkout 페이지 자체에서는 표시하지 않음
   useEffect(() => {
-    if (pathname === '/checkout') { setPending(null); return }
+    if (pathname.startsWith('/checkout')) {
+      setPending(null)
+      return
+    }
     const data = getPending()
-    console.log('[ResumeModal] pathname:', pathname, 'pending:', data)
     if (data) setPending(data)
+    else setPending(null)
   }, [pathname])
 
   if (!mounted || !pending) return null
@@ -36,22 +41,22 @@ export default function ResumeReservationModal() {
   }
 
   return createPortal(
-    <div
-      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}
-    >
-      <div style={{ background: 'white', borderRadius: '16px', width: '100%', maxWidth: '320px', padding: '24px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎣</div>
-          <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#111', margin: 0 }}>진행 중인 예약이 있습니다</h2>
-          <p style={{ fontSize: '14px', color: '#666', marginTop: '6px' }}>{pending.date} 예약이 완료되지 않았습니다</p>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 9999,
+      background: 'rgba(0,0,0,0.65)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px',
+    }}>
+      <div style={{ background: '#fff', borderRadius: '20px', width: '100%', maxWidth: '320px', padding: '28px 24px' }}>
+        <p style={{ textAlign: 'center', fontSize: '32px', marginBottom: '12px' }}>🎣</p>
+        <h2 style={{ textAlign: 'center', fontSize: '17px', fontWeight: 700, color: '#111', margin: '0 0 6px' }}>진행 중인 예약이 있습니다</h2>
+        <p style={{ textAlign: 'center', fontSize: '14px', color: '#666', margin: '0 0 20px' }}>{pending.date} 예약이 완료되지 않았습니다</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <button
-            style={{ width: '100%', padding: '12px', background: '#2563eb', color: 'white', fontWeight: 600, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
+            style={{ padding: '14px', background: '#2563eb', color: '#fff', fontWeight: 700, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
             onClick={handleResume}
           >이어서 진행</button>
           <button
-            style={{ width: '100%', padding: '12px', background: '#f3f4f6', color: '#374151', fontWeight: 600, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
+            style={{ padding: '14px', background: '#f3f4f6', color: '#374151', fontWeight: 700, border: 'none', borderRadius: '12px', fontSize: '16px', cursor: 'pointer' }}
             onClick={handleRestart}
           >처음부터</button>
         </div>

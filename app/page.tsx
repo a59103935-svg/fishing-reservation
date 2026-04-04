@@ -55,9 +55,10 @@ export default function HomePage() {
     const { data: bookings } = await supabase
       .from('bookings').select('date, bus_seat_number')
       .gte('date', start).lte('date', end).neq('payment_status', 'cancelled')
-    const { data: schedules } = await supabase
+    const { data: schedulesRaw } = await supabase
       .from('schedule_settings').select('date, is_holiday')
       .gte('date', start).lte('date', end)
+    const schedules = schedulesRaw ?? []
     const totalSeats = siteSettings?.bus_total_seats ?? 30
     const statusMap  = new Map<string, DayStatus>()
     const counts     = new Map<string, number>()

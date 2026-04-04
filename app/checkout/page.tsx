@@ -48,23 +48,32 @@ export default function CheckoutPage() {
     console.log('[checkout] savePending called', { selectedDate, paymentMethod })
   }, [selectedDate, selectedBusSeats, selectedBoatSpots, paymentMethod])
 
+  // mount 시 sessionStorage 플래그 확인 (popstate 후 Next.js remount 대응)
+  useEffect(() => {
+    if (sessionStorage.getItem('checkout_back_pressed')) {
+      sessionStorage.removeItem('checkout_back_pressed')
+      console.log('[checkout] remount detected, showing modal from sessionStorage')
+      setShowBackModal(true)
+    }
+  }, [])
+
   // 브라우저 뒤로가기 인터셉트
   useEffect(() => {
-    const currentHref = window.location.href
-    window.history.pushState({ checkoutBack: true }, '', currentHref)
+    // guard 엔트리 추가 (동일 URL) — 뒤로가기 1회 흡수
+    window.history.pushState({ checkoutBack: true }, '', window.location.href)
     console.log('[checkout] pushState guard added')
 
     function onPopState(e: PopStateEvent) {
       console.log('[checkout] popstate fired', e.state)
-      window.history.pushState({ checkoutBack: true }, '', currentHref)
+      // ※ 여기서 pushState를 다시 호출하지 않음
+      //   → pushState 재호출이 Next.js router를 트리거해 컴포넌트 remount 유발
+      //   → remount 시 showBackModal 상태가 false로 초기화되는 문제 방지
+      sessionStorage.setItem('checkout_back_pressed', '1')
       setShowBackModal(true)
     }
 
     window.addEventListener('popstate', onPopState)
-    return () => {
-      window.removeEventListener('popstate', onPopState)
-      console.log('[checkout] popstate listener removed')
-    }
+    return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
   const total = settings ? calculateTotal(selectedBusSeats.length, selectedBoatSpots.length > 0, cartItems, settings) : 0

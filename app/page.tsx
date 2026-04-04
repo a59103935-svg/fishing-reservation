@@ -54,7 +54,7 @@ export default function HomePage() {
     const end   = format(endOfMonth(month),   'yyyy-MM-dd')
     const { data: bookingsRaw, error: bookingsError } = await supabase
       .from('bookings').select('date')
-      .gte('date', start).lte('date', end).neq('payment_status', 'cancelled')
+      .gte('date', start).lte('date', end)
     const bookings = bookingsError ? [] : (bookingsRaw ?? [])
     const { data: schedulesRaw, error: schedulesError } = await supabase
       .from('schedule_settings').select('date, is_holiday')

@@ -46,14 +46,13 @@ export default function ConfirmPage() {
     return store.selectedBoatSpots
   }, [searchParams, store.selectedBoatSpots])
 
-  const [name,          setName]          = useState(store.customerName)
-  const [phone,         setPhone]         = useState(store.customerPhone)
-  const [memo,          setMemo]          = useState(store.notes)
-  const [payMethod,     setPayMethod]     = useState<PaymentMethod>(store.paymentMethod)
-  const [depositorName, setDepositorName] = useState(store.depositorName)
-  const [nameErr,       setNameErr]       = useState('')
-  const [phoneErr,      setPhoneErr]      = useState('')
-  const [loading,       setLoading]       = useState(false)
+  const [name,      setName]      = useState(store.customerName)
+  const [phone,     setPhone]     = useState(store.customerPhone)
+  const [memo,      setMemo]      = useState(store.notes)
+  const [payMethod, setPayMethod] = useState<PaymentMethod>(store.paymentMethod)
+  const [nameErr,   setNameErr]   = useState('')
+  const [phoneErr,  setPhoneErr]  = useState('')
+  const [loading,   setLoading]   = useState(false)
 
   useEffect(() => {
     if (busSeats.length === 0) router.replace(`/booking/${dateStr}`)
@@ -90,7 +89,6 @@ export default function ConfirmPage() {
           payment_method:  payMethod,
           payment_status:  'pending',
           total_amount:    grandTotal,
-          depositor_name:  payMethod === 'bank' ? depositorName : null,
           notes:           memo || null,
         })
         .select('id, booking_number')
@@ -99,7 +97,6 @@ export default function ConfirmPage() {
       store.setCustomerInfo(name, phone)
       store.setNotes(memo)
       store.setPaymentMethod(payMethod)
-      store.setDepositorName(depositorName)
       if (payMethod === 'kakao' || payMethod === 'naver') {
         router.push(`/booking/payment?id=${booking.id}`)
       } else {
@@ -200,25 +197,6 @@ export default function ConfirmPage() {
             ))}
           </div>
         </div>
-
-        {payMethod === 'bank' && (
-          <div className="rounded-2xl px-4 py-4" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.25)' }}>
-            <p className="font-bold mb-3" style={{ color: '#C9A84C' }}>▣ 무통장 입금 안내</p>
-            <div className="rounded-xl px-4 py-3 text-sm space-y-1.5 mb-3" style={{ background: 'rgba(13,31,53,0.6)', border: '1px solid rgba(201,168,76,0.15)' }}>
-              <BankRow label="은행" value="신한은행" />
-              <BankRow label="계좌번호" value="110-412-245177" copyable />
-              <BankRow label="예금주" value="강현구" />
-              <div className="pt-1.5 flex justify-between" style={{ borderTop: '1px solid rgba(45,95,153,0.3)' }}>
-                <span style={{ color: '#4A6888' }}>입금액</span>
-                <span className="font-bold" style={{ color: '#C9A84C' }}>{formatPrice(grandTotal)}</span>
-              </div>
-            </div>
-            <DarkField label="입금자명" required>
-              <input type="text" placeholder="입금하실 이름" value={depositorName} onChange={(e) => setDepositorName(e.target.value)} className="form-input" />
-            </DarkField>
-            <p className="text-xs mt-2" style={{ color: '#8A6A20' }}>* 입금 확인 후 예약이 확정됩니다 (최대 1시간 소요)</p>
-          </div>
-        )}
 
         {payMethod === 'onsite' && (
           <div className="rounded-2xl px-4 py-4" style={{ background: 'rgba(248,191,36,0.06)', border: '1px solid rgba(248,191,36,0.2)' }}>

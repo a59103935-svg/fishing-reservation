@@ -3,7 +3,7 @@
 // ============================================
 
 export type PaymentMethod = 'kakao' | 'naver' | 'bank' | 'onsite'
-export type PaymentStatus = 'pending' | 'confirmed' | 'cancelled'
+export type PaymentStatus = 'pending' | 'visit_pending' | 'confirmed' | 'cancelled'
 export type SeatType = 'bus' | 'boat'
 
 export interface ScheduleSetting {

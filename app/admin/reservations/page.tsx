@@ -102,6 +102,7 @@ export default function ReservationsPage() {
     total: bookings.length,
     confirmed: bookings.filter((b) => b.payment_status === 'confirmed').length,
     pending: bookings.filter((b) => b.payment_status === 'pending').length,
+    visit_pending: bookings.filter((b) => b.payment_status === 'visit_pending').length,
     cancelled: bookings.filter((b) => b.payment_status === 'cancelled').length,
     revenue: bookings
       .filter((b) => b.payment_status === 'confirmed')
@@ -126,7 +127,7 @@ export default function ReservationsPage() {
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-1">상태 필터</label>
           <div className="flex gap-2 flex-wrap">
-            {(['all', 'confirmed', 'pending', 'cancelled'] as const).map((s) => (
+            {(['all', 'confirmed', 'pending', 'visit_pending', 'cancelled'] as const).map((s) => (
               <button
                 key={s}
                 className={`px-3 py-1.5 rounded-xl text-sm font-semibold transition-all ${
@@ -204,24 +205,28 @@ export default function ReservationsPage() {
                     <td className="py-2.5 pr-3">
                       <div className="text-xs">
                         <div>{getPaymentMethodLabel(b.payment_method)}</div>
-                        <div className={`font-semibold ${
-                          b.payment_status === 'confirmed' ? 'text-green-600' :
-                          b.payment_status === 'cancelled' ? 'text-gray-400' :
-                          'text-yellow-600'
-                        }`}>
-                          {getPaymentStatusLabel(b.payment_status)}
+                        <div>
+                          <span className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full ${
+                            b.payment_status === 'confirmed'     ? 'bg-green-100 text-green-700' :
+                            b.payment_status === 'visit_pending' ? 'bg-yellow-100 text-yellow-700' :
+                            b.payment_status === 'pending'       ? 'bg-blue-100 text-blue-700' :
+                            b.payment_status === 'cancelled'     ? 'bg-red-100 text-red-600' :
+                            'bg-gray-100 text-gray-500'
+                          }`}>
+                            {getPaymentStatusLabel(b.payment_status)}
+                          </span>
                         </div>
                       </div>
                     </td>
                     <td className="py-2.5 pr-3 font-bold">{(b.total_amount / 10000).toFixed(1)}만</td>
                     <td className="py-2.5">
                       <div className="flex gap-1">
-                        {b.payment_status === 'pending' && (
+                        {(b.payment_status === 'pending' || b.payment_status === 'visit_pending') && (
                           <button
                             className="bg-green-500 text-white text-xs px-2 py-1 rounded-lg font-semibold hover:bg-green-600 active:scale-95 transition-all whitespace-nowrap"
                             onClick={() => confirmBooking(b.id)}
                           >
-                            확인
+                            확정
                           </button>
                         )}
                         {b.payment_status !== 'cancelled' && (

@@ -70,10 +70,10 @@ function BookingComplete() {
       <div className="px-5 pt-14 pb-8 text-center" style={{ background: 'linear-gradient(160deg, #0D1F35 0%, #0a1a2e 100%)' }}>
         <p className="text-4xl mb-3">{isOnsite ? '📋' : '🎣'}</p>
         <h1 className="text-xl font-black mb-1" style={{ color: '#F8F9FA' }}>
-          {isOnsite ? '예약이 접수됐습니다!' : isBank ? '입금을 확인 중입니다' : '예약 완료!'}
+          {isOnsite ? '방문예정 등록 완료!' : isBank ? '입금을 확인 중입니다' : '예약 완료!'}
         </h1>
         <p className="text-xs" style={{ color: '#4A6888' }}>
-          {isBank ? '입금 확인 후 예약이 확정됩니다' : isOnsite ? '출조 당일 현장에서 결제해주세요' : '즐거운 조행 되세요!'}
+          {isBank ? '입금 확인 후 예약이 확정됩니다' : isOnsite ? '현장결제 — 선착순 배정입니다' : '즐거운 조행 되세요!'}
         </p>
         <div className="mt-5 inline-block px-6 py-3 rounded-2xl" style={{ background: 'rgba(201,168,76,0.12)', border: '1px solid rgba(201,168,76,0.25)' }}>
           <p className="text-[10px] mb-0.5" style={{ color: '#C9A84C' }}>예약번호</p>
@@ -114,11 +114,16 @@ function BookingComplete() {
           </section>
         )}
 
-        {/* 현장결제 안내 */}
+        {/* 현장결제(방문예정) 안내 */}
         {isOnsite && (
-          <section style={{ background: 'rgba(251,191,36,0.06)', borderRadius: 20, border: '1px solid rgba(251,191,36,0.2)', padding: '16px 20px' }}>
-            <p className="text-xs font-bold tracking-widest mb-2" style={{ color: '#FBBF24' }}>현장결제 안내</p>
-            <p className="text-sm" style={{ color: '#A88A30' }}>출조 당일 현장에서 결제해주세요. 출발 <span style={{ color: '#FBBF24', fontWeight: 700 }}>30분 전</span>까지 도착 부탁드립니다.</p>
+          <section style={{ background: 'rgba(201,168,76,0.08)', borderRadius: 20, border: '1px solid rgba(201,168,76,0.35)', padding: '16px 20px' }}>
+            <p className="text-xs font-bold tracking-widest mb-3" style={{ color: '#C9A84C' }}>⚠ 방문예정 등록 안내</p>
+            <p className="text-sm font-bold mb-2" style={{ color: '#C9A84C' }}>
+              현장결제는 자리를 보장하지 않습니다.
+            </p>
+            <p className="text-sm leading-relaxed" style={{ color: '#A88A30' }}>
+              선착순 배정이며, 조기 마감 시 탑승이 어려울 수 있습니다. 출발 <span style={{ color: '#C9A84C', fontWeight: 700 }}>30분 전</span>까지 도착해 주세요.
+            </p>
           </section>
         )}
 

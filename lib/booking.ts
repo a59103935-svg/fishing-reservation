@@ -121,9 +121,10 @@ export function getPaymentMethodLabel(method: string): string {
  */
 export function getPaymentStatusLabel(status: string): string {
   const labels: Record<string, string> = {
-    pending: '입금확인중',
-    confirmed: '예약완료',
-    cancelled: '취소됨',
+    pending:       '입금대기',
+    visit_pending: '방문예정',
+    confirmed:     '예약확정',
+    cancelled:     '취소',
   }
   return labels[status] ?? status
 }

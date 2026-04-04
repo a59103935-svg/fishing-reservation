@@ -14,7 +14,7 @@ const PAYMENT_METHODS: { id: PaymentMethod; label: string; icon: string; desc: s
   { id: 'kakao',  label: '카카오페이', icon: '', desc: '카카오페이로 간편결제',    disabled: true },
   { id: 'naver',  label: '네이버페이', icon: '', desc: '네이버페이로 간편결제',    disabled: true },
   { id: 'bank',   label: '무통장입금', icon: '▣', desc: '입금 확인 후 예약 확정' },
-  { id: 'onsite', label: '현장결제',   icon: '◉', desc: '출조 당일 현장에서 결제' },
+  { id: 'onsite', label: '방문예정 등록', icon: '◉', desc: '현장결제 — 자리 보장 안 됨, 선착순' },
 ]
 
 function formatPhone(raw: string): string {
@@ -87,7 +87,7 @@ export default function ConfirmPage() {
           bus_seat_number: busSeats[0] ?? null,
           boat_spot_id:    boatSpots[0] ?? null,
           payment_method:  payMethod,
-          payment_status:  'pending',
+          payment_status:  payMethod === 'onsite' ? 'visit_pending' : 'pending',
           total_amount:    grandTotal,
           notes:           memo || null,
         })

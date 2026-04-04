@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls C:/Users/rnjsa/*.py)",
+      "Bash(cd C:/Users/rnjsa && python binance_sr_bot.py)",
+      "Bash(cd C:/Users/rnjsa && echo y | python binance_sr_bot.py)",
+      "Bash(cd C:/Users/rnjsa && python eth_ema_vwap_2022.py)"
+    ]
+  }
+}

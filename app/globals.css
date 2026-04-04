@@ -1,0 +1,182 @@
+/* ── 폰트 ──────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS 변수 ────────────────────────────────────── */
+:root {
+  --navy:        #0D1F35;
+  --navy-medium: #1A3355;
+  --navy-dark:   #070f1a;
+  --navy-light:  #1E3F66;
+  --gold:        #C9A84C;
+  --gold-light:  #E2C97E;
+  --gold-dark:   #A8892A;
+  --gold-muted:  rgba(201,168,76,0.15);
+  --text:        #F8F9FA;
+  --text-muted:  #8A9BB0;
+  --border-gold: rgba(201,168,76,0.2);
+}
+
+/* ── 기본 ────────────────────────────────────────── */
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: 'Noto Serif KR', Georgia, serif; }
+
+/* ── 버스 좌석 ───────────────────────────────────── */
+.seat-btn {
+  width: 64px; height: 64px;
+  border-radius: 14px; border: 2px solid;
+  font-size: 17px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.15s; user-select: none;
+}
+.seat-btn.available  { background:#1E3F66; border-color:#2D5F99; color:#93C5FD; }
+.seat-btn.available:hover { background:#2D5F99; color:#fff; }
+.seat-btn.available:active { transform: scale(0.92); }
+.seat-btn.selected   { background:#C9A84C; border-color:#A8892A; color:#0D1F35; box-shadow:0 0 16px rgba(201,168,76,.5); }
+.seat-btn.reserved   { background:#1A2A3A; border-color:#2D3748; color:#4A5568; cursor:not-allowed; }
+.seat-btn.blocked    { background:#1A2A3A; border-color:#2D3748; color:#4A5568; cursor:not-allowed; }
+
+/* ── 배 자리 ─────────────────────────────────────── */
+.boat-spot-btn {
+  width: 64px; height: 64px;
+  border-radius: 14px; border: 2px solid;
+  font-size: 17px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.15s; user-select: none;
+}
+.boat-spot-btn.available  { background:#1E3F66; border-color:#2D5F99; color:#93C5FD; }
+.boat-spot-btn.available:hover { background:#2D5F99; color:#fff; }
+.boat-spot-btn.available:active { transform: scale(0.92); }
+.boat-spot-btn.selected   { background:#C9A84C; border-color:#A8892A; color:#0D1F35; box-shadow:0 0 16px rgba(201,168,76,.5); }
+.boat-spot-btn.reserved   { background:#1A2A3A; border-color:#2D3748; color:#4A5568; cursor:not-allowed; }
+.boat-spot-btn.blocked    { background:#1A2A3A; border-color:#2D3748; color:#4A5568; cursor:not-allowed; }
+
+/* ── 달력 날짜 ───────────────────────────────────── */
+.calendar-day {
+  @apply w-full aspect-square flex flex-col items-center justify-center rounded-xl text-sm font-medium transition-all duration-150;
+}
+.calendar-day.available {
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.35);
+  color: #C9A84C; cursor: pointer;
+}
+.calendar-day.available:hover  { background: rgba(201,168,76,0.22); }
+.calendar-day.available:active { transform: scale(0.93); }
+.calendar-day.almost-full {
+  background: rgba(220,100,50,0.12);
+  border: 1px solid rgba(220,100,50,0.35);
+  color: #E8905A; cursor: pointer;
+}
+.calendar-day.almost-full:hover  { background: rgba(220,100,50,0.22); }
+.calendar-day.almost-full:active { transform: scale(0.93); }
+.calendar-day.full    { background:#111E2E; border:1px solid #1E2D40; color:#3A4F66; cursor:not-allowed; }
+.calendar-day.holiday { background:#111E2E; border:1px solid #1A2D40; color:#2E4060; cursor:not-allowed; }
+.calendar-day.past    { color:#2E4060; cursor:not-allowed; }
+.calendar-day.today   { outline:2px solid #C9A84C; outline-offset:1px; }
+
+/* ── 버튼 ────────────────────────────────────────── */
+.btn-primary {
+  @apply font-bold py-4 px-6 rounded-xl w-full text-base active:scale-95 transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed;
+  background: #C9A84C;
+  color: #0D1F35;
+}
+.btn-primary:hover:not(:disabled) { background: #B8973B; }
+
+.btn-outline {
+  @apply font-semibold py-3.5 px-6 rounded-xl w-full text-base active:scale-95 transition-all duration-150;
+  background: transparent;
+  color: #C9A84C;
+  border: 1.5px solid #C9A84C;
+}
+.btn-outline:hover { background: rgba(201,168,76,0.1); }
+
+.btn-secondary {
+  @apply font-semibold py-4 px-6 rounded-xl w-full text-base active:scale-95 transition-all duration-150;
+  background: #1A3355;
+  color: #93C5FD;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white font-semibold py-3 px-5 rounded-xl text-sm hover:bg-red-700 active:scale-95 transition-all duration-150;
+}
+
+/* ── 카드 ────────────────────────────────────────── */
+.card {
+  background: #1A3355;
+  @apply rounded-2xl p-4 shadow-lg;
+  border: 1px solid var(--border-gold);
+}
+
+.premium-card {
+  background: linear-gradient(135deg, #1A3355 0%, #0D1F35 100%);
+  @apply rounded-2xl p-5 shadow-lg;
+  border: 1px solid var(--border-gold);
+}
+
+/* ── 뱃지 ────────────────────────────────────────── */
+.badge-confirmed {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  background: rgba(201,168,76,0.18); color: #C9A84C;
+}
+.badge-pending {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  background: rgba(251,191,36,0.12); color: #FBBF24;
+}
+.badge-cancelled {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  background: rgba(239,68,68,0.12); color: #F87171;
+}
+
+/* ── 입력 필드 ───────────────────────────────────── */
+.form-input {
+  @apply w-full px-4 py-3 rounded-xl text-sm focus:outline-none transition-all;
+  background: #0D1F35;
+  border: 1.5px solid rgba(45,95,153,0.6);
+  color: #F8F9FA;
+}
+.form-input:focus {
+  border-color: #C9A84C;
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+}
+.form-input::placeholder { color: #4A6888; }
+
+/* ── 스크롤바 숨김 ───────────────────────────────── */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── 골드 shimmer 스켈레톤 ───────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #1A3355 25%, #243F66 50%, #1A3355 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── 물결 애니메이션 ─────────────────────────────── */
+@keyframes wave-flow {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.wave-animate {
+  animation: wave-flow 8s linear infinite;
+}
+
+/* ── 섹션 골드 라인 ─────────────────────────────── */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+}

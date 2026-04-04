@@ -141,11 +141,13 @@ export default function HomePage() {
     <div style={{ background: '#0D1F35' }}>
 
       {/* 오늘 출조 정보 */}
-      <TideWeatherSection />
+      <div className="pt-20 pb-0 mb-0">
+        <TideWeatherSection />
+      </div>
 
       {/* HERO */}
       <section
-        className="relative flex flex-col items-center justify-center text-center px-5 pt-32 pb-24 overflow-hidden"
+        className="relative flex flex-col items-center justify-center text-center px-5 pt-4 mt-4 pb-24 overflow-hidden"
         style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #0D1F35 0%, #0a1628 100%)' }}
       >
         <div className="absolute inset-0 pointer-events-none" aria-hidden>

@@ -81,7 +81,7 @@ export default function TideWeatherSection() {
   }
 
   return (
-    <section style={{ background: '#0D1F35', padding: '0 0 48px 0' }}>
+    <section style={{ background: '#0D1F35', padding: '64px 0 12px 0' }}>
       <div className="max-w-2xl mx-auto px-4">
         {/* 섹션 타이틀 */}
         <div className="text-center mb-5">

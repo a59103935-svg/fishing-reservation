@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useBookingStore } from '@/lib/store'
 import { createClient } from '@/lib/supabase/client'
 import { calculateTotal, formatPrice, formatDateKorean } from '@/lib/booking'
+import { savePending, clearPending } from '@/lib/pendingReservation'
 import type { SiteSettings, PaymentMethod } from '@/types'
-
-export const PENDING_KEY = 'pending_reservation'
 
 const PAYMENT_LABELS: Record<string, string> = {
   kakao: '카카오페이',
@@ -19,14 +18,13 @@ const PAYMENT_LABELS: Record<string, string> = {
 export default function CheckoutPage() {
   const router = useRouter()
   const supabase = createClient()
-  const { selectedDate, selectedBusSeats, selectedBoatSpots, cartItems, customerName, customerPhone, paymentMethod, depositorName, setCustomerInfo, setPaymentMethod, setDepositorName, clearAll } = useBookingStore()
+  const { selectedDate, selectedBusSeats, selectedBoatSpots, cartItems, customerName, customerPhone, paymentMethod, depositorName, setCustomerInfo, setPaymentMethod, setDepositorName } = useBookingStore()
   const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [loading, setLoading] = useState(false)
   const [nameErr, setNameErr] = useState('')
   const [phoneErr, setPhoneErr] = useState('')
   const [copied, setCopied] = useState(false)
   const [showBackModal, setShowBackModal] = useState(false)
-  const guardPushed = useRef(false)
 
   const loadSettings = useCallback(async () => {
     const { data } = await supabase.from('site_settings').select('*').single()
@@ -39,25 +37,20 @@ export default function CheckoutPage() {
     loadSettings()
   }, [selectedDate, selectedBusSeats, router, loadSettings])
 
-  // 1) localStorage 저장 — 날짜/좌석/결제방식 변경 시마다 갱신
+  // localStorage 저장 — 날짜/좌석/결제방식 변경 시마다 갱신
   useEffect(() => {
     if (!selectedDate || selectedBusSeats.length === 0) return
-    localStorage.setItem(PENDING_KEY, JSON.stringify({
-      date: selectedDate,
-      busSeats: selectedBusSeats,
-      boatSpots: selectedBoatSpots,
-      paymentMethod,
-    }))
+    savePending({ date: selectedDate, busSeats: selectedBusSeats, boatSpots: selectedBoatSpots, paymentMethod })
   }, [selectedDate, selectedBusSeats, selectedBoatSpots, paymentMethod])
 
-  // 2) 브라우저 뒤로가기 인터셉트
+  // 브라우저 뒤로가기 인터셉트
+  // guardPushed ref 제거 — Strict Mode cleanup/re-run 후에도 리스너가 재등록되어야 함
+  // URL 파라미터 생략(빈 문자열) — Next.js router의 pushState 패치가 URL 변경으로 오인식하지 않도록
   useEffect(() => {
-    if (guardPushed.current) return
-    guardPushed.current = true
-    window.history.pushState({ checkoutGuard: true }, '', window.location.pathname)
+    window.history.pushState(null, '')
 
     function onPopState() {
-      window.history.pushState({ checkoutGuard: true }, '', window.location.pathname)
+      window.history.pushState(null, '')
       setShowBackModal(true)
     }
 
@@ -66,10 +59,6 @@ export default function CheckoutPage() {
   }, [])
 
   const total = settings ? calculateTotal(selectedBusSeats.length, selectedBoatSpots.length > 0, cartItems, settings) : 0
-
-  function clearPending() {
-    localStorage.removeItem(PENDING_KEY)
-  }
 
   function copyAccount(account: string) {
     navigator.clipboard.writeText(account).then(() => {
@@ -124,7 +113,7 @@ export default function CheckoutPage() {
 
       {/* 뒤로가기 모달 */}
       {showBackModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.6)' }}>
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-xs p-6 space-y-4">
             <div className="text-center">
               <div className="text-3xl mb-2">⚠️</div>

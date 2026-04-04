@@ -3,32 +3,18 @@
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { useBookingStore } from '@/lib/store'
-import { PENDING_KEY } from '@/app/checkout/page'
-
-interface PendingData {
-  date: string
-  busSeats: number[]
-  boatSpots: string[]
-  paymentMethod: string
-}
+import { getPending, clearPending, type PendingReservation } from '@/lib/pendingReservation'
 
 export default function ResumeReservationModal() {
   const router = useRouter()
   const pathname = usePathname()
   const clearAll = useBookingStore(s => s.clearAll)
-  const [pending, setPending] = useState<PendingData | null>(null)
+  const [pending, setPending] = useState<PendingReservation | null>(null)
 
   useEffect(() => {
-    // checkout 페이지 자체에서는 표시 안 함
-    if (pathname === '/checkout') return
-    try {
-      const raw = localStorage.getItem(PENDING_KEY)
-      if (!raw) return
-      const data: PendingData = JSON.parse(raw)
-      if (data?.date && data?.busSeats?.length > 0) {
-        setPending(data)
-      }
-    } catch {}
+    if (pathname === '/checkout') { setPending(null); return }
+    const data = getPending()
+    if (data) setPending(data)
   }, [pathname])
 
   if (!pending) return null
@@ -39,13 +25,13 @@ export default function ResumeReservationModal() {
   }
 
   function handleRestart() {
-    localStorage.removeItem(PENDING_KEY)
+    clearPending()
     clearAll()
     setPending(null)
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.6)' }}>
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-xs p-6 space-y-4">
         <div className="text-center">
           <div className="text-3xl mb-2">🎣</div>

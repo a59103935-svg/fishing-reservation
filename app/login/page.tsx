@@ -23,11 +23,13 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [info, setInfo] = useState('')
 
-  function handleKakaoLogin() {
-    const REST_API_KEY = 'ac1b77e9c91483137d68c5448e932b4e'
-    const redirectUri = `${window.location.origin}/auth/kakao-callback`
-    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=profile_nickname%20profile_image%20openid`
-    window.location.href = kakaoAuthUrl
+  async function handleKakaoLogin() {
+    await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: {
+        redirectTo: 'https://fishing-reservation.vercel.app'
+      }
+    })
   }
 
   async function handleSendOtp() {

@@ -3,8 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { getPending, clearPending } from '@/lib/pendingReservation'
-import { useBookingStore } from '@/lib/store'
+import PendingReservationBanner from '@/components/PendingReservationBanner'
 import {
   format, startOfMonth, endOfMonth, startOfWeek, endOfWeek,
   addDays, addMonths, subMonths, isSameMonth, isBefore, isToday, parseISO,
@@ -37,21 +36,12 @@ export default function HomePage() {
   const router   = useRouter()
   const supabase = createClient()
   const bookingRef = useRef<HTMLDivElement>(null)
-  const clearAll = useBookingStore(s => s.clearAll)
-
   const [currentMonth,  setCurrentMonth]  = useState(new Date())
   const [dayStatuses,   setDayStatuses]   = useState<Map<string, DayStatus>>(new Map())
   const [siteSettings,  setSiteSettings]  = useState<SiteSettings | null>(null)
   const [calLoading,    setCalLoading]    = useState(true)
   const [selectedDay,   setSelectedDay]   = useState<string | null>(null)
   const [previewProducts, setPreviewProducts] = useState<Product[]>([])
-  const [pendingDate,   setPendingDate]   = useState<string | null>(null)
-
-  // 홈 진입 시 localStorage 확인
-  useEffect(() => {
-    const data = getPending()
-    if (data?.date) setPendingDate(data.date)
-  }, [])
 
   const loadSettings = useCallback(async () => {
     const { data } = await supabase.from('site_settings').select('*').single()
@@ -151,23 +141,7 @@ export default function HomePage() {
     <div style={{ background: '#0D1F35', paddingTop: '64px' }}>
 
       {/* 진행 중인 예약 배너 */}
-      {pendingDate && (
-        <div style={{ background: '#1e3a5f', borderBottom: '1px solid rgba(201,168,76,0.3)', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
-          <span style={{ color: '#e2c97e', fontSize: '14px', fontWeight: 600 }}>
-            🎣 {pendingDate} 예약이 완료되지 않았습니다
-          </span>
-          <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
-            <button
-              onClick={() => { setPendingDate(null); router.push('/checkout') }}
-              style={{ padding: '6px 14px', background: '#C9A84C', color: '#0D1F35', fontWeight: 700, border: 'none', borderRadius: '8px', fontSize: '13px', cursor: 'pointer' }}
-            >이어서 예약하기</button>
-            <button
-              onClick={() => { clearPending(); clearAll(); setPendingDate(null) }}
-              style={{ padding: '6px 12px', background: 'transparent', color: '#8A9BB0', fontWeight: 600, border: '1px solid rgba(138,155,176,0.4)', borderRadius: '8px', fontSize: '13px', cursor: 'pointer' }}
-            >취소</button>
-          </div>
-        </div>
-      )}
+      <PendingReservationBanner />
 
       {/* 오늘 출조 정보 */}
       <div className="pt-8 pb-0 mb-0">

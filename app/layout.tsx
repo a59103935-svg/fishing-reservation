@@ -4,7 +4,6 @@ import './globals.css'
 import SetupGate from '@/components/SetupGate'
 import TopTabBar from '@/components/TopTabBar'
 import Footer from '@/components/Footer'
-import ResumeReservationModal from '@/components/ResumeReservationModal'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -34,7 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko" className={playfair.variable}>
       <body className="min-h-screen font-sans antialiased" style={{ background: '#0D1F35', color: '#F8F9FA' }}>
         <SetupGate>
-          <ResumeReservationModal />
           <TopTabBar />
           {children}
           <Footer />

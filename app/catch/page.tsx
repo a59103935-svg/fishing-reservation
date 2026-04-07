@@ -1,7 +1,9 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import type { User } from '@supabase/supabase-js'
 
 interface CatchReport {
   id: string
@@ -17,7 +19,9 @@ interface CatchReport {
 const FISH_TYPES = ['전체', '광어', '우럭', '참돔', '방어', '고등어', '갈치', '쭈꾸미', '기타']
 
 export default function CatchPage() {
+  const router = useRouter()
   const supabase = createClient()
+  const [user, setUser] = useState<User | null>(null)
   const [reports, setReports] = useState<CatchReport[]>([])
   const [loading, setLoading] = useState(true)
   const [fishFilter, setFishFilter] = useState('전체')
@@ -25,7 +29,14 @@ export default function CatchPage() {
   const [form, setForm] = useState({ author_name: '', title: '', content: '', fish_type: '' })
   const [submitting, setSubmitting] = useState(false)
 
-  useEffect(() => { loadReports() }, [])
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+      setUser(session?.user ?? null)
+    })
+    loadReports()
+    return () => subscription.unsubscribe()
+  }, [])
 
   async function loadReports() {
     setLoading(true)
@@ -36,10 +47,20 @@ export default function CatchPage() {
 
   const filtered = fishFilter === '전체' ? reports : reports.filter(r => r.fish_type === fishFilter)
 
+  function handleWriteClick() {
+    if (!user) { router.push('/login'); return }
+    setShowForm(true)
+  }
+
   async function submitReport() {
     if (!form.author_name.trim() || !form.title.trim()) { alert('닉네임과 제목을 입력해주세요.'); return }
     setSubmitting(true)
-    const { error } = await supabase.from('catch_reports').insert({ author_name: form.author_name.trim(), title: form.title.trim(), content: form.content.trim() || null, fish_type: form.fish_type || null })
+    const { error } = await supabase.from('catch_reports').insert({
+      author_name: form.author_name.trim(),
+      title: form.title.trim(),
+      content: form.content.trim() || null,
+      fish_type: form.fish_type || null,
+    })
     if (error) { alert('오류가 발생했습니다.'); setSubmitting(false); return }
     setForm({ author_name: '', title: '', content: '', fish_type: '' })
     setShowForm(false)
@@ -65,7 +86,13 @@ export default function CatchPage() {
           <h1 className="text-2xl font-black" style={{ color: '#F8F9FA' }}>조황 게시판</h1>
           <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>조과 자랑 & 정보 공유</p>
         </div>
-        <button onClick={() => setShowForm(true)} className="px-4 py-2 rounded-xl text-sm font-bold" style={{ background: '#C9A84C', color: '#0D1F35' }}>글쓰기</button>
+        <button
+          onClick={handleWriteClick}
+          className="px-4 py-2 rounded-xl text-sm font-bold"
+          style={{ background: '#C9A84C', color: '#0D1F35' }}
+        >
+          글쓰기
+        </button>
       </div>
       <div className="sticky top-0 z-20 px-0 pb-3 pt-1" style={{ background: '#0D1F35' }}>
         <div className="flex overflow-x-auto scrollbar-none px-4 gap-2">

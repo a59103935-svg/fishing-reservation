@@ -4,6 +4,19 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
+async function checkAndRedirect(supabase: ReturnType<typeof createClient>, router: ReturnType<typeof useRouter>) {
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) { router.replace('/'); return }
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('id', user.id)
+    .maybeSingle()
+
+  router.replace(profile ? '/' : '/set-nickname')
+}
+
 export default function KakaoCallbackPage() {
   const router = useRouter()
   const supabase = createClient()
@@ -12,14 +25,13 @@ export default function KakaoCallbackPage() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session) {
         subscription.unsubscribe()
-        router.replace('/')
+        checkAndRedirect(supabase, router)
       }
     })
 
-    // 3초 후에도 세션 없으면 그냥 이동
     const timer = setTimeout(() => {
       subscription.unsubscribe()
-      router.replace('/')
+      checkAndRedirect(supabase, router)
     }, 3000)
 
     return () => {

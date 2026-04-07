@@ -12,6 +12,7 @@ export default function FishingReportWritePage() {
   const supabase = createClient()
   const fileRef = useRef<HTMLInputElement>(null)
   const [user, setUser] = useState<User | null>(null)
+  const [nickname, setNickname] = useState('')
   const [form, setForm] = useState({ title: '', content: '', fish_type: '', catch_date: '' })
   const [images, setImages] = useState<File[]>([])
   const [previews, setPreviews] = useState<string[]>([])
@@ -19,9 +20,19 @@ export default function FishingReportWritePage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) { router.replace('/login'); return }
       setUser(data.user)
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('nickname')
+        .eq('id', data.user.id)
+        .maybeSingle()
+      if (profile?.nickname) {
+        setNickname(profile.nickname)
+      } else {
+        router.replace('/set-nickname')
+      }
     })
   }, [])
 
@@ -65,15 +76,10 @@ export default function FishingReportWritePage() {
       }
     }
 
-    const authorName =
-      user.user_metadata?.full_name ||
-      user.user_metadata?.name ||
-      user.email?.split('@')[0] ||
-      '회원'
-
     const { error: insertError } = await supabase.from('fishing_reports').insert({
       user_id: user.id,
-      author_name: authorName,
+      author_name: nickname,
+      author_nickname: nickname,
       title: form.title.trim(),
       content: form.content.trim(),
       fish_type: form.fish_type || null,
@@ -102,6 +108,18 @@ export default function FishingReportWritePage() {
       </div>
 
       <div className="rounded-2xl p-5 space-y-4" style={{ background: '#1A3355', border: '1px solid rgba(45,95,153,0.4)' }}>
+        {/* 작성자 (닉네임 자동입력) */}
+        <div>
+          <label className="text-xs font-medium block mb-1.5" style={{ color: '#93B5D4' }}>작성자</label>
+          <input
+            type="text"
+            value={nickname}
+            readOnly
+            className="w-full px-3 py-2.5 rounded-xl text-sm outline-none"
+            style={{ background: 'rgba(13,31,53,0.5)', border: '1px solid rgba(45,95,153,0.3)', color: '#4A6888', cursor: 'default' }}
+          />
+        </div>
+
         {/* 어종 */}
         <div>
           <label className="text-xs font-medium block mb-1.5" style={{ color: '#93B5D4' }}>어종</label>

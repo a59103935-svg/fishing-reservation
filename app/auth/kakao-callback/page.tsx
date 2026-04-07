@@ -39,7 +39,15 @@ function KakaoCallbackInner() {
         token: data.id_token,
       })
 
-      if (authError) { setError(authError.message); return }
+      if (authError) {
+        const msg = authError.message.toLowerCase()
+        if (msg.includes('email') || msg.includes('unverified')) {
+          router.replace('/')
+          return
+        }
+        setError(authError.message)
+        return
+      }
 
       router.replace('/')
     } catch {

@@ -109,7 +109,7 @@ export default function InfoPage() {
               <p className="text-sm font-semibold" style={{ color: '#F8F9FA' }}>버스+배 통합 요금</p>
               <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>1인 기준 · 당일 점심·저녁, 다음날 조식 3끼 제공</p>
             </div>
-            <p className="text-lg font-black" style={{ color: '#C9A84C' }}>260,000원</p>
+            <p className="text-lg font-black whitespace-nowrap" style={{ color: '#C9A84C' }}>260,000원</p>
           </div>
           <p className="text-xs mt-3" style={{ color: '#C9A84C' }}>
             ※ 중동 정세 불안으로 인한 유류비 상승으로 요금이 변동될 수 있습니다. 양해 부탁드립니다.

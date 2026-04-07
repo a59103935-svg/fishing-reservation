@@ -28,7 +28,10 @@ export default function LoginPage() {
     setError('')
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'kakao',
-      options: { redirectTo: REDIRECT_URL },
+      options: {
+        redirectTo: REDIRECT_URL,
+        scopes: 'profile_image profile_nickname',
+      },
     })
     if (error) { setError(error.message); setLoading(false) }
   }

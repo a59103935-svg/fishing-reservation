@@ -148,7 +148,7 @@ export default function HomePage() {
   const remainingSeats = selectedStatus ? selectedStatus.totalSeats - selectedStatus.reservedCount : 0
 
   return (
-    <div style={{ background: '#0D1F35' }}>
+    <div style={{ background: '#0D1F35', paddingTop: '64px' }}>
 
       {/* 진행 중인 예약 배너 */}
       {pendingDate && (

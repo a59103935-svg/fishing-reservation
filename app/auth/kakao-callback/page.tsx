@@ -2,12 +2,29 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { supabase } from '@/lib/supabase'
 
 export default function KakaoCallbackPage() {
   const router = useRouter()
 
   useEffect(() => {
-    router.replace('/')
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        subscription.unsubscribe()
+        router.replace('/')
+      }
+    })
+
+    // 3초 후에도 세션 없으면 그냥 이동
+    const timer = setTimeout(() => {
+      subscription.unsubscribe()
+      router.replace('/')
+    }, 3000)
+
+    return () => {
+      subscription.unsubscribe()
+      clearTimeout(timer)
+    }
   }, [])
 
   return (

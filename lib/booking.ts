@@ -20,17 +20,19 @@ export async function generateBookingNumber(date: string): Promise<string> {
   return `B${dateStr}${seq}`
 }
 
+/** 버스+배 통합 요금 (1인당) */
+export const UNIFIED_PRICE_PER_PERSON = 260000
+
 /**
  * 총 결제 금액 계산
  */
 export function calculateTotal(
   busSeatsCount: number,
-  hasBoatSpot: boolean,
+  _hasBoatSpot: boolean,
   cartItems: CartItem[],
-  settings: Pick<SiteSettings, 'bus_price' | 'boat_price'>
+  _settings: Pick<SiteSettings, 'bus_price' | 'boat_price'>
 ): number {
-  let total = busSeatsCount * settings.bus_price
-  if (hasBoatSpot) total += settings.boat_price
+  let total = busSeatsCount * UNIFIED_PRICE_PER_PERSON
   total += cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
   return total
 }

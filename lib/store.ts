@@ -28,6 +28,7 @@ export const useBookingStore = create<BookingState>()(
         if (seats.includes(seat)) {
           set({ selectedBusSeats: seats.filter((s) => s !== seat) })
         } else {
+          if (seats.length >= 16) return
           set({ selectedBusSeats: [...seats, seat].sort((a, b) => a - b) })
         }
       },

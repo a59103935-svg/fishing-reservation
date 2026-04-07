@@ -1,5 +1,7 @@
 'use client'
 
+const MAX_SELECTABLE = 16
+
 interface BusSeatMapProps {
   totalSeats: number
   reservedSeats: string[]
@@ -17,10 +19,12 @@ export default function BusSeatMap({
 }: BusSeatMapProps) {
   const unavailable = new Set([...reservedSeats, ...blockedSeats])
   const remaining = totalSeats - reservedSeats.length - blockedSeats.length
+  const atMax = selectedSeats.length >= MAX_SELECTABLE
 
-  function getStatus(num: number): 'available' | 'selected' | 'taken' {
+  function getStatus(num: number): 'available' | 'selected' | 'taken' | 'maxed' {
     if (selectedSeats.includes(num)) return 'selected'
     if (unavailable.has(String(num))) return 'taken'
+    if (atMax) return 'maxed'
     return 'available'
   }
 
@@ -66,6 +70,13 @@ export default function BusSeatMap({
         </button>
       )
     }
+    if (status === 'maxed') {
+      return (
+        <div style={{ ...base, background: '#1A2A3A', borderColor: '#2D3748', cursor: 'not-allowed', opacity: 0.5 }}>
+          <span style={{ color: '#3A5A7A', fontSize: 14, fontWeight: 700 }}>{num}</span>
+        </div>
+      )
+    }
     return (
       <button
         style={{ ...base, background: '#1E3F66', borderColor: '#2D5F99', color: '#93C5FD' }}
@@ -92,6 +103,8 @@ export default function BusSeatMap({
           <span style={{ color: '#93B5D4' }}>전체 <b style={{ color: '#F8F9FA' }}>{totalSeats}석</b></span>
           <span style={{ color: '#2D4A66' }}>|</span>
           <span style={{ fontWeight: 700, color: remaining <= 5 ? '#F87171' : '#C9A84C' }}>잔여 {remaining}석</span>
+          <span style={{ color: '#2D4A66' }}>|</span>
+          <span style={{ fontWeight: 700, color: '#8A9BB0' }}>최대 {MAX_SELECTABLE}명</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 11, color: '#4A6888' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -105,6 +118,13 @@ export default function BusSeatMap({
           </span>
         </div>
       </div>
+
+      {/* 최대 선택 경고 */}
+      {atMax && (
+        <div style={{ padding: '8px 16px', background: 'rgba(248,113,113,0.1)', borderBottom: '1px solid rgba(248,113,113,0.2)', textAlign: 'center' }}>
+          <span style={{ color: '#F87171', fontSize: 13, fontWeight: 700 }}>최대 16명까지 예약 가능합니다</span>
+        </div>
+      )}
 
       {/* 버스 내부 */}
       <div style={{ padding: '20px 16px', background: '#0F1E30' }}>

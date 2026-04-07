@@ -143,6 +143,21 @@ export default function HomePage() {
       {/* 진행 중인 예약 배너 */}
       <PendingReservationBanner />
 
+      {/* 유류비 공지 배너 */}
+      <div style={{
+        background: 'rgba(201,168,76,0.12)',
+        borderBottom: '1px solid rgba(201,168,76,0.35)',
+        padding: '10px 16px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+      }}>
+        <span style={{ fontSize: 15, flexShrink: 0 }}>⚠️</span>
+        <p style={{ color: '#e2c97e', fontSize: '13px', lineHeight: 1.5, margin: 0 }}>
+          중동 정세 불안으로 인한 유류비 상승으로 요금이 변동될 수 있습니다. 양해 부탁드립니다.
+        </p>
+      </div>
+
       {/* 오늘 출조 정보 */}
       <div className="pt-8 pb-0 mb-0">
         <TideWeatherSection />

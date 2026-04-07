@@ -46,10 +46,11 @@ export default function TopTabBar() {
 
   if (HIDDEN_PREFIXES.some((p) => pathname.startsWith(p))) return null
 
-  const displayName = user?.user_metadata?.full_name
-    ?? user?.phone?.slice(-4)
-    ?? user?.email?.split('@')[0]
-    ?? null
+  const displayName =
+    user?.user_metadata?.full_name ||
+    user?.user_metadata?.name ||
+    user?.email?.split('@')[0] ||
+    '회원'
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: scrolled ? 'rgba(13,31,53,0.92)' : '#0D1F35', backdropFilter: scrolled ? 'blur(12px)' : 'none', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>

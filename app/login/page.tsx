@@ -23,17 +23,11 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [info, setInfo] = useState('')
 
-  async function handleKakaoLogin() {
-    setLoading(true)
-    setError('')
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'kakao',
-      options: {
-        redirectTo: REDIRECT_URL,
-        scopes: 'profile_image profile_nickname',
-      },
-    })
-    if (error) { setError(error.message); setLoading(false) }
+  function handleKakaoLogin() {
+    const REST_API_KEY = 'ac1b77e9c91483137d68c5448e932b4e'
+    const redirectUri = `${window.location.origin}/auth/kakao-callback`
+    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=profile_nickname%20profile_image%20openid`
+    window.location.href = kakaoAuthUrl
   }
 
   async function handleSendOtp() {

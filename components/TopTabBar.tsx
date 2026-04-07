@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 
-const HIDDEN_PREFIXES = ['/booking/', '/admin', '/confirmation', '/checkout', '/login']
+const HIDDEN_PREFIXES = ['/booking/', '/admin', '/confirmation', '/checkout', '/login', '/auth/']
 
 const NAV_LINKS = [
   { href: '/#booking',  label: '예약' },

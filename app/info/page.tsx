@@ -104,23 +104,16 @@ export default function InfoPage() {
         {/* 요금 안내 */}
         <section style={{ background: '#1E3F66', borderRadius: 20, border: '1px solid rgba(45,95,153,0.4)', padding: '16px 20px' }}>
           <p className="text-xs font-bold tracking-widest mb-4" style={{ color: '#C9A84C' }}>요금 안내</p>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between py-3"
-              style={{ borderBottom: '1px solid rgba(45,95,153,0.3)' }}>
-              <div>
-                <p className="text-sm font-semibold" style={{ color: '#F8F9FA' }}>버스 좌석</p>
-                <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>1인 기준 · 총 {settings.bus_total_seats}석</p>
-              </div>
-              <p className="text-lg font-black" style={{ color: '#C9A84C' }}>{formatPrice(settings.bus_price)}</p>
+          <div className="flex items-center justify-between py-3" style={{ borderBottom: '1px solid rgba(45,95,153,0.3)' }}>
+            <div>
+              <p className="text-sm font-semibold" style={{ color: '#F8F9FA' }}>버스+배 통합 요금</p>
+              <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>1인 기준 · 당일 점심·저녁, 다음날 조식 3끼 제공</p>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <div>
-                <p className="text-sm font-semibold" style={{ color: '#F8F9FA' }}>낚시배 자리</p>
-                <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>1자리 기준 · 총 {settings.boat_total_spots}자리 · 선택사항</p>
-              </div>
-              <p className="text-lg font-black" style={{ color: '#C9A84C' }}>{formatPrice(settings.boat_price)}</p>
-            </div>
+            <p className="text-lg font-black" style={{ color: '#C9A84C' }}>260,000원</p>
           </div>
+          <p className="text-xs mt-3" style={{ color: '#C9A84C' }}>
+            ※ 중동 정세 불안으로 인한 유류비 상승으로 요금이 변동될 수 있습니다. 양해 부탁드립니다.
+          </p>
         </section>
 
         {/* 무통장 입금 계좌 */}

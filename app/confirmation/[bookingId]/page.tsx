@@ -56,11 +56,11 @@ export default function ConfirmationPage() {
   function getStatusBadge(status: string) {
     if (status === 'confirmed')
       return <span className="badge-confirmed">✓ 예약완료</span>
+    if (status === 'visit_pending')
+      return <span className="badge-pending">🏕 방문예정</span>
     if (status === 'pending') {
       if (booking?.payment_method === 'bank')
         return <span className="badge-pending">⏳ 입금확인중</span>
-      if (booking?.payment_method === 'onsite')
-        return <span className="badge-pending">🏕 현장결제예약</span>
       return <span className="badge-pending">⏳ 처리중</span>
     }
     return <span className="badge-cancelled">✗ 취소됨</span>
@@ -99,20 +99,24 @@ export default function ConfirmationPage() {
       {/* 성공 헤더 */}
       <div className="bg-gradient-to-b from-blue-600 to-blue-500 text-white px-4 pt-12 pb-8 text-center">
         <div className="text-5xl mb-3">
-          {booking.payment_status === 'confirmed' ? '✅' : '📋'}
+          {booking.payment_status === 'confirmed' ? '✅'
+            : booking.payment_status === 'visit_pending' ? '🏕'
+            : '📋'}
         </div>
         <h1 className="text-2xl font-bold mb-1">
           {booking.payment_status === 'confirmed'
             ? '예약이 완료됐습니다!'
+            : booking.payment_status === 'visit_pending'
+            ? '방문예정 등록 완료'
             : booking.payment_method === 'bank'
             ? '입금을 확인 중입니다'
             : '예약이 접수됐습니다!'}
         </h1>
         <p className="text-blue-200 text-sm">
-          {booking.payment_method === 'bank'
+          {booking.payment_status === 'visit_pending'
+            ? '출발 30분 전까지 현장에서 결제해 주세요'
+            : booking.payment_method === 'bank'
             ? '입금 확인 후 예약이 확정됩니다'
-            : booking.payment_method === 'onsite'
-            ? '출발 30분 전까지 도착해 주세요'
             : '예약 확정 알림톡을 확인하세요'}
         </p>
 
@@ -179,14 +183,32 @@ export default function ConfirmationPage() {
           </div>
         </div>
 
-        {/* 무통장 안내 */}
+        {/* 무통장 입금 안내 */}
         {booking.payment_method === 'bank' && booking.payment_status === 'pending' && (
-          <div className="card border-yellow-200 bg-yellow-50">
-            <h3 className="font-bold text-yellow-800 mb-2">📢 입금 안내</h3>
-            <p className="text-sm text-yellow-800">
-              예약번호 <strong>{booking.booking_number}</strong>를 입금자명에 포함하거나
-              {booking.depositor_name && ` "${booking.depositor_name}" 으로`} 입금해 주세요.
+          <div className="card border-blue-200 bg-blue-50">
+            <h3 className="font-bold text-blue-800 mb-3">🏦 무통장 입금 안내</h3>
+            <div className="space-y-2 text-sm mb-3">
+              <div className="flex justify-between"><span className="text-gray-500">은행</span><span className="font-semibold">신한은행</span></div>
+              <div className="flex justify-between"><span className="text-gray-500">계좌번호</span><span className="font-semibold text-blue-700">110-412-245177</span></div>
+              <div className="flex justify-between"><span className="text-gray-500">예금주</span><span className="font-semibold">강현구</span></div>
+              <div className="flex justify-between border-t border-blue-200 pt-2">
+                <span className="text-gray-500">입금액</span>
+                <span className="font-bold text-blue-700">{formatPrice(booking.total_amount)}</span>
+              </div>
+            </div>
+            <p className="text-xs text-blue-700">
+              입금자명: <strong>{booking.depositor_name || booking.customer_name}</strong>으로 입금해 주세요.
               입금 확인 후 카카오 알림톡으로 안내드립니다.
+            </p>
+          </div>
+        )}
+
+        {/* 현장결제 경고 */}
+        {booking.payment_status === 'visit_pending' && (
+          <div className="card" style={{ borderColor: 'rgba(201,168,76,0.4)', background: 'rgba(201,168,76,0.08)' }}>
+            <h3 className="font-bold mb-2" style={{ color: '#C9A84C' }}>⚠️ 현장결제 안내</h3>
+            <p className="text-sm" style={{ color: '#e2c97e' }}>
+              현장결제는 자리를 보장하지 않습니다. 선착순 배정이며, 조기 마감 시 탑승이 어려울 수 있습니다.
             </p>
           </div>
         )}

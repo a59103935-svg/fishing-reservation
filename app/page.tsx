@@ -158,10 +158,8 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* 오늘 출조 정보 */}
-      <div className="pt-8 pb-0 mb-0">
-        <TideWeatherSection />
-      </div>
+      {/* 날씨 · 물때 */}
+      <TideWeatherSection />
 
       {/* HERO */}
       <section

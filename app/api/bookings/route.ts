@@ -99,16 +99,13 @@ export async function POST(request: NextRequest) {
       await supabase.from('product_orders').insert(orders)
     }
 
-    // 현장결제는 바로 confirmed
+    // 현장결제는 visit_pending (방문예정)
     if (paymentMethod === 'onsite') {
       await supabase
         .from('bookings')
-        .update({
-          payment_status: 'confirmed',
-          confirmed_at: new Date().toISOString(),
-        })
+        .update({ payment_status: 'visit_pending' })
         .eq('id', booking.id)
-      booking.payment_status = 'confirmed'
+      booking.payment_status = 'visit_pending'
     }
 
     // 알림톡 발송 (비동기 - 실패해도 예약은 완료)

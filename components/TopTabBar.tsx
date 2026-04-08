@@ -9,8 +9,8 @@ import type { User } from '@supabase/supabase-js'
 const HIDDEN_PREFIXES = ['/booking/', '/admin', '/confirmation', '/checkout', '/login', '/auth/']
 
 const NAV_LINKS = [
-  { href: '/shop',           label: '낚시용품' },
   { href: '/#notices',       label: '공지사항' },
+  { href: '/shop',           label: '낚시용품' },
   { href: '/catch',          label: '조황게시판' },
   { href: '/booking-lookup', label: '예약조회' },
 ]

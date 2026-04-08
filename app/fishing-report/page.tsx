@@ -9,7 +9,6 @@ interface FishingReport {
   id: string
   author_name: string
   title: string
-  fish_type: string | null
   catch_date: string | null
   created_at: string
 }
@@ -39,7 +38,7 @@ export default function FishingReportPage() {
     async function load() {
       const { data } = await supabase
         .from('fishing_reports')
-        .select('id, author_name, title, fish_type, catch_date, created_at')
+        .select('id, author_name, title, catch_date, created_at')
         .order('created_at', { ascending: false })
       if (data) setReports(data)
       setLoading(false)
@@ -49,7 +48,7 @@ export default function FishingReportPage() {
   }, [])
 
   return (
-    <div className="max-w-2xl mx-auto min-h-screen pb-24 px-4" style={{ background: '#0D1F35', paddingTop: '80px' }}>
+    <div className="max-w-2xl mx-auto min-h-screen pb-24 px-4" style={{ background: '#0D1F35', paddingTop: '88px' }}>
       <div className="flex items-center justify-between mb-6">
         <div>
           <p className="text-xs font-semibold tracking-widest mb-1" style={{ color: '#C9A84C' }}>FISHING REPORT</p>
@@ -95,12 +94,7 @@ export default function FishingReportPage() {
               className="w-full text-left rounded-2xl px-5 py-4 transition-all active:scale-[0.99]"
               style={{ background: '#1A3355', border: '1px solid rgba(45,95,153,0.4)' }}
             >
-              <div className="flex items-center gap-2 mb-1">
-                {report.fish_type && (
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C' }}>
-                    {report.fish_type}
-                  </span>
-                )}
+              <div className="flex items-center mb-1">
                 <p className="text-sm font-semibold line-clamp-1" style={{ color: '#F8F9FA' }}>{report.title}</p>
               </div>
               <div className="flex items-center gap-3">

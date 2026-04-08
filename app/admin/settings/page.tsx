@@ -75,29 +75,32 @@ export default function SettingsPage() {
     setSaving(true)
     setSavedMsg('')
     try {
-      const { error } = await supabase
+      const payload = {
+        id: settings.id,
+        site_name: form.site_name,
+        bus_total_seats: Number(form.bus_total_seats),
+        boat_total_spots: Number(form.boat_total_spots),
+        bus_price: Number(form.bus_price),
+        boat_price: Number(form.boat_price),
+        departure_time: form.departure_time + ':00',
+        return_time: form.return_time + ':00',
+        bank_name: form.bank_name,
+        bank_account: form.bank_account,
+        bank_holder: form.bank_holder,
+        updated_at: new Date().toISOString(),
+      }
+      const { error, count } = await supabase
         .from('site_settings')
-        .update({
-          site_name: form.site_name,
-          bus_total_seats: Number(form.bus_total_seats),
-          boat_total_spots: Number(form.boat_total_spots),
-          bus_price: Number(form.bus_price),
-          boat_price: Number(form.boat_price),
-          departure_time: form.departure_time + ':00',
-          return_time: form.return_time + ':00',
-          bank_name: form.bank_name,
-          bank_account: form.bank_account,
-          bank_holder: form.bank_holder,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', settings.id)
+        .upsert(payload, { onConflict: 'id' })
+        .select()
 
       if (error) throw error
       setSavedMsg('✓ 저장됐습니다')
-      loadSettings()
+      await loadSettings()
       setTimeout(() => setSavedMsg(''), 3000)
     } catch (err) {
-      alert('저장 중 오류가 발생했습니다')
+      console.error('saveSettings error:', err)
+      alert('저장 중 오류가 발생했습니다: ' + (err instanceof Error ? err.message : String(err)))
     } finally {
       setSaving(false)
     }
@@ -158,7 +161,7 @@ export default function SettingsPage() {
         <h2 className="font-bold text-gray-800 text-lg">기본 정보</h2>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">업체명</label>
+          <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>업체명</label>
           <input
             type="text"
             className="form-input"
@@ -170,7 +173,7 @@ export default function SettingsPage() {
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>
               버스 총 좌석 수
             </label>
             <input
@@ -182,7 +185,7 @@ export default function SettingsPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>
               배 총 자리 수
             </label>
             <input
@@ -197,7 +200,7 @@ export default function SettingsPage() {
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>
               버스요금 (원)
             </label>
             <input
@@ -209,7 +212,7 @@ export default function SettingsPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>
               배삯 (원)
             </label>
             <input
@@ -230,7 +233,7 @@ export default function SettingsPage() {
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>
               출발 시간
             </label>
             <input
@@ -241,7 +244,7 @@ export default function SettingsPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>
               귀항 시간
             </label>
             <input
@@ -258,7 +261,7 @@ export default function SettingsPage() {
       <div className="card space-y-4">
         <h2 className="font-bold text-gray-800 text-lg">무통장 입금 계좌</h2>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">은행명</label>
+          <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>은행명</label>
           <input
             type="text"
             className="form-input"
@@ -268,7 +271,7 @@ export default function SettingsPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">계좌번호</label>
+          <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>계좌번호</label>
           <input
             type="text"
             className="form-input"
@@ -278,7 +281,7 @@ export default function SettingsPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">예금주</label>
+          <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>예금주</label>
           <input
             type="text"
             className="form-input"

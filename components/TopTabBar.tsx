@@ -71,7 +71,7 @@ export default function TopTabBar() {
         <div className="flex items-center gap-3 justify-self-end">
           {user ? (
             <div className="hidden sm:flex items-center gap-2">
-              <span className="text-xs" style={{ color: '#93B5D4' }}>{displayName} 님</span>
+              <span className="text-xs" style={{ color: '#C9A84C' }}>{displayName} 님</span>
               <button onClick={handleLogout} className="px-3 py-1.5 rounded-lg text-xs font-bold" style={{ background: 'rgba(248,113,113,0.15)', color: '#F87171', border: '1px solid rgba(248,113,113,0.3)' }}>로그아웃</button>
             </div>
           ) : (
@@ -93,7 +93,7 @@ export default function TopTabBar() {
           <button onClick={() => { setMobileOpen(false); router.push('/#booking') }} className="w-full py-3 rounded-xl text-sm font-bold mt-2" style={{ background: '#C9A84C', color: '#0D1F35' }}>예약하기</button>
           {user ? (
             <div className="flex items-center justify-between pt-1">
-              <span className="text-xs" style={{ color: '#93B5D4' }}>{displayName} 님</span>
+              <span className="text-xs" style={{ color: '#C9A84C' }}>{displayName} 님</span>
               <button onClick={handleLogout} className="px-3 py-1.5 rounded-lg text-xs font-bold" style={{ background: 'rgba(248,113,113,0.15)', color: '#F87171' }}>로그아웃</button>
             </div>
           ) : (

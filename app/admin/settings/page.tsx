@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, addMonths, subMonths, isSameMonth, isBefore } from 'date-fns'
+import { useState, useEffect, useCallback, useMemo } from 'react'
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, addMonths, subMonths, isSameMonth } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/client'
 import type { SiteSettings } from '@/types'
@@ -144,21 +144,24 @@ export default function SettingsPage() {
   }
 
   // 달력 날짜 배열
-  const monthStart = startOfMonth(currentMonth)
-  const monthEnd = endOfMonth(currentMonth)
-  const calStart = startOfWeek(monthStart, { weekStartsOn: 0 })
-  const calEnd = endOfWeek(monthEnd, { weekStartsOn: 0 })
-  const weeks: Date[][] = []
-  let week: Date[] = []
-  let cur = calStart
-  while (cur <= calEnd) {
-    week.push(new Date(cur))
-    if (week.length === 7) {
-      weeks.push(week)
-      week = []
+  const weeks = useMemo(() => {
+    const monthStart = startOfMonth(currentMonth)
+    const monthEnd = endOfMonth(currentMonth)
+    const calStart = startOfWeek(monthStart, { weekStartsOn: 0 })
+    const calEnd = endOfWeek(monthEnd, { weekStartsOn: 0 })
+    const result: Date[][] = []
+    let week: Date[] = []
+    let cur = calStart
+    while (cur <= calEnd) {
+      week.push(new Date(cur))
+      if (week.length === 7) {
+        result.push(week)
+        week = []
+      }
+      cur = addDays(cur, 1)
     }
-    cur = addDays(cur, 1)
-  }
+    return result
+  }, [currentMonth])
 
   return (
     <div className="px-4 py-6 space-y-5">

@@ -1,37 +1,20 @@
-# 작업 지시
+# 관리자 설정 페이지 버그 수정
 
-다음 기능을 순서대로 구현해줘.
+## 작업 1: 저장 버그 수정
+파일: app/admin/settings/page.tsx
 
-## 1. 닉네임 설정 기능
+저장 버튼 누르면 "[object Object]" 에러 발생. 원인 찾아서 수정:
 
-### DB
-- public.profiles 테이블이 없으면 생성:
-  - id (uuid, FK → auth.users.id)
-  - nickname (text, unique)
-  - created_at (timestamptz)
-- RLS: 본인만 insert/update, 전체 select 가능
+1. upsert 에러를 console.log로 전체 출력하도록 먼저 수정
+2. onConflict 옵션 확인 — 올바른 형태:
+   supabase.from('site_settings').upsert({ key: 'bus_price', value: String(value) }, { onConflict: 'key' })
+3. RLS 문제일 경우 Supabase SQL에서 실행:
+   CREATE POLICY "allow all" ON site_settings FOR ALL USING (true) WITH CHECK (true);
+4. service role key 사용이 필요하면 lib/supabaseAdmin.ts 생성 후 사용
 
-### 닉네임 설정 페이지 (app/set-nickname/page.tsx)
-- 닉네임 입력 폼 (2~10자, 한글/영문/숫자)
-- 중복 확인 버튼 (profiles 테이블에서 unique 체크)
-- 저장 시 profiles에 upsert → 메인(/)으로 리다이렉트
+## 작업 2: 라벨 골드색 변경
+settings 페이지 내 모든 입력 필드 라벨 텍스트를 #C9A84C 골드색으로 변경.
+대상: 버스 총 좌석 수, 배 총 자리 수, 버스요금(원), 배삯(원), 출발 시간, 귀항 시간, 은행명, 계좌번호, 예금주 등
 
-### 로그인 후 닉네임 체크 로직
-- app/auth/kakao-callback/page.tsx, app/auth/naver-callback/page.tsx (있다면)
-- 로그인 성공 후 profiles 테이블에 해당 user id 있는지 확인
-- 없으면 → /set-nickname 으로 리다이렉트
-- 있으면 → / 으로 리다이렉트
-
-## 2. 게시판 글쓸 때 닉네임 자동입력
-- 공지사항 작성 / 조황게시판 작성 페이지에서
-- 현재 로그인 유저의 profiles.nickname 불러와서 작성자 필드에 자동 세팅 (readonly)
-- notices, fishing_reports 테이블에 author_nickname 컬럼 없으면 추가
-
-## 3. 조황게시판 사진 5장 업로드
-- app/fishing-report/write 페이지 (없으면 생성)
-- 이미지 최대 5장 선택 (미리보기 포함)
-- Supabase Storage fishing-reports 버킷에 업로드
-- fishing_reports 테이블에 image_urls (text[]) 컬럼 없으면 추가
-- 업로드 후 URL 배열로 저장
-
-순서대로 진행하고 각 단계 완료시 알려줘.
+## 완료 후
+git add -A && git commit -m "fix: 설정 저장 버그 수정 + 라벨 골드색" && git push

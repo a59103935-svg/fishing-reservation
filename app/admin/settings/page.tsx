@@ -89,18 +89,26 @@ export default function SettingsPage() {
         bank_holder: form.bank_holder,
         updated_at: new Date().toISOString(),
       }
-      const { error, count } = await supabase
-        .from('site_settings')
-        .upsert(payload, { onConflict: 'id' })
-        .select()
 
-      if (error) throw error
+      const res = await fetch('/api/admin/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const json = await res.json()
+
+      if (!res.ok) {
+        console.error('saveSettings error:', json)
+        alert('저장 실패: ' + (json.error ?? res.status))
+        return
+      }
+
       setSavedMsg('✓ 저장됐습니다')
       await loadSettings()
       setTimeout(() => setSavedMsg(''), 3000)
     } catch (err) {
       console.error('saveSettings error:', err)
-      alert('저장 중 오류가 발생했습니다: ' + (err instanceof Error ? err.message : String(err)))
+      alert('저장 중 오류가 발생했습니다.')
     } finally {
       setSaving(false)
     }

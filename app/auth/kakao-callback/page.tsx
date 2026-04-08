@@ -24,6 +24,11 @@ export default function KakaoCallbackPage() {
         return
       }
 
+      if (session.user.id === process.env.NEXT_PUBLIC_ADMIN_USER_ID) {
+        router.replace('/admin')
+        return
+      }
+
       const { data: profile } = await supabase
         .from('profiles')
         .select('nickname')

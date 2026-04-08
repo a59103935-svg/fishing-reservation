@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 const EXCLUDED = ['/set-nickname', '/login', '/auth']
+const ADMIN_USER_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -31,14 +32,21 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  // /admin 경로: 어드민 유저만 접근 허용
+  if (pathname.startsWith('/admin')) {
+    if (!user || user.id !== ADMIN_USER_ID) {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
+    return response
+  }
+
+  // 일반 유저: 닉네임 없으면 /set-nickname으로
   if (user) {
     const { data: profile } = await supabase
       .from('profiles')
       .select('nickname')
       .eq('id', user.id)
       .maybeSingle()
-
-    console.log('[middleware] user:', user?.id, '| profile:', profile)
 
     if (!profile?.nickname) {
       return NextResponse.redirect(new URL('/set-nickname', request.url))

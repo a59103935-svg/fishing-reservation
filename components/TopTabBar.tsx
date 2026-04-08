@@ -23,6 +23,7 @@ export default function TopTabBar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [user, setUser] = useState<User | null>(null)
+  const [nickname, setNickname] = useState<string | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -30,10 +31,20 @@ export default function TopTabBar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  async function fetchNickname(userId: string) {
+    const { data } = await supabase.from('profiles').select('nickname').eq('id', userId).maybeSingle()
+    setNickname(data?.nickname ?? null)
+  }
+
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user)
+      if (data.user) fetchNickname(data.user.id)
+    })
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
+      if (session?.user) fetchNickname(session.user.id)
+      else setNickname(null)
     })
     return () => subscription.unsubscribe()
   }, [])
@@ -46,11 +57,7 @@ export default function TopTabBar() {
 
   if (HIDDEN_PREFIXES.some((p) => pathname.startsWith(p))) return null
 
-  const displayName =
-    user?.user_metadata?.full_name ||
-    user?.user_metadata?.name ||
-    user?.email?.split('@')[0] ||
-    '회원'
+  const displayName = nickname ?? '회원'
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: scrolled ? 'rgba(13,31,53,0.92)' : '#0D1F35', backdropFilter: scrolled ? 'blur(12px)' : 'none', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>
@@ -65,7 +72,7 @@ export default function TopTabBar() {
         <div className="flex items-center gap-3">
           {user ? (
             <div className="hidden sm:flex items-center gap-2">
-              <span className="text-xs" style={{ color: '#93B5D4' }}>{displayName}</span>
+              <span className="text-xs" style={{ color: '#93B5D4' }}>{displayName} 님</span>
               <button onClick={handleLogout} className="px-3 py-1.5 rounded-lg text-xs font-bold" style={{ background: 'rgba(248,113,113,0.15)', color: '#F87171', border: '1px solid rgba(248,113,113,0.3)' }}>로그아웃</button>
             </div>
           ) : (

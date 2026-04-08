@@ -4,40 +4,36 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
-async function checkAndRedirect(supabase: ReturnType<typeof createClient>, router: ReturnType<typeof useRouter>) {
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) { router.replace('/'); return }
-
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('id')
-    .eq('id', user.id)
-    .maybeSingle()
-
-  router.replace(profile ? '/' : '/set-nickname')
-}
-
 export default function KakaoCallbackPage() {
   const router = useRouter()
   const supabase = createClient()
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session) {
-        subscription.unsubscribe()
-        checkAndRedirect(supabase, router)
+    let attempts = 0
+
+    async function tryRedirect() {
+      const { data: { session } } = await supabase.auth.getSession()
+
+      if (!session) {
+        if (attempts < 5) {
+          attempts++
+          setTimeout(tryRedirect, 500)
+        } else {
+          router.replace('/login')
+        }
+        return
       }
-    })
 
-    const timer = setTimeout(() => {
-      subscription.unsubscribe()
-      checkAndRedirect(supabase, router)
-    }, 3000)
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('nickname')
+        .eq('id', session.user.id)
+        .maybeSingle()
 
-    return () => {
-      subscription.unsubscribe()
-      clearTimeout(timer)
+      router.replace(profile?.nickname ? '/' : '/set-nickname')
     }
+
+    tryRedirect()
   }, [])
 
   return (

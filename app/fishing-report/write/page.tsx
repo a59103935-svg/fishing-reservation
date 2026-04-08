@@ -5,15 +5,13 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 
-const FISH_TYPES = ['광어', '우럭', '참돔', '방어', '고등어', '갈치', '쭈꾸미', '기타']
-
 export default function FishingReportWritePage() {
   const router = useRouter()
   const supabase = createClient()
   const fileRef = useRef<HTMLInputElement>(null)
   const [user, setUser] = useState<User | null>(null)
   const [nickname, setNickname] = useState('')
-  const [form, setForm] = useState({ title: '', content: '', fish_type: '', catch_date: '' })
+  const [form, setForm] = useState({ title: '', content: '', catch_date: '' })
   const [images, setImages] = useState<File[]>([])
   const [previews, setPreviews] = useState<string[]>([])
   const [submitting, setSubmitting] = useState(false)
@@ -82,7 +80,6 @@ export default function FishingReportWritePage() {
       author_nickname: nickname,
       title: form.title.trim(),
       content: form.content.trim(),
-      fish_type: form.fish_type || null,
       catch_date: form.catch_date || null,
       image_urls: imageUrls,
     })
@@ -118,28 +115,6 @@ export default function FishingReportWritePage() {
             className="w-full px-3 py-2.5 rounded-xl text-sm outline-none"
             style={{ background: 'rgba(13,31,53,0.5)', border: '1px solid rgba(45,95,153,0.3)', color: '#4A6888', cursor: 'default' }}
           />
-        </div>
-
-        {/* 어종 */}
-        <div>
-          <label className="text-xs font-medium block mb-1.5" style={{ color: '#93B5D4' }}>어종</label>
-          <div className="flex flex-wrap gap-2">
-            {FISH_TYPES.map(f => (
-              <button
-                key={f}
-                type="button"
-                onClick={() => setForm(p => ({ ...p, fish_type: p.fish_type === f ? '' : f }))}
-                className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all"
-                style={{
-                  background: form.fish_type === f ? '#C9A84C' : 'rgba(30,63,102,0.6)',
-                  color: form.fish_type === f ? '#0D1F35' : '#4A6888',
-                  border: form.fish_type === f ? 'none' : '1px solid rgba(45,95,153,0.3)',
-                }}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* 출조일 */}

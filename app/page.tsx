@@ -43,6 +43,18 @@ export default function HomePage() {
   const [selectedDay,   setSelectedDay]   = useState<string | null>(null)
   const [previewProducts, setPreviewProducts] = useState<Product[]>([])
 
+  useEffect(() => {
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('nickname')
+        .eq('id', user.id)
+        .maybeSingle()
+      if (!profile?.nickname) router.replace('/set-nickname')
+    })
+  }, [])
+
   const loadSettings = useCallback(async () => {
     const { data } = await supabase.from('site_settings').select('*').single()
     if (data) setSiteSettings(data)

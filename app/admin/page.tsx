@@ -16,6 +16,31 @@ export default function AdminDashboard() {
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'))
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
+  const [settingsId, setSettingsId] = useState<string | null>(null)
+  const [feeForm, setFeeForm] = useState({ bus_price: '', boat_price: '' })
+  const [feeSaving, setFeeSaving] = useState(false)
+  const [feeSaved, setFeeSaved] = useState(false)
+
+  useEffect(() => {
+    supabase.from('site_settings').select('id, bus_price, boat_price').single().then(({ data }) => {
+      if (data) {
+        setSettingsId(data.id)
+        setFeeForm({ bus_price: String(data.bus_price), boat_price: String(data.boat_price) })
+      }
+    })
+  }, [])
+
+  async function saveFee() {
+    if (!settingsId) return
+    setFeeSaving(true)
+    await supabase.from('site_settings').update({
+      bus_price: Number(feeForm.bus_price) || 0,
+      boat_price: Number(feeForm.boat_price) || 0,
+    }).eq('id', settingsId)
+    setFeeSaving(false)
+    setFeeSaved(true)
+    setTimeout(() => setFeeSaved(false), 2500)
+  }
 
   const loadBookings = useCallback(async (date: string) => {
     setLoading(true)
@@ -191,6 +216,48 @@ export default function AdminDashboard() {
               {id}
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* 요금 설정 */}
+      <div className="rounded-2xl p-4 space-y-3" style={{ background: '#1A3355', border: '1px solid rgba(201,168,76,0.2)' }}>
+        <h2 className="font-bold" style={{ color: '#F8F9FA' }}>요금 설정</h2>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="text-xs block mb-1" style={{ color: '#4A6888' }}>버스요금 (원)</label>
+            <input
+              type="number"
+              value={feeForm.bus_price}
+              onChange={e => setFeeForm(p => ({ ...p, bus_price: e.target.value }))}
+              className="w-full px-3 py-2 rounded-xl text-sm outline-none"
+              style={{ background: 'rgba(13,31,53,0.8)', border: '1px solid rgba(45,95,153,0.5)', color: '#F8F9FA' }}
+            />
+          </div>
+          <div>
+            <label className="text-xs block mb-1" style={{ color: '#4A6888' }}>배삯 (원)</label>
+            <input
+              type="number"
+              value={feeForm.boat_price}
+              onChange={e => setFeeForm(p => ({ ...p, boat_price: e.target.value }))}
+              className="w-full px-3 py-2 rounded-xl text-sm outline-none"
+              style={{ background: 'rgba(13,31,53,0.8)', border: '1px solid rgba(45,95,153,0.5)', color: '#F8F9FA' }}
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-xs" style={{ color: '#4A6888' }}>
+            총 비용: <span style={{ color: '#C9A84C', fontWeight: 700 }}>
+              {((Number(feeForm.bus_price) || 0) + (Number(feeForm.boat_price) || 0)).toLocaleString()}원
+            </span>
+          </span>
+          <button
+            onClick={saveFee}
+            disabled={feeSaving}
+            className="px-4 py-2 rounded-xl text-sm font-bold transition-all active:scale-95 disabled:opacity-50"
+            style={{ background: feeSaved ? 'rgba(74,222,128,0.2)' : 'rgba(201,168,76,0.2)', color: feeSaved ? '#4ADE80' : '#C9A84C', border: `1px solid ${feeSaved ? 'rgba(74,222,128,0.4)' : 'rgba(201,168,76,0.4)'}` }}
+          >
+            {feeSaving ? '저장 중...' : feeSaved ? '✓ 저장됨' : '저장'}
+          </button>
         </div>
       </div>
 

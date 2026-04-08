@@ -10,8 +10,6 @@ interface CatchReport {
   author_name: string
   title: string
   content: string | null
-  image_url: string | null
-  likes: number
   created_at: string
 }
 
@@ -21,44 +19,27 @@ export default function CatchPage() {
   const [user, setUser] = useState<User | null>(null)
   const [reports, setReports] = useState<CatchReport[]>([])
   const [loading, setLoading] = useState(true)
-  const [showForm, setShowForm] = useState(false)
-  const [form, setForm] = useState({ author_name: '', title: '', content: '' })
-  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data.user))
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
       setUser(session?.user ?? null)
     })
-    loadReports()
+    async function load() {
+      const { data } = await supabase
+        .from('catch_reports')
+        .select('id, author_name, title, content, created_at')
+        .order('created_at', { ascending: false })
+      if (data) setReports(data)
+      setLoading(false)
+    }
+    load()
     return () => subscription.unsubscribe()
   }, [])
 
-  async function loadReports() {
-    setLoading(true)
-    const { data } = await supabase.from('catch_reports').select('*').order('created_at', { ascending: false })
-    if (data) setReports(data)
-    setLoading(false)
-  }
-
   function handleWriteClick() {
     if (!user) { router.push('/login'); return }
-    setShowForm(true)
-  }
-
-  async function submitReport() {
-    if (!form.author_name.trim() || !form.title.trim()) { alert('닉네임과 제목을 입력해주세요.'); return }
-    setSubmitting(true)
-    const { error } = await supabase.from('catch_reports').insert({
-      author_name: form.author_name.trim(),
-      title: form.title.trim(),
-      content: form.content.trim() || null,
-    })
-    if (error) { alert('오류가 발생했습니다.'); setSubmitting(false); return }
-    setForm({ author_name: '', title: '', content: '' })
-    setShowForm(false)
-    loadReports()
-    setSubmitting(false)
+    router.push('/catch/write')
   }
 
   function timeAgo(dateStr: string) {
@@ -72,8 +53,8 @@ export default function CatchPage() {
   }
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen pb-24" style={{ background: '#0D1F35', paddingTop: '88px' }}>
-      <div className="px-5 pb-4 flex items-center justify-between">
+    <div className="max-w-2xl mx-auto min-h-screen pb-24 px-4" style={{ background: '#0D1F35', paddingTop: '88px' }}>
+      <div className="flex items-center justify-between mb-6">
         <div>
           <p className="text-xs font-semibold tracking-widest mb-0.5" style={{ color: '#C9A84C' }}>GOOD FISHING</p>
           <h1 className="text-2xl font-black" style={{ color: '#F8F9FA' }}>조황 게시판</h1>
@@ -81,19 +62,24 @@ export default function CatchPage() {
         </div>
         <button
           onClick={handleWriteClick}
-          className="px-4 py-2 rounded-xl text-sm font-bold"
+          className="px-4 py-2 rounded-xl text-sm font-bold transition-all active:scale-95"
           style={{ background: '#C9A84C', color: '#0D1F35' }}
         >
           글쓰기
         </button>
       </div>
-      <div className="px-4 space-y-3">
+      <div className="space-y-3">
         {loading ? (
-          Array.from({ length: 4 }).map((_, i) => <div key={i} className="rounded-2xl h-24 animate-pulse" style={{ background: '#1E3F66' }} />)
+          Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="rounded-2xl h-24 animate-pulse" style={{ background: '#1A3355' }} />
+          ))
         ) : reports.length === 0 ? (
-          <div className="text-center py-20"><p className="text-4xl mb-3">🎣</p><p className="text-sm" style={{ color: '#4A6888' }}>첫 조황을 올려주세요!</p></div>
+          <div className="text-center py-20">
+            <p className="text-4xl mb-3">🎣</p>
+            <p className="text-sm" style={{ color: '#4A6888' }}>첫 조황을 올려주세요!</p>
+          </div>
         ) : reports.map(report => (
-          <div key={report.id} className="rounded-2xl p-4" style={{ background: '#1E3F66', border: '1px solid rgba(45,95,153,0.4)' }}>
+          <div key={report.id} className="rounded-2xl p-4" style={{ background: '#1A3355', border: '1px solid rgba(45,95,153,0.4)' }}>
             <p className="text-sm font-bold leading-snug mb-2" style={{ color: '#F8F9FA' }}>{report.title}</p>
             {report.content && <p className="text-xs mb-3 line-clamp-2" style={{ color: '#93B5D4' }}>{report.content}</p>}
             <div className="flex items-center gap-2">
@@ -103,21 +89,6 @@ export default function CatchPage() {
           </div>
         ))}
       </div>
-      {showForm && (
-        <div className="fixed inset-0 z-50 flex items-end">
-          <div className="absolute inset-0" style={{ background: 'rgba(8,22,40,0.85)' }} onClick={() => setShowForm(false)} />
-          <div className="relative w-full max-w-sm mx-auto rounded-t-3xl px-5 pt-5 pb-8" style={{ background: '#0F1E30', border: '1px solid rgba(45,95,153,0.5)', borderBottom: 'none' }}>
-            <div className="w-10 h-1 rounded-full mx-auto mb-5" style={{ background: 'rgba(45,95,153,0.5)' }} />
-            <h2 className="text-base font-bold mb-4" style={{ color: '#F8F9FA' }}>조황 올리기</h2>
-            <div className="space-y-3 mb-5">
-              <div><label className="text-xs font-medium block mb-1" style={{ color: '#4A6888' }}>닉네임</label><input type="text" placeholder="낚시왕홍길동" value={form.author_name} onChange={e => setForm(p => ({ ...p, author_name: e.target.value }))} className="form-input" /></div>
-              <div><label className="text-xs font-medium block mb-1" style={{ color: '#4A6888' }}>제목</label><input type="text" placeholder="오늘 광어 대박났어요!" value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} className="form-input" /></div>
-              <div><label className="text-xs font-medium block mb-1" style={{ color: '#4A6888' }}>내용 (선택)</label><textarea placeholder="조황 내용을 자유롭게 올려주세요" rows={3} value={form.content} onChange={e => setForm(p => ({ ...p, content: e.target.value }))} className="form-input resize-none" /></div>
-            </div>
-            <button onClick={submitReport} disabled={submitting} className="w-full py-4 rounded-xl font-bold text-base transition-all active:scale-95 disabled:opacity-50" style={{ background: '#C9A84C', color: '#0D1F35' }}>{submitting ? '등록 중...' : '등록하기'}</button>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

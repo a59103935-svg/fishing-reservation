@@ -60,15 +60,15 @@ export default function TopTabBar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: scrolled ? 'rgba(13,31,53,0.92)' : '#0D1F35', backdropFilter: scrolled ? 'blur(12px)' : 'none', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>
-      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-display font-bold text-xl tracking-wide" style={{ color: '#C9A84C', fontFamily: '"Playfair Display", Georgia, serif' }}>좋은피싱</Link>
+      <div className="max-w-5xl mx-auto px-4 h-16 grid items-center" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
+        <Link href="/" className="font-display font-bold text-xl tracking-wide justify-self-start" style={{ color: '#C9A84C', fontFamily: '"Playfair Display", Georgia, serif' }}>좋은피싱</Link>
         <nav className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) => {
-            const active = link.href !== '/#booking' && link.href !== '/#notices' && pathname.startsWith(link.href)
+            const active = link.href !== '/#notices' && pathname.startsWith(link.href)
             return <Link key={link.href} href={link.href} className="text-sm font-medium transition-colors" style={{ color: active ? '#C9A84C' : '#8A9BB0' }}>{link.label}</Link>
           })}
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 justify-self-end">
           {user ? (
             <div className="hidden sm:flex items-center gap-2">
               <span className="text-xs" style={{ color: '#93B5D4' }}>{displayName} 님</span>

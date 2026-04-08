@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import BusSeatMap from '@/components/booking/BusSeatMap'
 import { useBookingStore } from '@/lib/store'
 import { createClient } from '@/lib/supabase/client'
-import { getReservedSeats, getBlockedSeats, formatDateKorean, formatPrice, UNIFIED_PRICE_PER_PERSON } from '@/lib/booking'
+import { getReservedSeats, getBlockedSeats, formatDateKorean, formatPrice } from '@/lib/booking'
 import type { SiteSettings } from '@/types'
 
 export default function BusSeatPage() {
@@ -44,7 +44,8 @@ export default function BusSeatPage() {
 
   const totalSeats  = settings?.bus_total_seats ?? 30
   const seatCount   = selectedBusSeats.length
-  const totalAmount = seatCount * UNIFIED_PRICE_PER_PERSON
+  const pricePerPerson = (settings?.bus_price ?? 0) + (settings?.boat_price ?? 0)
+  const totalAmount = seatCount * pricePerPerson
 
   if (loading) {
     return (

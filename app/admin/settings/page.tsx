@@ -198,7 +198,7 @@ export default function SettingsPage() {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
-              버스 기본 요금 (원)
+              버스요금 (원)
             </label>
             <input
               type="number"
@@ -210,7 +210,7 @@ export default function SettingsPage() {
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
-              배 자리 요금 (원)
+              배삯 (원)
             </label>
             <input
               type="number"
@@ -220,6 +220,12 @@ export default function SettingsPage() {
               inputMode="numeric"
             />
           </div>
+        </div>
+        <div className="flex items-center justify-between px-4 py-3 rounded-xl" style={{ background: '#F0F9FF', border: '1px solid #BAE6FD' }}>
+          <span className="text-sm font-semibold text-gray-600">총 비용 (1인당)</span>
+          <span className="text-base font-black text-blue-600">
+            {(Number(form.bus_price || 0) + Number(form.boat_price || 0)).toLocaleString()}원
+          </span>
         </div>
 
         <div className="grid grid-cols-2 gap-3">

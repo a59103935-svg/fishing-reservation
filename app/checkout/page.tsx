@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useBookingStore } from '@/lib/store'
 import { createClient } from '@/lib/supabase/client'
-import { calculateTotal, formatPrice, formatDateKorean, UNIFIED_PRICE_PER_PERSON } from '@/lib/booking'
+import { calculateTotal, formatPrice, formatDateKorean } from '@/lib/booking'
 import { savePending, clearPending } from '@/lib/pendingReservation'
 import type { SiteSettings, PaymentMethod } from '@/types'
 
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
           <div className="card">
             <h2 className="font-bold text-gray-800 mb-3 text-base">결제 금액</h2>
             <div className="space-y-2 text-sm">
-              {selectedBusSeats.length > 0 && <div className="flex justify-between"><span className="text-gray-500">버스+배 통합 요금 ({selectedBusSeats.length}인 × {UNIFIED_PRICE_PER_PERSON.toLocaleString()}원)</span><span>{formatPrice(UNIFIED_PRICE_PER_PERSON * selectedBusSeats.length)}</span></div>}
+              {selectedBusSeats.length > 0 && settings && (() => { const ppp = settings.bus_price + settings.boat_price; return <div className="flex justify-between"><span className="text-gray-500">버스+배 통합 요금 ({selectedBusSeats.length}인 × {ppp.toLocaleString()}원)</span><span>{formatPrice(ppp * selectedBusSeats.length)}</span></div> })()}
               {cartItems.map(item => <div key={item.product.id} className="flex justify-between text-xs text-gray-400"><span>{item.product.name} × {item.quantity}</span><span>{(item.product.price * item.quantity).toLocaleString()}원</span></div>)}
               <div className="flex justify-between border-t border-gray-200 pt-2 mt-2"><span className="font-bold text-gray-800">총 결제 금액</span><span className="font-bold text-blue-600 text-lg">{formatPrice(total)}</span></div>
             </div>

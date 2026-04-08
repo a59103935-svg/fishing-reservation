@@ -271,7 +271,7 @@ export default function HomePage() {
                 {siteSettings && [
                   { label: '출발', value: siteSettings.departure_time.slice(0,5) },
                   { label: '귀항', value: siteSettings.return_time.slice(0,5) },
-                  { label: '버스요금', value: `${siteSettings.bus_price.toLocaleString()}원` },
+                  { label: '총 비용', value: `${(siteSettings.bus_price + siteSettings.boat_price).toLocaleString()}원` },
                 ].map(({ label, value }) => (
                   <div key={label} className="text-center py-2 rounded-xl" style={{ background: 'rgba(13,31,53,0.5)' }}>
                     <p className="text-[10px] mb-0.5" style={{ color: '#8A9BB0' }}>{label}</p>

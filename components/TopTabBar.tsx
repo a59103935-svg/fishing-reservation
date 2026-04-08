@@ -57,6 +57,7 @@ export default function TopTabBar() {
   if (HIDDEN_PREFIXES.some((p) => pathname.startsWith(p))) return null
 
   const displayName = nickname ?? '회원'
+  const isAdmin = user?.id === process.env.NEXT_PUBLIC_ADMIN_USER_ID
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: scrolled ? 'rgba(13,31,53,0.92)' : '#0D1F35', backdropFilter: scrolled ? 'blur(12px)' : 'none', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>
@@ -67,6 +68,9 @@ export default function TopTabBar() {
             const active = link.href !== '/#notices' && pathname.startsWith(link.href)
             return <Link key={link.href} href={link.href} className="text-sm font-medium transition-colors" style={{ color: active ? '#C9A84C' : '#8A9BB0' }}>{link.label}</Link>
           })}
+          {isAdmin && (
+            <Link href="/admin" className="text-sm font-medium transition-colors" style={{ color: pathname.startsWith('/admin') ? '#C9A84C' : '#8A9BB0' }}>관리자</Link>
+          )}
         </nav>
         <div className="flex items-center gap-3 justify-self-end">
           {user ? (
@@ -90,6 +94,9 @@ export default function TopTabBar() {
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block py-3 text-sm font-medium" style={{ color: '#8A9BB0', borderBottom: '1px solid rgba(45,95,153,0.2)' }}>{link.label}</Link>
           ))}
+          {isAdmin && (
+            <Link href="/admin" onClick={() => setMobileOpen(false)} className="block py-3 text-sm font-medium" style={{ color: '#C9A84C', borderBottom: '1px solid rgba(45,95,153,0.2)' }}>관리자</Link>
+          )}
           <button onClick={() => { setMobileOpen(false); router.push('/#booking') }} className="w-full py-3 rounded-xl text-sm font-bold mt-2" style={{ background: '#C9A84C', color: '#0D1F35' }}>예약하기</button>
           {user ? (
             <div className="flex items-center justify-between pt-1">

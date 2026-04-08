@@ -44,6 +44,10 @@ export default function HomePage() {
   const [previewProducts, setPreviewProducts] = useState<Product[]>([])
 
   useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => console.log('MY USER ID:', data.user?.id))
+  }, [])
+
+  useEffect(() => {
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) return
       const { data: profile } = await supabase

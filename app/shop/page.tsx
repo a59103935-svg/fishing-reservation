@@ -155,7 +155,7 @@ export default function ShopPage() {
   return (
     <div className="max-w-sm mx-auto min-h-screen pb-36" style={{ background: '#0D1F35' }}>
       {/* 헤더 */}
-      <div className="px-5 pt-10 pb-4 flex items-center justify-between">
+      <div className="px-5 pt-24 pb-4 flex items-center justify-between">
         <div>
           <p className="text-xs font-semibold tracking-widest mb-0.5" style={{ color: '#C9A84C' }}>GOOD FISHING</p>
           <h1 className="text-2xl font-black" style={{ color: '#F8F9FA' }}>낚시용품</h1>

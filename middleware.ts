@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
-const EXCLUDED = ['/set-nickname', '/login', '/auth', '/api/']
+const EXCLUDED = ['/set-nickname', '/login', '/auth', '/api/', '/shop', '/notices', '/catch', '/booking/lookup']
 const ADMIN_USER_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID
 
 export async function middleware(request: NextRequest) {

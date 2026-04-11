@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
   if (code) {
     const supabase = createClient()
     await supabase.auth.exchangeCodeForSession(code)
+    return NextResponse.redirect(`${origin}/auth/kakao-callback`)
   }
 
   return NextResponse.redirect(`${origin}${next}`)

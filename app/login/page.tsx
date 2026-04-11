@@ -8,21 +8,17 @@ export default function LoginPage() {
   const supabase = createClient()
 
   async function handleKakaoLogin() {
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'kakao',
       options: {
-        redirectTo: 'https://fishing-reservation.vercel.app'
-      }
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
     })
+    if (error) alert('카카오 로그인 오류: ' + error.message)
   }
 
-  async function handleNaverLogin() {
-    await supabase.auth.signInWithOAuth({
-      provider: 'custom:naver' as any,
-      options: {
-        redirectTo: 'https://fishing-reservation.vercel.app'
-      }
-    })
+  function handleNaverLogin() {
+    alert('네이버 로그인은 준비 중입니다. 카카오로 로그인해 주세요.')
   }
 
   return (

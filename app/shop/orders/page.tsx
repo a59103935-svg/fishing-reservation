@@ -6,7 +6,8 @@ import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { formatPrice } from '@/lib/booking'
 
-type OrderStatus = 'pending' | 'confirmed' | 'cancelled'
+type OrderStatus   = 'pending' | 'confirmed' | 'cancelled'
+type DeliveryType  = 'pickup' | 'delivery'
 
 interface ShopOrder {
   id: string
@@ -15,6 +16,9 @@ interface ShopOrder {
   product_id: string
   quantity: number
   unit_price: number
+  delivery_fee: number
+  delivery_type: DeliveryType
+  address: string | null
   status: OrderStatus
   created_at: string
   product?: {
@@ -37,6 +41,11 @@ const STATUS_COLOR: Record<OrderStatus, { bg: string; color: string }> = {
   cancelled: { bg: 'rgba(80,80,100,0.3)',     color: '#6B7280' },
 }
 
+const DELIVERY_LABEL: Record<DeliveryType, string> = {
+  pickup:   '현장수령',
+  delivery: '택배배송',
+}
+
 function OrdersContent() {
   const router       = useRouter()
   const searchParams = useSearchParams()
@@ -51,7 +60,8 @@ function OrdersContent() {
   const [cancelTarget, setCancelTarget] = useState<ShopOrder | null>(null)
   const [cancelling,   setCancelling]   = useState(false)
 
-  // Auto-fetch when redirected from order completion
+  const completedDelivery = searchParams.get('delivery') as DeliveryType | null
+
   useEffect(() => {
     if (searchParams.get('complete') === '1' && name && phone) {
       fetchOrders(name, phone)
@@ -140,13 +150,18 @@ function OrdersContent() {
         {/* 주문 완료 배너 */}
         {searchParams.get('complete') === '1' && (
           <div
-            className="rounded-2xl px-4 py-3 flex items-center gap-2"
+            className="rounded-2xl px-4 py-3 flex items-start gap-2"
             style={{ background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.3)' }}
           >
-            <span style={{ color: '#4ADE80' }}>✓</span>
-            <p className="text-sm font-semibold" style={{ color: '#4ADE80' }}>
-              주문이 완료됐습니다! 출조 시 현장에서 수령하세요.
-            </p>
+            <span style={{ color: '#4ADE80' }} className="mt-0.5">✓</span>
+            <div>
+              <p className="text-sm font-semibold" style={{ color: '#4ADE80' }}>주문이 완료됐습니다!</p>
+              <p className="text-xs mt-0.5" style={{ color: '#4ADE80', opacity: 0.8 }}>
+                {completedDelivery === 'delivery'
+                  ? '입력하신 주소로 택배 배송됩니다.'
+                  : '출조 시 이름/연락처로 현장 수령하세요.'}
+              </p>
+            </div>
           </div>
         )}
 
@@ -205,10 +220,12 @@ function OrdersContent() {
               </div>
             ) : (
               orders.map((order) => {
-                const isCancelled = order.status === 'cancelled'
-                const statusStyle = STATUS_COLOR[order.status] ?? STATUS_COLOR.pending
-                const productName = order.product?.name ?? '상품 정보 없음'
-                const total = order.unit_price * order.quantity
+                const isCancelled  = order.status === 'cancelled'
+                const statusStyle  = STATUS_COLOR[order.status] ?? STATUS_COLOR.pending
+                const productName  = order.product?.name ?? '상품 정보 없음'
+                const deliveryFee  = order.delivery_fee ?? 0
+                const total        = order.unit_price * order.quantity + deliveryFee
+                const isDelivery   = order.delivery_type === 'delivery'
 
                 return (
                   <div
@@ -239,7 +256,7 @@ function OrdersContent() {
 
                       {/* 정보 */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-start justify-between gap-2 mb-1">
                           <p className="text-sm font-bold leading-snug line-clamp-2 flex-1" style={{ color: '#F8F9FA' }}>
                             {productName}
                           </p>
@@ -250,19 +267,49 @@ function OrdersContent() {
                             {STATUS_LABEL[order.status] ?? order.status}
                           </span>
                         </div>
-                        <div className="mt-1.5 flex items-center gap-2 flex-wrap">
+
+                        {/* 수령 방식 뱃지 */}
+                        <span
+                          className="text-[10px] font-semibold px-2 py-0.5 rounded-full inline-block mb-1.5"
+                          style={{
+                            background: isDelivery ? 'rgba(147,197,253,0.12)' : 'rgba(74,222,128,0.1)',
+                            color:      isDelivery ? '#93C5FD' : '#4ADE80',
+                          }}
+                        >
+                          {DELIVERY_LABEL[order.delivery_type] ?? order.delivery_type}
+                        </span>
+
+                        <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-xs" style={{ color: '#4A6888' }}>
                             {order.quantity}개 × {formatPrice(order.unit_price)}
                           </span>
+                          {deliveryFee > 0 && (
+                            <span className="text-xs" style={{ color: '#4A6888' }}>
+                              + 배송비 {formatPrice(deliveryFee)}
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center justify-between mt-1">
+                          <p className="text-[10px]" style={{ color: '#3A5A7A' }}>
+                            {format(new Date(order.created_at), 'M월 d일 (E) HH:mm', { locale: ko })}
+                          </p>
                           <span className="text-xs font-bold" style={{ color: '#C9A84C' }}>
-                            = {formatPrice(total)}
+                            {formatPrice(total)}
                           </span>
                         </div>
-                        <p className="text-[10px] mt-1" style={{ color: '#3A5A7A' }}>
-                          {format(new Date(order.created_at), 'M월 d일 (E) HH:mm', { locale: ko })}
-                        </p>
                       </div>
                     </div>
+
+                    {/* 배송지 */}
+                    {isDelivery && order.address && (
+                      <div
+                        className="mt-3 rounded-xl px-3 py-2"
+                        style={{ background: 'rgba(45,95,153,0.15)', border: '1px solid rgba(45,95,153,0.2)' }}
+                      >
+                        <p className="text-[10px] font-semibold mb-0.5" style={{ color: '#4A6888' }}>배송지</p>
+                        <p className="text-xs" style={{ color: '#93B5D4' }}>{order.address}</p>
+                      </div>
+                    )}
 
                     {!isCancelled && (
                       <button
@@ -302,7 +349,7 @@ function OrdersContent() {
               {cancelTarget.product?.name ?? '해당 상품'}
             </p>
             <p className="text-xs mb-5" style={{ color: '#4A6888' }}>
-              수량 {cancelTarget.quantity}개 · {formatPrice(cancelTarget.unit_price * cancelTarget.quantity)}
+              수량 {cancelTarget.quantity}개 · {formatPrice(cancelTarget.unit_price * cancelTarget.quantity + (cancelTarget.delivery_fee ?? 0))}
             </p>
             <p className="text-sm mb-5" style={{ color: '#F8F9FA' }}>정말 취소하시겠습니까?</p>
             <div className="flex gap-2">

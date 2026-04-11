@@ -41,9 +41,10 @@ export default function ShopPage() {
   const [showForm,      setShowForm]      = useState(false)
   const [guestName,     setGuestName]     = useState('')
   const [guestPhone,    setGuestPhone]    = useState('')
-  const [deliveryType,  setDeliveryType]  = useState<'pickup' | 'delivery'>('pickup')
-  const [address,       setAddress]       = useState('')
-  const [addressDetail, setAddressDetail] = useState('')
+  const [deliveryType,   setDeliveryType]   = useState<'pickup' | 'delivery'>('pickup')
+  const [address,        setAddress]        = useState('')
+  const [addressDetail,  setAddressDetail]  = useState('')
+  const [paymentMethod,  setPaymentMethod]  = useState<'bank' | 'onsite'>('bank')
 
   const loadProducts = useCallback(async () => {
     setLoading(true)
@@ -86,6 +87,13 @@ export default function ShopPage() {
     ? products
     : products.filter((p) => p.category === category)
 
+  // 택배 선택 시 현장결제 불가 → bank로 초기화
+  useEffect(() => {
+    if (deliveryType === 'delivery' && paymentMethod === 'onsite') {
+      setPaymentMethod('bank')
+    }
+  }, [deliveryType, paymentMethod])
+
   function openForm() {
     if (items.length === 0) return
     setShowForm(true)
@@ -111,15 +119,16 @@ export default function ShopPage() {
         ? `${address} ${addressDetail}`.trim()
         : null
       const rows = items.map((i) => ({
-        name:          guestName.trim(),
-        phone:         guestPhone.trim(),
-        product_id:    i.product.id,
-        quantity:      i.quantity,
-        unit_price:    i.product.price,
-        status:        'pending',
-        delivery_type: deliveryType,
-        address:       fullAddress,
-        delivery_fee:  fee,
+        name:           guestName.trim(),
+        phone:          guestPhone.trim(),
+        product_id:     i.product.id,
+        quantity:       i.quantity,
+        unit_price:     i.product.price,
+        status:         'pending',
+        delivery_type:  deliveryType,
+        address:        fullAddress,
+        delivery_fee:   fee,
+        payment_method: paymentMethod,
       }))
       const { error } = await supabase.from('shop_orders').insert(rows)
       if (error) { alert(error.message); return }
@@ -132,6 +141,7 @@ export default function ShopPage() {
       setDeliveryType('pickup')
       setAddress('')
       setAddressDetail('')
+      setPaymentMethod('bank')
       router.push(
         `/shop/orders?name=${encodeURIComponent(savedName)}&phone=${encodeURIComponent(savedPhone)}&complete=1&delivery=${deliveryType}`
       )
@@ -449,6 +459,109 @@ export default function ShopPage() {
                 </div>
               )}
 
+              {/* ── 결제 방법 ── */}
+              <div className="mb-6">
+                <p className="text-sm font-bold mb-3" style={{ color: '#F8F9FA' }}>결제 방법</p>
+                <div className="space-y-2">
+                  {/* 카카오페이 - 준비중 */}
+                  <div
+                    className="rounded-xl px-4 py-3 flex items-center gap-3 opacity-50"
+                    style={{ background: 'rgba(45,95,153,0.08)', border: '1px solid rgba(45,95,153,0.2)' }}
+                  >
+                    <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ border: '2px solid rgba(74,104,136,0.4)' }} />
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#FEE500' }}>
+                      <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                        <path d="M9 1.5C4.86 1.5 1.5 4.19 1.5 7.5c0 2.12 1.27 3.99 3.19 5.11L3.75 16.5l3.82-2.53c.47.07.95.1 1.43.1 4.14 0 7.5-2.69 7.5-6 0-3.31-3.36-6-7.5-6z" fill="#191919"/>
+                      </svg>
+                    </div>
+                    <span className="flex-1 text-sm font-semibold" style={{ color: '#4A6888' }}>카카오페이</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(74,104,136,0.2)', color: '#4A6888' }}>준비중</span>
+                  </div>
+
+                  {/* 네이버페이 - 준비중 */}
+                  <div
+                    className="rounded-xl px-4 py-3 flex items-center gap-3 opacity-50"
+                    style={{ background: 'rgba(45,95,153,0.08)', border: '1px solid rgba(45,95,153,0.2)' }}
+                  >
+                    <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ border: '2px solid rgba(74,104,136,0.4)' }} />
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#03C75A' }}>
+                      <span className="text-white font-black text-xs leading-none">N</span>
+                    </div>
+                    <span className="flex-1 text-sm font-semibold" style={{ color: '#4A6888' }}>네이버페이</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(74,104,136,0.2)', color: '#4A6888' }}>준비중</span>
+                  </div>
+
+                  {/* 무통장입금 */}
+                  {(() => {
+                    const active = paymentMethod === 'bank'
+                    return (
+                      <div>
+                        <button
+                          onClick={() => setPaymentMethod('bank')}
+                          className="w-full rounded-xl px-4 py-3 flex items-center gap-3 transition-all"
+                          style={{
+                            background: active ? 'rgba(201,168,76,0.1)' : 'rgba(45,95,153,0.08)',
+                            border: `1.5px solid ${active ? '#C9A84C' : 'rgba(45,95,153,0.25)'}`,
+                          }}
+                        >
+                          <div
+                            className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                            style={{ border: `2px solid ${active ? '#C9A84C' : 'rgba(74,104,136,0.8)'}` }}
+                          >
+                            {active && <div className="w-2 h-2 rounded-full" style={{ background: '#C9A84C' }} />}
+                          </div>
+                          <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(201,168,76,0.2)' }}>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" className="w-4 h-4">
+                              <rect x="2" y="5" width="20" height="14" rx="2" />
+                              <path d="M2 10h20" />
+                            </svg>
+                          </div>
+                          <span className="flex-1 text-sm font-semibold text-left" style={{ color: active ? '#C9A84C' : '#93B5D4' }}>무통장입금</span>
+                        </button>
+                        {active && (
+                          <div
+                            className="mt-2 rounded-xl px-4 py-3"
+                            style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.2)' }}
+                          >
+                            <p className="text-[10px] font-semibold mb-1" style={{ color: '#C9A84C' }}>입금 계좌</p>
+                            <p className="text-sm font-bold" style={{ color: '#F8F9FA' }}>신한은행 110-412-245177</p>
+                            <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>예금주: 강현구</p>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })()}
+
+                  {/* 현장결제 - 출조 수령 시만 표시 */}
+                  {deliveryType === 'pickup' && (() => {
+                    const active = paymentMethod === 'onsite'
+                    return (
+                      <button
+                        onClick={() => setPaymentMethod('onsite')}
+                        className="w-full rounded-xl px-4 py-3 flex items-center gap-3 transition-all"
+                        style={{
+                          background: active ? 'rgba(147,197,253,0.1)' : 'rgba(45,95,153,0.08)',
+                          border: `1.5px solid ${active ? '#93C5FD' : 'rgba(45,95,153,0.25)'}`,
+                        }}
+                      >
+                        <div
+                          className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ border: `2px solid ${active ? '#93C5FD' : 'rgba(74,104,136,0.8)'}` }}
+                        >
+                          {active && <div className="w-2 h-2 rounded-full" style={{ background: '#93C5FD' }} />}
+                        </div>
+                        <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(147,197,253,0.15)' }}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#93C5FD" strokeWidth="2" className="w-4 h-4">
+                            <path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                        </div>
+                        <span className="flex-1 text-sm font-semibold text-left" style={{ color: active ? '#93C5FD' : '#93B5D4' }}>현장결제</span>
+                      </button>
+                    )
+                  })()}
+                </div>
+              </div>
+
               {/* ── 주문 요약 ── */}
               <div
                 className="rounded-xl px-4 py-3 mb-5 space-y-1.5"
@@ -480,7 +593,7 @@ export default function ShopPage() {
 
               <button
                 onClick={submitOrder}
-                disabled={ordering}
+                disabled={ordering || !paymentMethod}
                 className="w-full py-4 rounded-xl font-bold text-base transition-all active:scale-95 disabled:opacity-50"
                 style={{ background: '#C9A84C', color: '#0D1F35' }}
               >

@@ -53,6 +53,7 @@ export default function HomePage() {
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) return
+      if (user.id === process.env.NEXT_PUBLIC_ADMIN_USER_ID) return
       const { data: profile } = await supabase
         .from('profiles')
         .select('nickname')

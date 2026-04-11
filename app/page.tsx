@@ -42,6 +42,9 @@ export default function HomePage() {
   const [calLoading,    setCalLoading]    = useState(true)
   const [selectedDay,   setSelectedDay]   = useState<string | null>(null)
   const [previewProducts, setPreviewProducts] = useState<Product[]>([])
+  const [cancelledDates, setCancelledDates] = useState<Set<string>>(new Set())
+  const [futureCancellations, setFutureCancellations] = useState<{ trip_date: string; reason: string }[]>([])
+  const [showCancelModal, setShowCancelModal] = useState(false)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => console.log('MY USER ID:', data.user?.id))
@@ -101,15 +104,35 @@ export default function HomePage() {
     if (!error && data) setPreviewProducts(data)
   }, [supabase])
 
+  const loadCancellations = useCallback(async () => {
+    const today = format(new Date(), 'yyyy-MM-dd')
+    const { data } = await supabase
+      .from('trip_cancellations')
+      .select('trip_date, reason')
+      .gte('trip_date', today)
+      .order('trip_date', { ascending: true })
+    if (!data || data.length === 0) return
+    setCancelledDates(new Set(data.map((c) => c.trip_date)))
+    setFutureCancellations(data)
+    // 하루에 한 번만 모달 표시
+    const shownKey = `cancel_modal_${today}`
+    if (!sessionStorage.getItem(shownKey)) {
+      setShowCancelModal(true)
+      sessionStorage.setItem(shownKey, '1')
+    }
+  }, [supabase])
+
   useEffect(() => { loadSettings() }, [loadSettings])
   useEffect(() => { loadMonthData(currentMonth) }, [currentMonth, loadMonthData])
   useEffect(() => { loadPreviewProducts() }, [loadPreviewProducts])
+  useEffect(() => { loadCancellations() }, [loadCancellations])
 
   function getDayClass(dateStr: string, inMonth: boolean) {
     const today = new Date(); today.setHours(0,0,0,0)
     const d = parseISO(dateStr)
     if (!inMonth) return 'calendar-day opacity-0 pointer-events-none'
     if (isBefore(d, today)) return 'calendar-day past'
+    if (cancelledDates.has(dateStr)) return 'calendar-day holiday'
     const s = dayStatuses.get(dateStr)
     if (!s) return 'calendar-day available'
     if (s.isHoliday) return 'calendar-day holiday'
@@ -120,6 +143,7 @@ export default function HomePage() {
   }
 
   function getDayStatusText(dateStr: string) {
+    if (cancelledDates.has(dateStr)) return '취소'
     const s = dayStatuses.get(dateStr)
     if (!s) return ''
     if (s.isHoliday) return '휴무'
@@ -133,6 +157,7 @@ export default function HomePage() {
     if (!inMonth) return
     const today = new Date(); today.setHours(0,0,0,0)
     if (isBefore(parseISO(dateStr), today)) return
+    if (cancelledDates.has(dateStr)) return
     const s = dayStatuses.get(dateStr)
     if (s?.isHoliday || (s && s.reservedCount >= s.totalSeats)) return
     setSelectedDay(dateStr)
@@ -239,8 +264,17 @@ export default function HomePage() {
                         const isSel = ds === selectedDay
                         return (
                           <button key={ds} className={`${cls} ${isToday(day) ? 'today' : ''} relative`} style={isSel ? { outline: '2px solid #C9A84C', outlineOffset: 1 } : undefined} onClick={() => handleDayClick(ds, inM)}>
-                            <span className="text-sm font-semibold" style={{ color: dow === 0 && inM ? '#F87171' : undefined }}>{day.getDate()}</span>
-                            {st && <span className="text-[9px] leading-none mt-0.5 font-medium">{st}</span>}
+                            {cancelledDates.has(ds) && inM ? (
+                              <>
+                                <span className="text-sm font-bold" style={{ color: '#EF4444' }}>{day.getDate()}</span>
+                                <span className="text-[9px] leading-none mt-0.5 font-bold" style={{ color: '#EF4444' }}>✕취소</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="text-sm font-semibold" style={{ color: dow === 0 && inM ? '#F87171' : undefined }}>{day.getDate()}</span>
+                                {st && <span className="text-[9px] leading-none mt-0.5 font-medium">{st}</span>}
+                              </>
+                            )}
                           </button>
                         )
                       })}
@@ -249,11 +283,12 @@ export default function HomePage() {
                 </div>
               )}
             </div>
-            <div className="flex items-center gap-4 px-5 py-3" style={{ borderTop: '1px solid rgba(201,168,76,0.1)' }}>
+            <div className="flex items-center gap-3 flex-wrap px-5 py-3" style={{ borderTop: '1px solid rgba(201,168,76,0.1)' }}>
               {[
                 { color: 'rgba(201,168,76,0.25)', border: 'rgba(201,168,76,0.4)', label: '예약 가능' },
                 { color: 'rgba(220,100,50,0.25)',  border: 'rgba(220,100,50,0.4)',  label: '마감 임박' },
                 { color: '#111E2E',                border: '#1E2D40',               label: '마감/휴무' },
+                { color: 'rgba(239,68,68,0.15)',   border: 'rgba(239,68,68,0.5)',   label: '출조취소' },
               ].map(({ color, border, label }) => (
                 <div key={label} className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded" style={{ background: color, border: `1px solid ${border}` }} />
@@ -386,6 +421,50 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 출조 취소 공지 모달 */}
+      {showCancelModal && futureCancellations.length > 0 && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: 'rgba(0,0,0,0.8)' }}
+          onClick={() => setShowCancelModal(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl overflow-hidden"
+            style={{ background: '#1A3355', border: '1px solid rgba(239,68,68,0.4)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 헤더 */}
+            <div className="px-5 py-4 flex items-center gap-3" style={{ background: 'rgba(239,68,68,0.12)', borderBottom: '1px solid rgba(239,68,68,0.25)' }}>
+              <span className="text-xl">⚠️</span>
+              <div>
+                <p className="font-black text-base" style={{ color: '#F8F9FA' }}>출조 취소 공지</p>
+                <p className="text-xs" style={{ color: '#F87171' }}>아래 날짜 출조가 취소됐습니다</p>
+              </div>
+            </div>
+
+            {/* 취소 목록 */}
+            <div className="px-5 py-4 space-y-3">
+              {futureCancellations.map((c) => (
+                <div key={c.trip_date} className="rounded-xl px-4 py-3" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)' }}>
+                  <p className="font-bold text-sm" style={{ color: '#EF4444' }}>{c.trip_date}</p>
+                  <p className="text-xs mt-0.5" style={{ color: '#8A9BB0' }}>{c.reason}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="px-5 pb-5">
+              <button
+                onClick={() => setShowCancelModal(false)}
+                className="w-full py-3 rounded-xl font-bold text-sm transition-all active:scale-95"
+                style={{ background: 'rgba(45,95,153,0.3)', color: '#F8F9FA', border: '1px solid rgba(45,95,153,0.4)' }}
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   )

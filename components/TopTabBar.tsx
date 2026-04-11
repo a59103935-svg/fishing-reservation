@@ -9,10 +9,10 @@ import type { User } from '@supabase/supabase-js'
 const HIDDEN_PREFIXES = ['/booking/', '/admin', '/confirmation', '/checkout', '/login', '/auth/']
 
 const NAV_LINKS = [
-  { href: '/#notices',       label: '공지사항' },
+  { href: '/notices',        label: '공지사항' },
   { href: '/shop',           label: '낚시용품' },
   { href: '/catch',          label: '조황게시판' },
-  { href: '/booking-lookup', label: '예약조회' },
+  { href: '/booking/lookup', label: '예약조회' },
 ]
 
 export default function TopTabBar() {
@@ -60,12 +60,12 @@ export default function TopTabBar() {
   const isAdmin = user?.id === process.env.NEXT_PUBLIC_ADMIN_USER_ID
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: scrolled ? 'rgba(13,31,53,0.92)' : '#0D1F35', backdropFilter: scrolled ? 'blur(12px)' : 'none', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>
+    <header className="fixed top-0 left-0 right-0 z-[60] transition-all duration-300" style={{ background: scrolled ? 'rgba(13,31,53,0.92)' : '#0D1F35', backdropFilter: scrolled ? 'blur(12px)' : 'none', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>
       <div className="max-w-5xl mx-auto px-4 h-16 grid items-center" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
         <Link href="/" className="font-display font-bold text-xl tracking-wide justify-self-start" style={{ color: '#C9A84C', fontFamily: '"Playfair Display", Georgia, serif' }}>좋은피싱</Link>
         <nav className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) => {
-            const active = link.href !== '/#notices' && pathname.startsWith(link.href)
+            const active = link.href !== '/#notices' && link.href !== '/booking/lookup' && pathname.startsWith(link.href)
             return <Link key={link.href} href={link.href} className="text-sm font-medium transition-colors" style={{ color: active ? '#C9A84C' : '#8A9BB0' }}>{link.label}</Link>
           })}
           {isAdmin && (

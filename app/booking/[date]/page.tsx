@@ -14,7 +14,7 @@ export default function BusSeatPage() {
   const dateStr = params.date as string
   const supabase = createClient()
 
-  const { selectedDate, selectedBusSeats, setDate, toggleBusSeat, clearBusSeats } = useBookingStore()
+  const { selectedBusSeats, setDate, toggleBusSeat, clearBusSeats } = useBookingStore()
 
   const [reservedSeats, setReservedSeats] = useState<string[]>([])
   const [blockedSeats,  setBlockedSeats]  = useState<string[]>([])
@@ -38,9 +38,10 @@ export default function BusSeatPage() {
   }, [dateStr, supabase])
 
   useEffect(() => {
-    if (selectedDate !== dateStr) setDate(dateStr)
+    setDate(dateStr)
     loadData()
-  }, [dateStr, selectedDate, setDate, loadData])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateStr])
 
   const totalSeats  = settings?.bus_total_seats ?? 30
   const seatCount   = selectedBusSeats.length

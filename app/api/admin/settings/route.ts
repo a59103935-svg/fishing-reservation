@@ -10,11 +10,36 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
 
-    const { data, error } = await supabaseAdmin
-      .from('site_settings')
-      .upsert(body, { onConflict: 'id' })
-      .select()
-      .single()
+    let query
+    if (body.id) {
+      query = supabaseAdmin
+        .from('site_settings')
+        .upsert(body, { onConflict: 'id' })
+        .select()
+        .single()
+    } else {
+      // 첫 실행: row가 없으면 insert, 있으면 기존 row를 update
+      const { data: existing } = await supabaseAdmin
+        .from('site_settings')
+        .select('id')
+        .single()
+
+      if (existing?.id) {
+        query = supabaseAdmin
+          .from('site_settings')
+          .upsert({ ...body, id: existing.id }, { onConflict: 'id' })
+          .select()
+          .single()
+      } else {
+        query = supabaseAdmin
+          .from('site_settings')
+          .insert(body)
+          .select()
+          .single()
+      }
+    }
+
+    const { data, error } = await query
 
     if (error) {
       console.error('[admin/settings] upsert error:', error)

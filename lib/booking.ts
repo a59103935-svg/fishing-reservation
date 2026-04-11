@@ -48,7 +48,7 @@ export async function getReservedSeats(
     .from('bookings')
     .select(type === 'bus' ? 'bus_seat_number' : 'boat_spot_id')
     .eq('date', date)
-    .neq('payment_status', 'cancelled')
+    .in('payment_status', ['pending', 'confirmed', 'visit_pending'])
 
   if (error || !data) return []
 

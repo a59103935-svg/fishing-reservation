@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { formatPrice } from '@/lib/booking'
 import { useShopStore } from '@/lib/shopStore'
@@ -73,7 +74,7 @@ export default function ShopPage() {
       setShowForm(false)
       setGuestName('')
       setGuestPhone('')
-      alert('주문이 완료됐습니다! 결제 후 출조 시 수령 가능합니다.')
+      router.push(`/shop/orders?name=${encodeURIComponent(guestName.trim())}&phone=${encodeURIComponent(guestPhone.trim())}&complete=1`)
     } catch {
       alert('주문 처리 중 오류가 발생했습니다.')
     } finally {
@@ -89,6 +90,13 @@ export default function ShopPage() {
           <p className="text-xs font-semibold tracking-widest mb-0.5" style={{ color: '#C9A84C' }}>GOOD FISHING</p>
           <h1 className="text-2xl font-black" style={{ color: '#F8F9FA' }}>낚시용품</h1>
           <p className="text-xs mt-0.5" style={{ color: '#4A6888' }}>출조시 현장수령가능</p>
+          <Link
+            href="/shop/orders"
+            className="text-[11px] font-semibold mt-1 inline-block"
+            style={{ color: '#C9A84C' }}
+          >
+            주문내역 보기 →
+          </Link>
         </div>
         {cartCount > 0 && (
           <button onClick={() => setShowForm(true)} className="relative p-2">

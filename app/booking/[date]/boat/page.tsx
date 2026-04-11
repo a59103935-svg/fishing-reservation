@@ -45,12 +45,10 @@ export default function BoatSeatPage() {
     loadData()
   }, [selectedBusSeats, dateStr, router, loadData])
 
-  const totalSpots  = 16
-  const boatPrice   = settings?.boat_price ?? 30000
+  const totalSpots  = settings?.boat_total_spots ?? 16
   const spotCount   = selectedBoatSpots.length
-  const boatTotal   = spotCount * boatPrice
-  const busTotal    = selectedBusSeats.length * (settings?.bus_price ?? 50000)
-  const grandTotal  = busTotal + boatTotal
+  const personCount = selectedBusSeats.length
+  const grandTotal  = ((settings?.bus_price ?? 0) + (settings?.boat_price ?? 0)) * personCount
 
   if (loading) {
     return (
@@ -122,24 +120,15 @@ export default function BoatSeatPage() {
       </div>
 
       <div className="px-4 pt-4 space-y-3">
-        {/* 실시간 선택 현황 */}
+        {/* 총 결제금액 */}
         <div
           className="rounded-2xl px-5 py-4 flex items-center justify-between"
           style={{ background: '#1E3F66', border: '1px solid rgba(45,95,153,0.4)' }}
         >
-          <div>
-            <p className="text-xs mb-0.5" style={{ color: '#4A6888' }}>선택 자리</p>
-            <p className="text-2xl font-black" style={{ color: spotCount > 0 ? '#C9A84C' : '#2D4A66' }}>
-              {spotCount}자리
-            </p>
-          </div>
-          <div className="w-px h-10" style={{ background: 'rgba(45,95,153,0.5)' }} />
-          <div className="text-right">
-            <p className="text-xs mb-0.5" style={{ color: '#4A6888' }}>총 금액</p>
-            <p className="text-2xl font-black" style={{ color: '#C9A84C' }}>
-              {grandTotal.toLocaleString()}원
-            </p>
-          </div>
+          <p className="text-xs" style={{ color: '#4A6888' }}>총 결제금액</p>
+          <p className="text-2xl font-black" style={{ color: '#C9A84C' }}>
+            {grandTotal.toLocaleString()}원
+          </p>
         </div>
 
         {/* 버스 선택 확인 */}
@@ -150,9 +139,6 @@ export default function BoatSeatPage() {
           <span style={{ color: '#4A6888', fontSize: 12 }}>버스</span>
           <span className="text-sm font-bold" style={{ color: '#93C5FD' }}>
             {selectedBusSeats.join(', ')}번석
-          </span>
-          <span className="ml-auto text-xs font-semibold" style={{ color: '#C9A84C' }}>
-            {busTotal.toLocaleString()}원
           </span>
         </div>
 
@@ -176,18 +162,6 @@ export default function BoatSeatPage() {
           onToggle={toggleBoatSpot}
         />
 
-        {/* 배 자리 요금 */}
-        {settings && (
-          <div
-            className="rounded-xl px-4 py-2.5 flex items-center justify-between"
-            style={{ background: 'rgba(30,63,102,0.5)', border: '1px solid rgba(45,95,153,0.3)' }}
-          >
-            <span className="text-xs" style={{ color: '#4A6888' }}>배 자리 추가 요금</span>
-            <span className="text-sm font-bold" style={{ color: '#C9A84C' }}>
-              {formatPrice(boatPrice)} / 자리
-            </span>
-          </div>
-        )}
       </div>
 
       {/* 하단 고정 바 */}
@@ -197,34 +171,22 @@ export default function BoatSeatPage() {
           style={{ background: '#081628', borderTop: '1px solid rgba(45,95,153,0.4)' }}
         >
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs" style={{ color: '#4A6888' }}>
-              버스 {selectedBusSeats.length}명{spotCount > 0 ? ` + 배 ${spotCount}자리` : ''}
-            </span>
+            <span className="text-xs" style={{ color: '#4A6888' }}>총 결제금액</span>
             <span className="text-xl font-black" style={{ color: '#C9A84C' }}>
               {formatPrice(grandTotal)}
             </span>
           </div>
-          <div className="flex gap-2">
-            <button
-              className="flex-1 py-3.5 rounded-xl font-semibold text-sm transition-all active:scale-95"
-              style={{ background: 'rgba(45,95,153,0.3)', color: '#93C5FD' }}
-              onClick={() => router.push(`/booking/${dateStr}/confirm`)}
-            >
-              배 없이 결제
-            </button>
-            <button
-              className="py-3.5 px-6 rounded-xl font-bold text-sm transition-all active:scale-95 disabled:opacity-40"
-              style={{
-                flex: 2,
-                background: spotCount > 0 ? '#C9A84C' : '#1A2A3A',
-                color: spotCount > 0 ? '#0D1F35' : '#3A4F66',
-              }}
-              disabled={spotCount === 0}
-              onClick={() => router.push(`/booking/${dateStr}/confirm`)}
-            >
-              {spotCount > 0 ? `선택 완료 (${spotCount}자리) →` : '자리를 선택해 주세요'}
-            </button>
-          </div>
+          <button
+            className="w-full py-3.5 rounded-xl font-bold text-sm transition-all active:scale-95 disabled:opacity-40"
+            style={{
+              background: spotCount > 0 ? '#C9A84C' : 'rgba(201,168,76,0.2)',
+              color: spotCount > 0 ? '#0D1F35' : '#C9A84C',
+            }}
+            disabled={spotCount === 0}
+            onClick={() => router.push(`/booking/${dateStr}/confirm`)}
+          >
+            {spotCount > 0 ? `배 자리 ${spotCount}개 선택 완료 →` : '배 자리를 선택해 주세요'}
+          </button>
         </div>
       </div>
     </div>

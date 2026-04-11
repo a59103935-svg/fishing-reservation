@@ -8,7 +8,13 @@
       "Bash(npm run:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pip install:*)",
+      "Bash(playwright install:*)",
+      "Bash(python scrape_ffhunter.py)",
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(python:*)",
+      "Bash(ls C:/Users/rnjsa/fishing-reservation/images/*.jpg)"
     ]
   }
 }

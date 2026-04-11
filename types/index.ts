@@ -36,6 +36,8 @@ export interface SiteSettings {
   updated_at: string
 }
 
+export type CancelStatus = 'pending' | 'approved' | 'rejected'
+
 export interface Booking {
   id: string
   booking_number: string
@@ -53,6 +55,9 @@ export interface Booking {
   created_at: string
   confirmed_at?: string | null
   cancelled_at?: string | null
+  cancel_requested_at?: string | null
+  cancel_status?: CancelStatus | null
+  refund_amount?: number | null
   product_orders?: ProductOrderWithProduct[]
 }
 

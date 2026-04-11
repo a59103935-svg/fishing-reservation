@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { useBookingStore } from '@/lib/store'
 import { formatDateKorean, formatPrice } from '@/lib/booking'
 import type { Booking } from '@/types'
 
@@ -10,11 +11,15 @@ function BookingComplete() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const supabase = createClient()
-  const bookingId = searchParams.get('id')   // ← 'booking_id' → 'id' 버그 수정
+  const clearAll = useBookingStore((s) => s.clearAll)
+  const bookingId = searchParams.get('id')
 
   const [booking, setBooking] = useState<Booking | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+
+  // 예약 완료 시 모든 예약 상태 초기화
+  useEffect(() => { clearAll() }, [clearAll])
 
   const loadBooking = useCallback(async () => {
     if (!bookingId) {

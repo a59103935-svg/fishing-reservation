@@ -1,0 +1,1251 @@
+
+> fishing-reservation@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+ ⚠ Port 3002 is in use, trying 3003 instead.
+ ⚠ Port 3003 is in use, trying 3004 instead.
+ ⚠ Port 3004 is in use, trying 3005 instead.
+ ⚠ Port 3005 is in use, trying 3006 instead.
+ ⚠ Port 3006 is in use, trying 3007 instead.
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3007
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1971ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 541ms (125 modules)
+ ○ Compiling /admin/settings ...
+ ✓ Compiled /admin/settings in 4.2s (1779 modules)
+ GET /admin/settings 200 in 4608ms
+ ✓ Compiled in 412ms (890 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (215kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ✓ Compiled in 342ms (890 modules)
+ ✓ Compiled in 182ms (890 modules)
+ ✓ Compiled in 205ms (890 modules)
+ ✓ Compiled in 137ms (890 modules)
+ ✓ Compiled in 159ms (890 modules)
+ ✓ Compiled /admin/settings in 181ms (880 modules)
+ GET /admin/settings 200 in 341ms
+ ✓ Compiled / in 456ms (1814 modules)
+ ✓ Compiled /_not-found in 155ms (1803 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/b4b6923f635b4016.webpack.hot-update.json 404 in 277ms
+ GET /admin/settings 200 in 37ms
+ ✓ Compiled /booking/[date] in 376ms (1808 modules)
+ ✓ Compiled /admin in 405ms (1818 modules)
+ ✓ Compiled /admin/products in 432ms (1838 modules)
+ ✓ Compiled in 282ms (920 modules)
+ ✓ Compiled in 213ms (920 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz'
+ ✓ Compiled in 183ms (920 modules)
+ ✓ Compiled in 622ms (1949 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'bind')
+    at tree.children.not-found (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fadmin%2Fpage&page=%2Fadmin%2Fpage&appPaths=%2Fadmin%2Fpage&pagePath=private-next-app-dir%2Fadmin%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:46:87)
+    at rF (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:6033)
+    at rU (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:7479)
+    at async rW (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:12534)
+    at async r0 (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:16238)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1438:30)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/admin'
+}
+ ○ Compiling /_error ...
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\DumpStack.log.tmp'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\hiberfil.sys'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\pagefile.sys'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\swapfile.sys'
+ ✓ Compiled /_error in 1017ms (2062 modules)
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\DumpStack.log.tmp'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\hiberfil.sys'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\pagefile.sys'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\swapfile.sys'
+ GET /admin 200 in 101ms
+ ✓ Compiled in 174ms (1103 modules)
+ ✓ Compiled /_not-found in 634ms (2176 modules)
+ GET /admin 200 in 97ms
+ ✓ Compiled in 246ms (1105 modules)
+ ✓ Compiled in 454ms (2065 modules)
+ ✓ Compiled in 320ms (2065 modules)
+ ✓ Compiled in 454ms (2065 modules)
+ ✓ Compiled in 346ms (2063 modules)
+ ✓ Compiled in 312ms (2060 modules)
+ ✓ Compiled in 364ms (2060 modules)
+ ✓ Compiled in 296ms (2060 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\5.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\5.pack.gz'
+ ✓ Compiled /booking/[date]/boat in 387ms (2068 modules)
+ ✓ Compiled /booking/[date]/confirm in 336ms (2074 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 663ms (2061 modules)
+ ⨯ app\booking\[date]\confirm\page.tsx (58:41) @ BUS_PRICE
+ ⨯ ReferenceError: BUS_PRICE is not defined
+    at ConfirmPage (./app/booking/[date]/confirm/page.tsx:95:40)
+digest: "3314890906"
+[0m [90m 56 |[39m   }[33m,[39m [busSeats[33m,[39m dateStr[33m,[39m router])[0m
+[0m [90m 57 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 |[39m   [36mconst[39m busTotal   [33m=[39m busSeats[33m.[39mlength  [33m*[39m [33mBUS_PRICE[39m[0m
+[0m [90m    |[39m                                         [31m[1m^[22m[39m[0m
+[0m [90m 59 |[39m   [36mconst[39m boatTotal  [33m=[39m boatSpots[33m.[39mlength [33m*[39m [33mBOAT_PRICE[39m[0m
+[0m [90m 60 |[39m   [36mconst[39m grandTotal [33m=[39m busTotal [33m+[39m boatTotal[0m
+[0m [90m 61 |[39m   [36mconst[39m headcount  [33m=[39m busSeats[33m.[39mlength[0m
+ GET /booking/2026-04-09/confirm 500 in 142ms
+ ✓ Compiled in 321ms (2061 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /booking/2026-04-09/confirm 200 in 108ms
+ ✓ Compiled in 327ms (2061 modules)
+ ✓ Compiled in 313ms (1107 modules)
+ ✓ Compiled /booking/[date]/boat in 156ms (959 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz'
+ ✓ Compiled /booking/complete in 277ms (2072 modules)
+ ✓ Compiled /booking/lookup in 265ms (2064 modules)
+ ✓ Compiled in 514ms (2062 modules)
+ ✓ Compiled /api/bookings/cancel in 448ms (1039 modules)
+ POST /api/bookings/cancel 404 in 899ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz'
+ POST /api/bookings/cancel 404 in 153ms
+ POST /api/bookings/cancel 404 in 102ms
+ ✓ Compiled in 347ms (2062 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled /api/bookings/cancel in 158ms (1039 modules)
+ POST /api/bookings/cancel 200 in 501ms
+ POST /api/bookings/cancel 200 in 165ms
+ POST /api/bookings/cancel 200 in 145ms
+ POST /api/bookings/cancel 200 in 122ms
+ POST /api/bookings/cancel 200 in 118ms
+ POST /api/bookings/cancel 200 in 183ms
+ POST /api/bookings/cancel 200 in 83ms
+ POST /api/bookings/cancel 200 in 87ms
+ POST /api/bookings/cancel 200 in 62ms
+ POST /api/bookings/cancel 200 in 60ms
+ POST /api/bookings/cancel 200 in 59ms
+ POST /api/bookings/cancel 200 in 56ms
+ POST /api/bookings/cancel 200 in 109ms
+ POST /api/bookings/cancel 200 in 69ms
+ POST /api/bookings/cancel 200 in 64ms
+ POST /api/bookings/cancel 200 in 58ms
+ POST /api/bookings/cancel 200 in 65ms
+ POST /api/bookings/cancel 200 in 78ms
+ POST /api/bookings/cancel 200 in 69ms
+ POST /api/bookings/cancel 200 in 79ms
+ POST /api/bookings/cancel 200 in 64ms
+ POST /api/bookings/cancel 200 in 70ms
+ POST /api/bookings/cancel 200 in 66ms
+ POST /api/bookings/cancel 200 in 60ms
+ POST /api/bookings/cancel 200 in 62ms
+ ✓ Compiled /booking/[date] in 259ms (1044 modules)
+ ✓ Compiled /booking/[date]/boat in 174ms (1049 modules)
+ ✓ Compiled in 422ms (2062 modules)
+ ✓ Compiled in 404ms (2062 modules)
+ ✓ Compiled in 324ms (2048 modules)
+ ✓ Compiled /booking/[date] in 135ms (956 modules)
+ GET /booking/complete?id=25fb4108-c552-4592-a6df-76755458a875 200 in 240ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled /_not-found in 844ms (2045 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/26202e85be619349.webpack.hot-update.json 404 in 564ms
+ GET /booking/2026-04-09 200 in 42ms
+ ✓ Compiled in 403ms (2059 modules)
+ ✓ Compiled in 321ms (2059 modules)
+ ✓ Compiled /booking/[date]/boat in 144ms (951 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 485ms (2057 modules)
+ ✓ Compiled in 343ms (2057 modules)
+ ✓ Compiled in 367ms (2057 modules)
+ ✓ Compiled in 410ms (2057 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 289ms (1111 modules)
+ ✓ Compiled in 245ms (1111 modules)
+ ✓ Compiled in 188ms (1111 modules)
+ ✓ Compiled /_not-found in 266ms (2046 modules)
+ GET /booking/2026-04-09/confirm 200 in 107ms
+ ✓ Compiled in 270ms (1113 modules)
+ ⨯ Failed to generate static paths for /booking/[date]:
+Error [PageNotFoundError]: Cannot find module for page: /booking/[date]/page
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async Object.loadStaticPaths (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\static-paths-worker.js:23:24) {
+  type: 'PageNotFoundError',
+  code: 'ENOENT'
+}
+ ✓ Compiled in 281ms (1113 modules)
+ ✓ Compiled /_error in 217ms (2048 modules)
+ GET /booking/2026-04-09 200 in 333ms
+ ✓ Compiled in 377ms (2062 modules)
+ ✓ Compiled in 391ms (2062 modules)
+ ✓ Compiled in 461ms (2062 modules)
+ ✓ Compiled in 496ms (2062 modules)
+ ✓ Compiled in 387ms (2062 modules)
+ ✓ Compiled in 410ms (2062 modules)
+ ✓ Compiled in 315ms (2057 modules)
+ ✓ Compiled in 280ms (2057 modules)
+ ✓ Compiled in 329ms (2057 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\1.pack.gz'
+ ✓ Compiled /admin in 228ms (959 modules)
+ ✓ Compiled /admin/reservations in 347ms (2078 modules)
+ ✓ Compiled in 766ms (2069 modules)
+ ○ Compiling /api/admin/bookings ...
+ ✓ Compiled /api/admin/bookings in 681ms (1214 modules)
+ GET /api/admin/bookings?date=2026-04-09 500 in 939ms
+ ✓ Compiled in 487ms (2328 modules)
+ GET /api/admin/bookings?date=2026-04-09 500 in 205ms
+ GET /admin 200 in 84ms
+ GET /api/admin/bookings?date=2026-04-09 500 in 91ms
+ GET /api/admin/bookings?date=2026-04-09 500 in 65ms
+ GET /api/admin/bookings?date=2026-04-10 500 in 61ms
+ GET /api/admin/bookings?date=2026-04-11 500 in 57ms
+ GET /api/admin/bookings?date=2026-04-12 500 in 57ms
+ GET /api/admin/bookings?date=2026-04-11 500 in 47ms
+ GET /api/admin/bookings?date=2026-04-10 500 in 48ms
+ GET /api/admin/bookings?date=2026-04-09 500 in 36ms
+ ✓ Compiled /admin/settings in 261ms (1222 modules)
+ ✓ Compiled /booking/lookup in 201ms (1226 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET / 200 in 119ms
+ GET /api/admin/bookings?date=2026-04-09 500 in 147ms
+ GET /api/admin/bookings?date=2026-04-09 500 in 35ms
+ GET /api/admin/bookings?date=2026-04-09 500 in 63ms
+ ✓ Compiled in 344ms (2068 modules)
+ ✓ Compiled in 400ms (2068 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\3.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\3.pack.gz'
+ ✓ Compiled in 217ms (1114 modules)
+ ✓ Compiled in 183ms (1114 modules)
+ ✓ Compiled in 189ms (1114 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /admin 200 in 142ms
+ ✓ Compiled /api/admin/bookings in 185ms (1213 modules)
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 528ms
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 100ms
+ ✓ Compiled /_not-found in 362ms (2330 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/d966411c16c1c5e1.webpack.hot-update.json 404 in 275ms
+ GET /admin 200 in 25ms
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 193ms
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 86ms
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 109ms
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 83ms
+[admin/bookings GET] query error: {
+  code: 'PGRST200',
+  details: "Searched for a foreign key relationship between 'bookings' and 'product_orders' in the schema 'public', but no matches were found.",
+  hint: null,
+  message: "Could not find a relationship between 'bookings' and 'product_orders' in the schema cache"
+}
+ GET /api/admin/bookings?date=2026-04-09 500 in 89ms
+ ✓ Compiled in 483ms (2327 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /api/admin/bookings?date=2026-04-09 200 in 291ms
+ ✓ Compiled /_not-found in 228ms (2316 modules)
+ GET /api/admin 404 in 367ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 182ms
+ ✓ Compiled in 61ms (125 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (215kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 28 (line 3 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\DumpStack.log.tmp'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\hiberfil.sys'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\pagefile.sys'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\swapfile.sys'
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 623ms (2332 modules)
+ GET /api/admin/bookings?date=2026-04-09 500 in 1548ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 974ms
+ GET /admin 200 in 126ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 238ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 802ms
+ PATCH /api/admin/bookings 500 in 200ms
+ ✓ Compiled in 626ms (2070 modules)
+ ✓ Compiled in 363ms (2070 modules)
+ ✓ Compiled in 392ms (2070 modules)
+ ✓ Compiled /api/admin/bookings in 266ms (1214 modules)
+ PATCH /api/admin/bookings 500 in 581ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 604ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 104ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 93ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 93ms
+ PATCH /api/admin/bookings 500 in 205ms
+ GET /api/admin/bookings 200 in 377ms
+ ✓ Compiled in 366ms (2070 modules)
+ ✓ Compiled in 418ms (2070 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\0.pack.gz'
+ ✓ Compiled in 190ms (1115 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled /api/admin/bookings in 219ms (1214 modules)
+ GET /api/admin/bookings 200 in 1480ms
+ GET / 200 in 138ms
+ ✓ Compiled /booking/[date] in 200ms (1219 modules)
+ GET / 200 in 111ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 142ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 100ms
+[PATCH cancel] error: {
+  code: 'PGRST116',
+  details: 'The result contains 0 rows',
+  hint: null,
+  message: 'Cannot coerce the result to a single JSON object'
+} bookingId: 25fb4108-c552-4592-a6df-76755458a875
+ PATCH /api/admin/bookings 500 in 166ms
+ ✓ Compiled in 1454ms (2071 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled /_not-found in 295ms (2060 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/a14760ae401cc2d5.webpack.hot-update.json 404 in 444ms
+ GET /admin 200 in 30ms
+ ✓ Compiled /api/admin/bookings in 142ms (1216 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 464ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 116ms
+알림톡 발송 실패: TypeError: Cannot read properties of undefined (reading 'replace')
+    at sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:28:16)
+    at sendBookingCancelled (webpack-internal:///(rsc)/./lib/alimtalk.ts:69:11)
+    at PATCH (webpack-internal:///(rsc)/./app/api/admin/bookings/route.ts:117:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ PATCH /api/admin/bookings 200 in 112ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 111ms
+알림톡 발송 실패: TypeError: Cannot read properties of undefined (reading 'replace')
+    at sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:28:16)
+    at sendBookingCancelled (webpack-internal:///(rsc)/./lib/alimtalk.ts:69:11)
+    at PATCH (webpack-internal:///(rsc)/./app/api/admin/bookings/route.ts:117:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ PATCH /api/admin/bookings 200 in 140ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 108ms
+ GET /admin 200 in 99ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 110ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 97ms
+ GET /admin 200 in 47ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 291ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 248ms
+ ✓ Compiled /api/admin/bookings in 759ms (2071 modules)
+ ✓ Compiled (2330 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 651ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /admin 200 in 87ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 543ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 329ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 107ms
+알림톡 발송 실패: TypeError: Cannot read properties of undefined (reading 'replace')
+    at sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:28:16)
+    at sendBookingCancelled (webpack-internal:///(rsc)/./lib/alimtalk.ts:69:11)
+    at PATCH (webpack-internal:///(rsc)/./app/api/admin/bookings/route.ts:117:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ PATCH /api/admin/bookings 200 in 145ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 101ms
+알림톡 발송 실패: TypeError: Cannot read properties of undefined (reading 'replace')
+    at sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:28:16)
+    at sendBookingCancelled (webpack-internal:///(rsc)/./lib/alimtalk.ts:69:11)
+    at PATCH (webpack-internal:///(rsc)/./app/api/admin/bookings/route.ts:117:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ PATCH /api/admin/bookings 200 in 89ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 85ms
+ GET /admin 200 in 45ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 85ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 82ms
+ ✓ Compiled in 499ms (2071 modules)
+ ✓ Compiled /api/admin/bookings in 146ms (1215 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 469ms
+ ✓ Compiled in 469ms (2330 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 357ms
+ ✓ Compiled in 516ms (2330 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 431ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\9.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\9.pack.gz'
+ GET /admin 200 in 101ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 584ms
+알림톡 발송 실패: TypeError: Cannot read properties of undefined (reading 'replace')
+    at sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:28:16)
+    at sendBookingCancelled (webpack-internal:///(rsc)/./lib/alimtalk.ts:69:11)
+    at PATCH (webpack-internal:///(rsc)/./app/api/admin/bookings/route.ts:117:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ PATCH /api/admin/bookings 200 in 164ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 137ms
+ GET /api/admin/bookings 200 in 203ms
+알림톡 발송 실패: TypeError: Cannot read properties of undefined (reading 'replace')
+    at sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:28:16)
+    at sendBookingCancelled (webpack-internal:///(rsc)/./lib/alimtalk.ts:69:11)
+    at PATCH (webpack-internal:///(rsc)/./app/api/admin/bookings/route.ts:117:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ PATCH /api/admin/bookings 200 in 215ms
+ ✓ Compiled in 352ms (2071 modules)
+ ✓ Compiled in 385ms (1115 modules)
+ ✓ Compiled in 544ms (2071 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 250ms (1115 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 229ms (1115 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /admin 200 in 149ms
+ ✓ Compiled /api/admin/bookings in 273ms (1215 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 810ms
+[PATCH cancel] received bookingId: 25fb4108-c552-4592-a6df-76755458a875 type: string
+[PATCH cancel] 성공
+ PATCH /api/admin/bookings 200 in 268ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 165ms
+ ✓ Compiled /_not-found in 801ms (2319 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/b1a7a62d6ca4bf0d.webpack.hot-update.json 404 in 759ms
+ GET /admin 200 in 33ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 587ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 200ms
+ ✓ Compiled in 448ms (2333 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 136ms
+ ✓ Compiled in 475ms (2333 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 178ms
+ ✓ Compiled in 487ms (2333 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 345ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\server-development\0.pack.gz'
+ GET /admin 200 in 102ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 237ms
+[PATCH cancel] received bookingId: 25fb4108-c552-4592-a6df-76755458a875 type: string
+[PATCH cancel] 성공
+ PATCH /api/admin/bookings 200 in 153ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 158ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1187ms (2333 modules)
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 290 (line 8 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async pipe.req.req (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2063:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /_next/static/webpack/7a4e10aec7a8a315.webpack.hot-update.json 500 in 754ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 290 (line 8 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 290 (line 8 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /admin 500 in 12ms
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 290 (line 8 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /admin 500 in 15ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 290 (line 8 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /admin 500 in 59ms
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 290 (line 8 column 2)
+    at JSON.parse (<anonymous>)
+    at loadManifest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-manifest.js:35:27)
+    at getMaybePagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:57:59)
+    at getPagePath (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:92:22)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /admin 500 in 9ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 823ms (2074 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/46846a333f66720c.webpack.hot-update.json 404 in 678ms
+ GET /admin 200 in 41ms
+ ✓ Compiled /api/admin/bookings in 193ms (1216 modules)
+ GET /api/admin/bookings?date=2026-04-09 200 in 534ms
+ ✓ Compiled in 389ms (2333 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/6d932fa850f58229.webpack.hot-update.json 404 in 116ms
+ GET /admin 200 in 60ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /api/admin/bookings?date=2026-04-09 200 in 137ms
+ GET /admin 200 in 50ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 224ms
+[PATCH cancel] bookingId: 25fb4108-c552-4592-a6df-76755458a875
+[PATCH cancel] status: 204 error: null
+ PATCH /api/admin/bookings 200 in 154ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 109ms
+ ✓ Compiled in 175ms (956 modules)
+ ✓ Compiled /api/admin/bookings in 164ms (1215 modules)
+[PATCH cancel] bookingId: 25fb4108-c552-4592-a6df-76755458a875
+[PATCH cancel] status: 204 error: null
+ PATCH /api/admin/bookings 200 in 543ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 119ms
+ ✓ Compiled in 634ms (2071 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /admin 200 in 179ms
+ ✓ Compiled /api/admin/bookings in 296ms (1215 modules)
+ GET /api/admin/bookings?date=2026-04-10 200 in 544ms
+[PATCH cancel] bookingId: 52b2956c-1ea2-47bd-8212-c098fcec55ea
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 100ms
+ GET /api/admin/bookings?date=2026-04-09 200 in 65ms
+ GET / 200 in 133ms
+ ✓ Compiled /_not-found in 429ms (2074 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/c03e544ecd1843ad.webpack.hot-update.json 404 in 390ms
+ GET /booking 404 in 586ms
+ GET /booking/calendar 200 in 80ms
+ GET /booking 404 in 53ms
+ ✓ Compiled /booking/[date]/boat in 254ms (962 modules)
+ ✓ Compiled in 559ms (2071 modules)
+ ✓ Compiled in 351ms (2071 modules)
+ ✓ Compiled in 464ms (2071 modules)
+ ○ Compiling /api/admin/bookings ...
+ ✓ Compiled /api/admin/bookings in 1035ms (1215 modules)
+ GET /api/admin/bookings?date=2026-04-15 200 in 1451ms
+ ✓ Compiled in 564ms (2330 modules)
+ ✓ Compiled in 388ms (2330 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /booking/2026-04-10/boat 200 in 131ms
+ ✓ Compiled /booking/[date]/confirm in 215ms (960 modules)
+ ✓ Compiled in 595ms (2058 modules)
+ ✓ Compiled in 402ms (2058 modules)
+ ✓ Compiled /api/bookings in 288ms (1202 modules)
+알림톡 발송 실패: AxiosError: Request failed with status code 400
+    at settle (webpack-internal:///(rsc)/./node_modules/axios/lib/core/settle.js:25:7)
+    at IncomingMessage.handleStreamEnd (webpack-internal:///(rsc)/./node_modules/axios/lib/adapters/http.js:875:73)
+    at IncomingMessage.emit (node:events:520:35)
+    at endReadableNT (node:internal/streams/readable:1729:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (webpack-internal:///(rsc)/./node_modules/axios/lib/core/Axios.js:59:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async sendAlimtalk (webpack-internal:///(rsc)/./lib/alimtalk.ts:38:9)
+    at async sendBookingConfirm (webpack-internal:///(rsc)/./lib/alimtalk.ts:56:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/bookings/route.ts:94:13)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  isAxiosError: true,
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false,
+      legacyInterceptorReqResOrdering: true
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      Authorization: 'HMAC-SHA256 apiKey=, date=2026-04-09T16:32:26.058Z, salt=08c9j5brlwcp, signature=2d9de54d6aafc31c608d59dce24730698f12564dd394522b78c7db1ae4f3583f',
+      'User-Agent': 'axios/1.14.0',
+      'Content-Length': '326',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'https://api.coolsms.co.kr/messages/v4/send',
+    data: '{"message":{"to":"01059103935","from":"","type":"ATA","kakaoOptions":{"pfId":"","templateId":"","variables":{"#{예약번호}":"B20260410001","#{고객명}":"강현구","#{출조일}":"2026년 4월 10일 (금)","#{좌석정보}":"버스 26번석 / 배 16","#{결제금액}":"260,000원","#{결제방법}":"무통장입금"}}}}',
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: false,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 326,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    _header: 'POST /messages/v4/send HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Content-Type: application/json\r\n' +
+      'Authorization: HMAC-SHA256 apiKey=, date=2026-04-09T16:32:26.058Z, salt=08c9j5brlwcp, signature=2d9de54d6aafc31c608d59dce24730698f12564dd394522b78c7db1ae4f3583f\r\n' +
+      'User-Agent: axios/1.14.0\r\n' +
+      'Content-Length: 326\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: api.coolsms.co.kr\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      options: [Object: null prototype],
+      defaultPort: 443,
+      protocol: 'https:',
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 1,
+      agentKeepAliveTimeoutBuffer: 1000,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      Symbol(shapeMode): false,
+      Symbol(kCapture): false
+    },
+    socketPath: undefined,
+    method: 'POST',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/messages/v4/send',
+    _ended: true,
+    res: IncomingMessage {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      _eventsCount: 4,
+      responseUrl: 'https://api.coolsms.co.kr/messages/v4/send',
+      redirects: [],
+      Symbol(shapeMode): true,
+      Symbol(kCapture): false,
+      Symbol(kHeaders): [Object],
+      Symbol(kHeadersCount): 28,
+      Symbol(kTrailers): null,
+      Symbol(kTrailersCount): 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'api.coolsms.co.kr',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _events: [Object],
+      _writableState: [WritableState],
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 326,
+      _requestBodyBuffers: [],
+      _eventsCount: 3,
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://api.coolsms.co.kr/messages/v4/send',
+      _timeout: null,
+      Symbol(shapeMode): true,
+      Symbol(kCapture): false
+    },
+    Symbol(shapeMode): false,
+    Symbol(kCapture): false,
+    Symbol(kBytesWritten): 0,
+    Symbol(kNeedDrain): false,
+    Symbol(corked): 0,
+    Symbol(kChunkedBuffer): [],
+    Symbol(kChunkedLength): 0,
+    Symbol(kSocket): TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'api.coolsms.co.kr',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 9,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'api.coolsms.co.kr',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _maxListeners: undefined,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      timeout: 5000,
+      parser: null,
+      _httpMessage: null,
+      autoSelectFamilyAttemptedAddresses: [Array],
+      Symbol(alpncallback): null,
+      Symbol(res): [TLSWrap],
+      Symbol(verified): true,
+      Symbol(pendingSession): null,
+      Symbol(async_id_symbol): -1,
+      Symbol(kHandle): [TLSWrap],
+      Symbol(lastWriteQueueSize): 0,
+      Symbol(timeout): Timeout {
+        _idleTimeout: 5000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 81236404,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        Symbol(refed): false,
+        Symbol(kHasPrimitive): false,
+        Symbol(asyncId): 863993,
+        Symbol(triggerId): 863991,
+        Symbol(kAsyncContextFrame): [AsyncContextFrame [Map]]
+      },
+      Symbol(kBuffer): null,
+      Symbol(kBufferCb): null,
+      Symbol(kBufferGen): null,
+      Symbol(shapeMode): true,
+      Symbol(kCapture): false,
+      Symbol(kSetNoDelay): false,
+      Symbol(kSetKeepAlive): true,
+      Symbol(kSetKeepAliveInitialDelay): 1,
+      Symbol(kBytesRead): 0,
+      Symbol(kBytesWritten): 0,
+      Symbol(connect-options): [Object]
+    },
+    Symbol(kOutHeaders): [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'content-length': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    Symbol(errored): null,
+    Symbol(kHighWaterMark): 16384,
+    Symbol(kRejectNonStandardBodyWrites): false,
+    Symbol(kUniqueHeaders): null
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: Object [AxiosHeaders] {
+      'x-dns-prefetch-control': 'off',
+      'strict-transport-security': 'max-age=15552000; includeSubDomains',
+      'x-download-options': 'noopen',
+      'x-content-type-options': 'nosniff',
+      'x-xss-protection': '1; mode=block',
+      'access-control-expose-headers': 'x-auth-flow, x-token-management-id',
+      vary: 'Origin',
+      'access-control-allow-credentials': 'true',
+      'content-type': 'application/json; charset=utf-8',
+      'content-length': '119',
+      etag: 'W/"77-UHn/DIVzCnsa4pdgqOV0iqOTbM0"',
+      date: 'Thu, 09 Apr 2026 16:32:28 GMT',
+      'x-envoy-upstream-service-time': '17',
+      server: 'istio-envoy'
+    },
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'post',
+      url: 'https://api.coolsms.co.kr/messages/v4/send',
+      data: '{"message":{"to":"01059103935","from":"","type":"ATA","kakaoOptions":{"pfId":"","templateId":"","variables":{"#{예약번호}":"B20260410001","#{고객명}":"강현구","#{출조일}":"2026년 4월 10일 (금)","#{좌석정보}":"버스 26번석 / 배 16","#{결제금액}":"260,000원","#{결제방법}":"무통장입금"}}}}',
+      allowAbsoluteUrls: true
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 326,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      _header: 'POST /messages/v4/send HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'Authorization: HMAC-SHA256 apiKey=, date=2026-04-09T16:32:26.058Z, salt=08c9j5brlwcp, signature=2d9de54d6aafc31c608d59dce24730698f12564dd394522b78c7db1ae4f3583f\r\n' +
+        'User-Agent: axios/1.14.0\r\n' +
+        'Content-Length: 326\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: api.coolsms.co.kr\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/messages/v4/send',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'api.coolsms.co.kr',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      Symbol(shapeMode): false,
+      Symbol(kCapture): false,
+      Symbol(kBytesWritten): 0,
+      Symbol(kNeedDrain): false,
+      Symbol(corked): 0,
+      Symbol(kChunkedBuffer): [],
+      Symbol(kChunkedLength): 0,
+      Symbol(kSocket): [TLSSocket],
+      Symbol(kOutHeaders): [Object: null prototype],
+      Symbol(errored): null,
+      Symbol(kHighWaterMark): 16384,
+      Symbol(kRejectNonStandardBodyWrites): false,
+      Symbol(kUniqueHeaders): null
+    },
+    data: {
+      errorCode: 'ValidationError',
+      errorMessage: 'child "apiKey" fails because ["apiKey" is not allowed to be empty]'
+    }
+  },
+  status: 400
+}
+ POST /api/bookings 200 in 844ms
+ ✓ Compiled /booking/complete in 215ms (1206 modules)
+ ✓ Compiled / in 193ms (1223 modules)
+ ✓ Compiled in 569ms (2062 modules)
+ GET /booking/lookup 200 in 106ms
+ ✓ Compiled /admin in 101ms (960 modules)
+ ✓ Compiled /api/admin/bookings in 405ms (1219 modules)
+ GET /api/admin/bookings?date=2026-04-10 200 in 631ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /api/admin/bookings?date=2026-04-09 200 in 342ms
+ GET /api/admin/bookings?date=2026-04-10 200 in 139ms
+ GET /api/admin/bookings?date=2026-04-14 200 in 125ms
+ GET /api/admin/bookings?date=2026-04-15 200 in 90ms
+ ✓ Compiled in 521ms (2330 modules)
+ ✓ Compiled in 637ms (2330 modules)
+ GET /api/admin/bookings?date=2026-04-10 200 in 187ms
+ ✓ Compiled in 450ms (2330 modules)
+ GET /api/admin/bookings 200 in 155ms
+ ✓ Compiled in 541ms (2330 modules)
+ GET /api/admin/bookings 200 in 128ms
+ ✓ Compiled in 447ms (2330 modules)
+ GET /api/admin/bookings 200 in 96ms
+ ✓ Compiled in 516ms (2330 modules)
+ GET /api/admin/bookings 200 in 199ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 447ms (2330 modules)
+ GET /api/admin/bookings 200 in 159ms
+ ✓ Compiled in 434ms (2330 modules)
+ GET /api/admin/bookings 200 in 385ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+[PATCH cancel] bookingId: c53df532-697b-4a33-ad61-6747cb1f7008
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 310ms
+ GET /api/admin/bookings 200 in 2001ms
+[PATCH cancel] bookingId: c53df532-697b-4a33-ad61-6747cb1f7008
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 524ms
+ GET /api/admin/bookings 200 in 551ms
+ GET /admin 200 in 110ms
+ GET /api/admin/bookings 200 in 5067ms
+ GET /api/admin/bookings 200 in 589ms
+ ✓ Compiled in 556ms (2330 modules)
+ ✓ Compiled in 528ms (2330 modules)
+ GET /api/admin/bookings 200 in 325ms
+ ✓ Compiled in 419ms (2330 modules)
+ GET /api/admin/bookings 200 in 165ms
+[PATCH cancel] bookingId: c53df532-697b-4a33-ad61-6747cb1f7008
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 329ms
+ GET /api/admin/bookings 200 in 158ms
+[PATCH cancel] bookingId: 14a9b1a4-5a4e-4617-8b4d-d0f919f63c9f
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 138ms
+ GET /api/admin/bookings 200 in 120ms
+[PATCH cancel] bookingId: cb2e10fb-0aa9-40c9-9551-24bab4468ca0
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 107ms
+[PATCH cancel] bookingId: cb2e10fb-0aa9-40c9-9551-24bab4468ca0
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 102ms
+ GET /api/admin/bookings 200 in 119ms
+ GET /api/admin/bookings 200 in 120ms
+[PATCH cancel] bookingId: 3da7f53a-1f94-41cc-8eb9-ee0c0865c892
+[PATCH cancel] error: null
+ PATCH /api/admin/bookings 200 in 121ms
+ GET /api/admin/bookings 200 in 142ms
+ GET /admin 200 in 107ms
+ GET /api/admin/bookings 200 in 371ms
+ ✓ Compiled /admin/settings in 335ms (1223 modules)
+ ✓ Compiled /catch in 381ms (2344 modules)
+ GET /api/admin/bookings 200 in 105ms
+ ✓ Compiled /admin/reservations in 188ms (1232 modules)
+ ✓ Compiled /admin/products in 159ms (1236 modules)
+ ✓ Compiled in 615ms (2072 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\rnjsa\fishing-reservation\.next\cache\webpack\client-development\0.pack.gz'
+ GET /admin/reservations 200 in 87ms
+ ✓ Compiled /admin/settings in 197ms (963 modules)
+ ✓ Compiled /api/admin/bookings in 240ms (1222 modules)
+ GET /api/admin/bookings 200 in 511ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'

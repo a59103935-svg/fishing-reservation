@@ -1,12 +1,14 @@
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, addMonths, subMonths, isSameMonth } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/client'
 import type { SiteSettings } from '@/types'
 
 export default function SettingsPage() {
+  const router = useRouter()
   const supabase = createClient()
   const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [form, setForm] = useState({
@@ -33,16 +35,16 @@ export default function SettingsPage() {
     if (data) {
       setSettings(data)
       setForm({
-        site_name: data.site_name,
-        bus_total_seats: String(data.bus_total_seats),
-        boat_total_spots: String(data.boat_total_spots),
-        bus_price: String(data.bus_price),
-        boat_price: String(data.boat_price),
+        site_name: data.site_name ?? '',
+        bus_total_seats: String(data.bus_total_seats ?? 30),
+        boat_total_spots: String(data.boat_total_spots ?? 20),
+        bus_price: String(data.bus_price ?? 70000),
+        boat_price: String(data.boat_price ?? 150000),
         departure_time: (data.departure_time ?? '05:00:00').slice(0, 5),
         return_time: (data.return_time ?? '14:00:00').slice(0, 5),
-        bank_name: data.bank_name,
-        bank_account: data.bank_account,
-        bank_holder: data.bank_holder,
+        bank_name: data.bank_name ?? '',
+        bank_account: data.bank_account ?? '',
+        bank_holder: data.bank_holder ?? '',
       })
     }
   }, [supabase])
@@ -71,12 +73,10 @@ export default function SettingsPage() {
   }, [currentMonth, loadHolidays])
 
   async function saveSettings() {
-    if (!settings) return
     setSaving(true)
     setSavedMsg('')
     try {
-      const payload = {
-        id: settings.id,
+      const payload: Record<string, unknown> = {
         site_name: form.site_name,
         bus_total_seats: Number(form.bus_total_seats),
         boat_total_spots: Number(form.boat_total_spots),
@@ -89,6 +89,7 @@ export default function SettingsPage() {
         bank_holder: form.bank_holder,
         updated_at: new Date().toISOString(),
       }
+      if (settings?.id) payload.id = settings.id
 
       const res = await fetch('/api/admin/settings', {
         method: 'POST',
@@ -165,11 +166,20 @@ export default function SettingsPage() {
 
   return (
     <div className="px-4 py-6 space-y-5">
-      <h1 className="text-2xl font-black text-gray-900">출조 설정</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-black" style={{ color: '#C9A84C' }}>출조 설정</h1>
+        <button
+          onClick={() => router.push('/')}
+          className="text-sm font-semibold px-4 py-2 rounded-lg"
+          style={{ border: '1px solid #C9A84C', color: '#C9A84C' }}
+        >
+          홈으로 돌아가기
+        </button>
+      </div>
 
       {/* 기본 설정 */}
       <div className="card space-y-4">
-        <h2 className="font-bold text-gray-800 text-lg">기본 정보</h2>
+        <h2 className="font-bold text-lg" style={{ color: '#C9A84C' }}>기본 정보</h2>
 
         <div>
           <label className="block text-sm font-semibold mb-1" style={{ color: '#C9A84C' }}>업체명</label>

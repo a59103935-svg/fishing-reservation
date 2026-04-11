@@ -4,11 +4,8 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { useBookingStore } from '@/lib/store'
 import { createClient } from '@/lib/supabase/client'
-import { formatDateKorean, formatPrice, generateBookingNumber } from '@/lib/booking'
-import type { PaymentMethod } from '@/types'
-
-const BUS_PRICE  = 50_000
-const BOAT_PRICE = 70_000
+import { formatDateKorean, formatPrice } from '@/lib/booking'
+import type { Booking, PaymentMethod, SiteSettings } from '@/types'
 
 const PAYMENT_METHODS: { id: PaymentMethod; label: string; icon: string; desc: string; disabled?: boolean }[] = [
   { id: 'kakao',  label: '카카오페이', icon: '', desc: '카카오페이로 간편결제',    disabled: true },
@@ -53,13 +50,25 @@ export default function ConfirmPage() {
   const [nameErr,   setNameErr]   = useState('')
   const [phoneErr,  setPhoneErr]  = useState('')
   const [loading,   setLoading]   = useState(false)
+  const [settings,  setSettings]  = useState<SiteSettings | null>(null)
+  const [settingsLoading, setSettingsLoading] = useState(true)
+  const [dupBooking, setDupBooking] = useState<Booking | null>(null)
 
   useEffect(() => {
     if (busSeats.length === 0) router.replace(`/booking/${dateStr}`)
   }, [busSeats, dateStr, router])
 
-  const busTotal   = busSeats.length  * BUS_PRICE
-  const boatTotal  = boatSpots.length * BOAT_PRICE
+  useEffect(() => {
+    supabase.from('site_settings').select('*').single().then(({ data }) => {
+      if (data) setSettings(data)
+      setSettingsLoading(false)
+    })
+  }, [supabase])
+
+  const busPrice   = settings?.bus_price  ?? 0
+  const boatPrice  = settings?.boat_price ?? 0
+  const busTotal   = busSeats.length  * busPrice
+  const boatTotal  = boatSpots.length * boatPrice
   const grandTotal = busTotal + boatTotal
   const headcount  = busSeats.length
 
@@ -74,33 +83,66 @@ export default function ConfirmPage() {
 
   async function handleSubmit() {
     if (!validate() || loading) return
+
+    // 동일 연락처 active 예약 중복 확인
+    const { data: existing } = await supabase
+      .from('bookings')
+      .select('id, date, bus_seat_number, boat_spot_id, payment_status')
+      .eq('customer_phone', phone)
+      .in('payment_status', ['pending', 'confirmed', 'visit_pending'])
+      .order('date', { ascending: true })
+      .limit(1)
+      .single()
+
+    if (existing) {
+      setDupBooking(existing as Booking)
+      return
+    }
+
+    await submitBooking()
+  }
+
+  async function submitBooking() {
+    setDupBooking(null)
     setLoading(true)
     try {
-      const bookingNumber = await generateBookingNumber(dateStr)
-      const { data: booking, error } = await supabase
-        .from('bookings')
-        .insert({
-          booking_number:  bookingNumber,
-          date:            dateStr,
-          customer_name:   name.trim(),
-          customer_phone:  phone,
-          bus_seat_number: busSeats[0] ?? null,
-          boat_spot_id:    boatSpots[0] ?? null,
-          payment_method:  payMethod,
-          payment_status:  payMethod === 'onsite' ? 'visit_pending' : 'pending',
-          total_amount:    grandTotal,
-          notes:           memo || null,
-        })
-        .select('id, booking_number')
-        .single()
-      if (error || !booking) { alert(error?.message ?? '예약 처리 중 오류가 발생했습니다.'); return }
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          date:           dateStr,
+          customerName:   name.trim(),
+          customerPhone:  phone,
+          busSeatNumber:  busSeats[0] ?? null,
+          boatSpotId:     boatSpots[0] ?? null,
+          paymentMethod:  payMethod,
+          totalAmount:    grandTotal,
+          cartItems:      [],
+          depositorName:  name.trim(),
+          notes:          memo || null,
+        }),
+      })
+
+      const json = await res.json()
+
+      if (!res.ok) {
+        if (res.status === 409) {
+          alert('선택하신 좌석은 방금 다른 분이 예약했습니다. 좌석 선택 화면으로 돌아가 다시 선택해 주세요.')
+          router.replace(`/booking/${dateStr}`)
+          return
+        }
+        alert(json.error ?? '예약 처리 중 오류가 발생했습니다.')
+        return
+      }
+
       store.setCustomerInfo(name, phone)
       store.setNotes(memo)
       store.setPaymentMethod(payMethod)
+
       if (payMethod === 'kakao' || payMethod === 'naver') {
-        router.push(`/booking/payment?id=${booking.id}`)
+        router.push(`/booking/payment?id=${json.id}`)
       } else {
-        router.push(`/booking/complete?id=${booking.id}`)
+        router.push(`/booking/complete?id=${json.id}`)
       }
     } catch (e) {
       console.error(e)
@@ -108,6 +150,14 @@ export default function ConfirmPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  if (settingsLoading) {
+    return (
+      <div className="max-w-sm mx-auto min-h-screen flex items-center justify-center" style={{ background: '#0D1F35' }}>
+        <div className="w-10 h-10 rounded-full animate-spin" style={{ border: '3px solid rgba(201,168,76,0.2)', borderTopColor: '#C9A84C' }} />
+      </div>
+    )
   }
 
   return (
@@ -221,6 +271,66 @@ export default function ConfirmPage() {
           </button>
         </div>
       </div>
+
+      {/* 중복 예약 확인 모달 */}
+      {dupBooking && (
+        <div
+          className="fixed inset-0 z-50 flex items-end justify-center"
+          style={{ background: 'rgba(0,0,0,0.75)' }}
+          onClick={() => setDupBooking(null)}
+        >
+          <div
+            className="w-full max-w-sm rounded-t-3xl p-6 space-y-5"
+            style={{ background: '#1A3355', border: '1px solid rgba(201,168,76,0.25)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 제목 */}
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.3)' }}>
+                <span className="text-xl">!</span>
+              </div>
+              <p className="text-base font-black" style={{ color: '#F8F9FA' }}>이미 예약이 있습니다</p>
+            </div>
+
+            {/* 기존 예약 정보 */}
+            <div className="rounded-xl p-4 space-y-2 text-sm" style={{ background: 'rgba(13,31,53,0.6)', border: '1px solid rgba(45,95,153,0.35)' }}>
+              <p style={{ color: '#93B5D4' }}>기존 예약</p>
+              <p className="font-bold" style={{ color: '#F8F9FA' }}>
+                {formatDateKorean(dupBooking.date)}
+              </p>
+              <p style={{ color: '#C9A84C', fontWeight: 600 }}>
+                {[
+                  dupBooking.bus_seat_number != null && `버스 ${dupBooking.bus_seat_number}번`,
+                  dupBooking.boat_spot_id && `배 ${dupBooking.boat_spot_id}`,
+                ].filter(Boolean).join(', ')}
+              </p>
+            </div>
+
+            <p className="text-sm text-center" style={{ color: '#8A9BB0' }}>
+              <span style={{ color: '#F8F9FA', fontWeight: 700 }}>{name.trim()}</span>님은 이미 예약하셨습니다.
+              <br />추가로 예약하시겠습니까?
+            </p>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setDupBooking(null)}
+                className="flex-1 py-3 rounded-xl font-semibold text-sm"
+                style={{ background: 'rgba(45,95,153,0.2)', color: '#8A9BB0', border: '1px solid rgba(45,95,153,0.3)' }}
+              >
+                취소
+              </button>
+              <button
+                onClick={submitBooking}
+                disabled={loading}
+                className="flex-1 py-3 rounded-xl font-bold text-sm transition-all active:scale-95 disabled:opacity-50"
+                style={{ background: '#C9A84C', color: '#0D1F35' }}
+              >
+                {loading ? '처리 중...' : '추가 예약하기'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

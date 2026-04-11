@@ -1249,3 +1249,740 @@ Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'C:\swapf
 Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
 Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
 Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'C:\System Volume Information'
+ GET / 200 in 130ms
+ ○ Compiling /shop ...
+ ✓ Compiled /shop in 849ms (2080 modules)
+ GET /shop 200 in 1189ms
+ ✓ Compiled in 366ms (1120 modules)
+ ✓ Compiled /shop/[id] in 276ms (2082 modules)
+ ✓ Compiled /api/admin/bookings in 394ms (1201 modules)
+ GET /api/admin/bookings?date=2026-04-15 200 in 1812ms
+ ✓ Compiled / in 346ms (960 modules)
+ GET / 200 in 555ms
+ GET / 200 in 43ms
+ ✓ Compiled /api/admin/bookings in 308ms (1219 modules)
+ GET /api/admin/bookings 200 in 512ms
+ GET /shop 200 in 122ms
+ GET /shop 200 in 72ms
+ GET /admin 200 in 99ms
+ GET /shop 200 in 42ms
+ ✓ Compiled in 1531ms (2203 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:116:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:116:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:116:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 10ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1546ms (2192 modules)
+ GET /shop 200 in 628ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:285:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:202
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:289:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async pipe.req.req (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2063:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /_next/static/webpack/192644cb11860ea4.webpack.hot-update.json 500 in 1140ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 9ms
+ ✓ Compiled in 668ms (2081 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 20ms
+ ✓ Compiled in 472ms (2081 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 15ms
+ ✓ Compiled in 361ms (2081 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 19ms
+ ✓ Compiled in 271ms (1124 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:285:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:202
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:289:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async pipe.req.req (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2063:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /_next/static/webpack/073baa13d141c57a.webpack.hot-update.json 500 in 7ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 11ms
+ ✓ Compiled in 389ms (1124 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:285:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:202
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:289:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async pipe.req.req (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2063:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /_next/static/webpack/5db475e22acc62f3.webpack.hot-update.json 500 in 7ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 10ms
+ ✓ Compiled in 285ms (1124 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+ GET /shop 500 in 10ms
+ ✓ Compiled in 286ms (1124 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:285:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:202
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:289:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async pipe.req.req (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2063:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /_next/static/webpack/7538c1a13f68fbca.webpack.hot-update.json 500 in 6ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fshop%2Fpage&page=%2Fshop%2Fpage&appPaths=%2Fshop%2Fpage&pagePath=private-next-app-dir%2Fshop%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:357:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:266
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:358:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\shop\page.js:361:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/shop'
+}
+Could not find files for /_error in .next/build-manifest.json
+Could not find files for /_error in .next/build-manifest.json
+ GET /shop 500 in 10ms
+ ✓ Compiled in 272ms (1124 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:285:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:202
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:289:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /shop 500 in 13ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:285:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:202
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:286:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\_not-found\page.js:289:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:2097:30)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /shop 500 in 9ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fpage&page=%2Fpage&appPaths=%2Fpage&pagePath=private-next-app-dir%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!:10:120)
+    at (rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fpage&page=%2Fpage&appPaths=%2Fpage&pagePath=private-next-app-dir%2Fpage.tsx&appDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Crnjsa%5Cfishing-reservation&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! (C:\Users\rnjsa\fishing-reservation\.next\server\app\page.js:99:1)
+    at __webpack_require__ (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:33:42)
+    at __webpack_exec__ (C:\Users\rnjsa\fishing-reservation\.next\server\app\page.js:390:39)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\page.js:391:291
+    at __webpack_require__.X (C:\Users\rnjsa\fishing-reservation\.next\server\webpack-runtime.js:163:21)
+    at C:\Users\rnjsa\fishing-reservation\.next\server\app\page.js:391:47
+    at Object.<anonymous> (C:\Users\rnjsa\fishing-reservation\.next\server\app\page.js:394:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\rnjsa\fishing-reservation\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/'
+}
+ GET / 500 in 16ms
+ ✓ Compiled in 496ms (1122 modules)
+ ✓ Compiled in 191ms (1122 modules)
+ ✓ Compiled in 749ms (2078 modules)
+ ✓ Compiled in 434ms (2078 modules)
+ ✓ Compiled in 794ms (2203 modules)

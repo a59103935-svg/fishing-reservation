@@ -40,6 +40,11 @@ export async function middleware(request: NextRequest) {
     return response
   }
 
+  // 어드민 유저: 닉네임 체크 스킵
+  if (user && user.id === ADMIN_USER_ID) {
+    return response
+  }
+
   // 일반 유저: 닉네임 없으면 /set-nickname으로
   if (user) {
     const { data: profile } = await supabase

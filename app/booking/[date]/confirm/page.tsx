@@ -8,7 +8,7 @@ import { formatDateKorean, formatPrice } from '@/lib/booking'
 import type { Booking, PaymentMethod, SiteSettings } from '@/types'
 
 const PAYMENT_METHODS: { id: PaymentMethod; label: string; icon: string; desc: string; disabled?: boolean }[] = [
-  { id: 'kakao',  label: '카카오페이', icon: '', desc: '카카오페이로 간편결제',    disabled: true },
+  { id: 'kakao',  label: '카카오페이', icon: '', desc: '카카오페이로 간편결제' },
   { id: 'naver',  label: '네이버페이', icon: '', desc: '네이버페이로 간편결제',    disabled: true },
   { id: 'bank',   label: '무통장입금', icon: '▣', desc: '입금 확인 후 예약 확정' },
   { id: 'onsite', label: '방문예정 등록', icon: '◉', desc: '현장결제 — 자리 보장 안 됨, 선착순' },

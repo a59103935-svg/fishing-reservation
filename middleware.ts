@@ -1,13 +1,12 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
-const EXCLUDED = ['/set-nickname', '/login', '/auth', '/api/', '/shop', '/notices', '/catch', '/booking/lookup']
 const ADMIN_USER_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  if (EXCLUDED.some(p => pathname.startsWith(p))) {
+  if (pathname.startsWith('/booking/lookup')) {
     return NextResponse.next()
   }
 
@@ -30,32 +29,32 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data: { session } } = await supabase.auth.getSession()
+  const user = session?.user
 
-  // /admin 경로: 어드민 유저만 접근 허용
   if (pathname.startsWith('/admin')) {
     if (!user || user.id !== ADMIN_USER_ID) {
-      return NextResponse.redirect(new URL('/', request.url))
+      return NextResponse.redirect(new URL('/notices', request.url))
     }
     return response
   }
 
-  // 어드민 유저: 닉네임 체크 스킵
-  if (user && user.id === ADMIN_USER_ID) {
+  if (!user) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  if (user.id === ADMIN_USER_ID) {
     return response
   }
 
-  // 일반 유저: 닉네임 없으면 /set-nickname으로
-  if (user) {
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('nickname')
-      .eq('id', user.id)
-      .maybeSingle()
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('nickname')
+    .eq('id', user.id)
+    .maybeSingle()
 
-    if (!profile?.nickname) {
-      return NextResponse.redirect(new URL('/set-nickname', request.url))
-    }
+  if (!profile?.nickname) {
+    return NextResponse.redirect(new URL('/set-nickname', request.url))
   }
 
   return response
@@ -63,6 +62,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/admin/:path*',
+    '/booking/:path*',
   ],
 }

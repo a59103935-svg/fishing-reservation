@@ -1,17 +1,51 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
 
-const REPORTS = [
-  { id: 1, date: '2025.12.01', title: '갈치 대조황 — 1인당 30마리 이상', author: '선장', content: '오늘 날씨도 좋고 조황도 최상이었습니다. 갈치가 잘 올라왔으며 1인당 30마리 이상 조과를 기록했습니다.' },
-  { id: 2, date: '2025.11.29', title: '광어·우럭 풍성 — 날씨 최상', author: '선장', content: '광어와 우럭이 풍성하게 잡혔습니다. 날씨도 맑고 파도도 잔잔해 최상의 낚시 환경이었습니다.' },
-  { id: 3, date: '2025.11.25', title: '참돔 시즌 본격 시작', author: '선장', content: '참돔 시즌이 본격적으로 시작됐습니다. 올해 참돔 조황이 예년보다 풍성할 것으로 예상됩니다.' },
-  { id: 4, date: '2025.11.20', title: '갈치 + 삼치 혼획', author: '선장', content: '갈치와 삼치가 함께 잡히는 최상의 조황을 보였습니다. 모든 분들이 풍성한 손맛을 즐기셨습니다.' },
-  { id: 5, date: '2025.11.15', title: '우럭 마릿수 조황', author: '선장', content: '우럭이 마릿수로 잡혔습니다. 초보자분들도 쉽게 입질을 받으실 수 있는 날이었습니다.' },
+interface Report {
+  id: string
+  date: string
+  title: string
+  author: string
+  content: string
+}
+
+const FALLBACK_REPORTS: Report[] = [
+  { id: '1', date: '2026.06.17', title: '좋은피싱 출조 중입니다', author: '선장', content: '출조 조황 정보가 곧 업데이트됩니다. 문의: 010-5910-3935' },
 ]
 
 export default function CatchPage() {
-  const [selected, setSelected] = useState<typeof REPORTS[0] | null>(null)
+  const [selected, setSelected] = useState<Report | null>(null)
+  const [reports, setReports] = useState<Report[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const supabase = createClient()
+    supabase
+      .from('fishing_reports')
+      .select('id, title, author_name, catch_date, created_at, content')
+      .order('created_at', { ascending: false })
+      .limit(20)
+      .then(({ data, error }) => {
+        if (!error && data && data.length > 0) {
+          setReports(
+            data.map((r: any) => ({
+              id: r.id,
+              date: r.catch_date
+                ? r.catch_date
+                : new Date(r.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, ''),
+              title: r.title,
+              author: r.author_name ?? '선장',
+              content: r.content ?? '',
+            }))
+          )
+        } else {
+          setReports(FALLBACK_REPORTS)
+        }
+        setLoading(false)
+      })
+  }, [])
 
   return (
     <div className="max-w-2xl mx-auto min-h-screen pb-16" style={{ background: '#0D1F35', paddingTop: '64px' }}>
@@ -21,21 +55,27 @@ export default function CatchPage() {
         <p className="text-sm mt-1" style={{ color: '#4A6888' }}>최근 출조 조황 정보를 확인하세요</p>
       </div>
       <div className="px-4 space-y-3">
-        {REPORTS.map((report) => (
-          <button key={report.id} onClick={() => setSelected(report)} className="w-full text-left rounded-2xl p-4 transition-all active:scale-[0.98]" style={{ background: '#1A3355', border: '1px solid rgba(45,95,153,0.35)' }} onMouseEnter={(e) => (e.currentTarget.style.border = '1px solid rgba(201,168,76,0.4)')} onMouseLeave={(e) => (e.currentTarget.style.border = '1px solid rgba(45,95,153,0.35)')}>
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm leading-snug" style={{ color: '#F8F9FA' }}>{report.title}</p>
-                <div className="flex items-center gap-2 mt-1.5">
-                  <span className="text-xs" style={{ color: '#4A6888' }}>{report.date}</span>
-                  <span className="text-xs" style={{ color: '#4A6888' }}>·</span>
-                  <span className="text-xs" style={{ color: '#C9A84C' }}>{report.author}</span>
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="rounded-2xl p-4 animate-pulse" style={{ background: '#1A3355', height: 80 }} />
+          ))
+        ) : (
+          reports.map((report) => (
+            <button key={report.id} onClick={() => setSelected(report)} className="w-full text-left rounded-2xl p-4 transition-all active:scale-[0.98]" style={{ background: '#1A3355', border: '1px solid rgba(45,95,153,0.35)' }} onMouseEnter={(e) => (e.currentTarget.style.border = '1px solid rgba(201,168,76,0.4)')} onMouseLeave={(e) => (e.currentTarget.style.border = '1px solid rgba(45,95,153,0.35)')}>
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-sm leading-snug" style={{ color: '#F8F9FA' }}>{report.title}</p>
+                  <div className="flex items-center gap-2 mt-1.5">
+                    <span className="text-xs" style={{ color: '#4A6888' }}>{report.date}</span>
+                    <span className="text-xs" style={{ color: '#4A6888' }}>·</span>
+                    <span className="text-xs" style={{ color: '#C9A84C' }}>{report.author}</span>
+                  </div>
                 </div>
+                <span className="text-lg flex-shrink-0">🎣</span>
               </div>
-              <span className="text-lg flex-shrink-0">🎣</span>
-            </div>
-          </button>
-        ))}
+            </button>
+          ))
+        )}
       </div>
       {selected && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center px-4">

@@ -394,7 +394,7 @@ export default function HomePage() {
             <div className="rounded-2xl p-5" style={{ background: 'linear-gradient(135deg, #1A3355 0%, #0D1F35 100%)', border: '1px solid rgba(201,168,76,0.2)' }}>
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold" style={{ color: '#C9A84C' }}>공지사항</h3>
-                <span className="text-xs" style={{ color: '#4A6888' }}>더보기 →</span>
+                <Link href="/notices" className="text-xs transition-colors" style={{ color: '#4A6888' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')} onMouseLeave={(e) => (e.currentTarget.style.color = '#4A6888')}>더보기 →</Link>
               </div>
               <ul className="space-y-3">
                 {NOTICES.map(({ date, title }) => (
@@ -408,7 +408,7 @@ export default function HomePage() {
             <div className="rounded-2xl p-5" style={{ background: 'linear-gradient(135deg, #1A3355 0%, #0D1F35 100%)', border: '1px solid rgba(201,168,76,0.2)' }}>
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold" style={{ color: '#C9A84C' }}>최근 조황</h3>
-                <span className="text-xs" style={{ color: '#4A6888' }}>더보기 →</span>
+                <Link href="/catch" className="text-xs transition-colors" style={{ color: '#4A6888' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')} onMouseLeave={(e) => (e.currentTarget.style.color = '#4A6888')}>더보기 →</Link>
               </div>
               <ul className="space-y-3">
                 {FISHING_REPORTS.map(({ date, title }) => (

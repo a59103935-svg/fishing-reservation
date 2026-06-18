@@ -15,19 +15,19 @@ interface Booking {
   id: string
   customer_name: string
   customer_phone: string
-  reservation_date: string | null
-  boat_type: string | null
-  seats: number | null
+  date: string | null
+  bus_seat_number: number | null
+  boat_spot_id: string | null
   total_amount: number | null
   payment_status: string | null
   created_at: string
 }
 
-function getRefundPolicy(reservationDate: string | null): { rate: number; label: string } {
-  if (!reservationDate) return { rate: 0, label: '환불 정책 확인 불가' }
+function getRefundPolicy(date: string | null): { rate: number; label: string } {
+  if (!date) return { rate: 0, label: '환불 정책 확인 불가' }
   const today = new Date()
   today.setHours(0, 0, 0, 0)
-  const resDate = new Date(reservationDate)
+  const resDate = new Date(date)
   resDate.setHours(0, 0, 0, 0)
   const diffDays = Math.floor((resDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
   if (diffDays >= 2) return { rate: 100, label: '출조일 2일 전 이상 — 100% 환불' }
@@ -54,7 +54,7 @@ export default function BookingLookupPage() {
 
     const { data } = await supabase
       .from('bookings')
-      .select('id, customer_name, customer_phone, reservation_date, boat_type, seats, total_amount, payment_status, created_at')
+      .select('id, customer_name, customer_phone, date, bus_seat_number, boat_spot_id, total_amount, payment_status, created_at')
       .eq('customer_name', name.trim())
       .eq('customer_phone', phone.trim())
       .order('created_at', { ascending: false })
@@ -142,7 +142,7 @@ export default function BookingLookupPage() {
                   <div key={b.id} className="rounded-2xl p-5 space-y-3" style={{ background: '#1A3355', border: '1px solid rgba(45,95,153,0.4)' }}>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-bold" style={{ color: '#F8F9FA' }}>
-                        {b.reservation_date ?? '날짜 미정'}
+                        {b.date ?? '날짜 미정'}
                       </span>
                       <span className="px-2.5 py-1 rounded-full text-xs font-bold" style={{ color: status.color, background: status.bg }}>
                         {status.label}
@@ -150,14 +150,14 @@ export default function BookingLookupPage() {
                     </div>
                     <div className="grid grid-cols-2 gap-y-2 text-xs">
                       <div>
-                        <span style={{ color: '#4A6888' }}>출조유형</span>
+                        <span style={{ color: '#4A6888' }}>버스좌석</span>
                         <p className="mt-0.5 font-medium" style={{ color: '#93B5D4' }}>
-                          {b.boat_type === 'boat' ? '보트' : b.boat_type === 'bus' ? '버스' : b.boat_type ?? '-'}
+                          {b.bus_seat_number ? `${b.bus_seat_number}번` : '-'}
                         </p>
                       </div>
                       <div>
-                        <span style={{ color: '#4A6888' }}>인원</span>
-                        <p className="mt-0.5 font-medium" style={{ color: '#93B5D4' }}>{b.seats ? `${b.seats}명` : '-'}</p>
+                        <span style={{ color: '#4A6888' }}>배 자리</span>
+                        <p className="mt-0.5 font-medium" style={{ color: '#93B5D4' }}>{b.boat_spot_id ?? '-'}</p>
                       </div>
                       <div>
                         <span style={{ color: '#4A6888' }}>결제금액</span>
@@ -207,7 +207,7 @@ export default function BookingLookupPage() {
 
       {/* 취소 신청 모달 */}
       {modalBooking && (() => {
-        const policy = getRefundPolicy(modalBooking.reservation_date)
+        const policy = getRefundPolicy(modalBooking.date)
         return (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
             <div className="absolute inset-0" style={{ background: 'rgba(7,15,26,0.85)' }} onClick={() => setModalBooking(null)} />
@@ -225,7 +225,7 @@ export default function BookingLookupPage() {
                 background: policy.rate === 100 ? 'rgba(74,222,128,0.1)' : policy.rate === 80 ? 'rgba(251,191,36,0.1)' : 'rgba(248,113,113,0.1)',
                 color: policy.rate === 100 ? '#4ADE80' : policy.rate === 80 ? '#FBBF24' : '#F87171',
               }}>
-                {modalBooking.reservation_date} 예약 — {policy.label}
+                {modalBooking.date} 예약 — {policy.label}
               </div>
 
               <div className="flex gap-2 pt-1">

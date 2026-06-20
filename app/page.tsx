@@ -21,15 +21,11 @@ interface DayStatus {
   totalSeats: number
 }
 
-const NOTICES = [
-  { date: '2025.12.01', title: '12월 출조 일정 안내' },
-  { date: '2025.11.28', title: '겨울 방한복 무료 대여 이벤트' },
-  { date: '2025.11.20', title: '연말 단체 예약 특가 안내' },
+const NOTICES_FALLBACK = [
+  { date: '2026.06.18', title: '좋은피싱에 오신 것을 환영합니다' },
 ]
-const FISHING_REPORTS = [
-  { date: '2025.12.01', title: '갈치 대조황 — 1인당 30마리 이상' },
-  { date: '2025.11.29', title: '광어·우럭 풍성 — 날씨 최상' },
-  { date: '2025.11.25', title: '참돔 시즌 본격 시작' },
+const REPORTS_FALLBACK = [
+  { date: '2026.06.18', title: '출조 조황 정보가 곧 업데이트됩니다' },
 ]
 
 export default function HomePage() {
@@ -45,10 +41,8 @@ export default function HomePage() {
   const [cancelledDates, setCancelledDates] = useState<Set<string>>(new Set())
   const [futureCancellations, setFutureCancellations] = useState<{ trip_date: string; reason: string }[]>([])
   const [showCancelModal, setShowCancelModal] = useState(false)
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => console.log('MY USER ID:', data.user?.id))
-  }, [])
+  const [homeNotices, setHomeNotices] = useState<{ date: string; title: string }[]>([])
+  const [homeReports, setHomeReports] = useState<{ date: string; title: string }[]>([])
 
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data: { user } }) => {
@@ -76,6 +70,7 @@ export default function HomePage() {
     const { data: bookingsRaw, error: bookingsError } = await supabase
       .from('bookings').select('date')
       .gte('date', start).lte('date', end)
+      .in('payment_status', ['pending', 'confirmed', 'visit_pending'])
     const bookings = bookingsError ? [] : (bookingsRaw ?? [])
     const { data: schedulesRaw, error: schedulesError } = await supabase
       .from('schedule_settings').select('date, is_holiday')
@@ -105,6 +100,40 @@ export default function HomePage() {
     if (!error && data) setPreviewProducts(data)
   }, [supabase])
 
+  const loadHomeNotices = useCallback(async () => {
+    const { data } = await supabase
+      .from('notices')
+      .select('title, created_at')
+      .order('created_at', { ascending: false })
+      .limit(3)
+    if (data && data.length > 0) {
+      setHomeNotices(data.map((n: any) => ({
+        date: new Date(n.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, ''),
+        title: n.title,
+      })))
+    } else {
+      setHomeNotices(NOTICES_FALLBACK)
+    }
+  }, [supabase])
+
+  const loadHomeReports = useCallback(async () => {
+    const { data } = await supabase
+      .from('fishing_reports')
+      .select('title, catch_date, created_at')
+      .order('created_at', { ascending: false })
+      .limit(3)
+    if (data && data.length > 0) {
+      setHomeReports(data.map((r: any) => ({
+        date: r.catch_date
+          ? r.catch_date
+          : new Date(r.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, ''),
+        title: r.title,
+      })))
+    } else {
+      setHomeReports(REPORTS_FALLBACK)
+    }
+  }, [supabase])
+
   const loadCancellations = useCallback(async () => {
     const today = format(new Date(), 'yyyy-MM-dd')
     const { data } = await supabase
@@ -127,6 +156,8 @@ export default function HomePage() {
   useEffect(() => { loadMonthData(currentMonth) }, [currentMonth, loadMonthData])
   useEffect(() => { loadPreviewProducts() }, [loadPreviewProducts])
   useEffect(() => { loadCancellations() }, [loadCancellations])
+  useEffect(() => { loadHomeNotices() }, [loadHomeNotices])
+  useEffect(() => { loadHomeReports() }, [loadHomeReports])
 
   function getDayClass(dateStr: string, inMonth: boolean) {
     const today = new Date(); today.setHours(0,0,0,0)
@@ -397,8 +428,8 @@ export default function HomePage() {
                 <Link href="/notices" className="text-xs transition-colors" style={{ color: '#4A6888' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')} onMouseLeave={(e) => (e.currentTarget.style.color = '#4A6888')}>더보기 →</Link>
               </div>
               <ul className="space-y-3">
-                {NOTICES.map(({ date, title }) => (
-                  <li key={date} className="flex items-start gap-3">
+                {(homeNotices.length > 0 ? homeNotices : NOTICES_FALLBACK).map(({ date, title }) => (
+                  <li key={date + title} className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#C9A84C' }} />
                     <div><p className="text-xs mb-0.5" style={{ color: '#8A9BB0' }}>{date}</p><p className="text-sm font-medium" style={{ color: '#F8F9FA' }}>{title}</p></div>
                   </li>
@@ -411,8 +442,8 @@ export default function HomePage() {
                 <Link href="/catch" className="text-xs transition-colors" style={{ color: '#4A6888' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')} onMouseLeave={(e) => (e.currentTarget.style.color = '#4A6888')}>더보기 →</Link>
               </div>
               <ul className="space-y-3">
-                {FISHING_REPORTS.map(({ date, title }) => (
-                  <li key={date} className="flex items-start gap-3">
+                {(homeReports.length > 0 ? homeReports : REPORTS_FALLBACK).map(({ date, title }) => (
+                  <li key={date + title} className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#C9A84C' }} />
                     <div><p className="text-xs mb-0.5" style={{ color: '#8A9BB0' }}>{date}</p><p className="text-sm font-medium" style={{ color: '#F8F9FA' }}>{title}</p></div>
                   </li>

@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
       totalAmount,
       paymentMethod,
       depositorName,
+      notes,
     } = body
 
     if (!date || !customerName || !customerPhone || !paymentMethod) {
@@ -78,6 +79,7 @@ export async function POST(request: NextRequest) {
         payment_status: 'pending',
         total_amount: totalAmount,
         depositor_name: depositorName ?? null,
+        notes: notes ?? null,
       })
       .select()
       .single()
